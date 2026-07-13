@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#071A2B">
+<title>Séance Plage · BRH Coaching</title>
+<style>
+  :root{
+    --navy:#071A2B;
+    --navy-2:#0C2A42;
+    --navy-3:#123A58;
+    --cyan:#1CA3DD;
+    --cyan-soft:#7FD0F2;
+    --orange:#E8833A;
+    --sand:#F2E3C9;
+    --sand-dim:#C9B999;
+    --white:#F7FBFE;
+    --ok:#3DC98A;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html,body{height:100%;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--navy);
+    color:var(--white);
+    overflow:hidden;
+    user-select:none;
+    -webkit-user-select:none;
+  }
+  #app{height:100dvh;display:flex;flex-direction:column;position:relative;overflow:hidden;}
+
+  /* ---------- vagues décoratives ---------- */
+  .waves{position:absolute;bottom:0;left:0;right:0;pointer-events:none;opacity:.5;z-index:0;}
+  .waves svg{display:block;width:100%;height:90px;}
+
+  /* ---------- écrans ---------- */
+  .screen{flex:1;display:none;flex-direction:column;position:relative;z-index:1;overflow-y:auto;}
+  .screen.active{display:flex;}
+
+  /* ---------- accueil ---------- */
+  #home{padding:28px 22px 120px;}
+  .brand{display:flex;align-items:center;gap:10px;margin-bottom:26px;}
+  .brand-mark{
+    width:38px;height:38px;border-radius:10px;
+    background:linear-gradient(135deg,var(--cyan),#0E6FA0);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:800;font-size:14px;letter-spacing:.5px;color:#fff;
+  }
+  .brand-name{font-size:13px;font-weight:700;letter-spacing:2.5px;color:var(--cyan-soft);text-transform:uppercase;}
+  h1{font-size:34px;line-height:1.08;font-weight:800;letter-spacing:-.5px;margin-bottom:6px;}
+  h1 .accent{color:var(--orange);}
+  .sub{color:var(--sand-dim);font-size:15px;margin-bottom:24px;}
+  .meta-row{display:flex;gap:10px;margin-bottom:28px;}
+  .meta{
+    flex:1;background:var(--navy-2);border:1px solid var(--navy-3);
+    border-radius:14px;padding:12px 10px;text-align:center;
+  }
+  .meta b{display:block;font-size:20px;color:var(--cyan);}
+  .meta span{font-size:11px;color:var(--sand-dim);text-transform:uppercase;letter-spacing:1px;}
+
+  .phase-card{
+    background:var(--navy-2);border:1px solid var(--navy-3);
+    border-radius:16px;padding:16px;margin-bottom:12px;
+  }
+  .phase-card h3{font-size:15px;font-weight:700;display:flex;justify-content:space-between;align-items:center;}
+  .phase-card h3 em{font-style:normal;font-size:12px;color:var(--cyan);font-weight:600;}
+  .phase-card p{font-size:13px;color:var(--sand-dim);margin-top:6px;line-height:1.45;}
+  .tip{
+    background:rgba(232,131,58,.12);border:1px solid rgba(232,131,58,.4);
+    border-radius:14px;padding:14px;font-size:13px;line-height:1.5;color:var(--sand);
+    margin-top:6px;
+  }
+  .tip b{color:var(--orange);}
+
+  .start-bar{
+    position:fixed;bottom:0;left:0;right:0;padding:16px 22px calc(16px + env(safe-area-inset-bottom));
+    background:linear-gradient(to top,var(--navy) 65%,transparent);z-index:5;
+  }
+  .btn-primary{
+    width:100%;padding:18px;border:none;border-radius:16px;
+    background:linear-gradient(135deg,var(--orange),#D06A22);
+    color:#fff;font-size:18px;font-weight:800;letter-spacing:.5px;
+    box-shadow:0 6px 24px rgba(232,131,58,.35);
+    cursor:pointer;
+  }
+  .btn-primary:active{transform:scale(.98);}
+
+  /* ---------- séance ---------- */
+  #workout{padding:0;justify-content:space-between;}
+  .top{padding:14px 18px 0;}
+  .progress-track{height:6px;background:var(--navy-3);border-radius:99px;overflow:hidden;}
+  .progress-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--cyan),var(--cyan-soft));border-radius:99px;transition:width .4s;}
+  .top-row{display:flex;justify-content:space-between;align-items:center;margin-top:10px;}
+  .phase-tag{
+    font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+    color:var(--cyan-soft);background:var(--navy-2);border:1px solid var(--navy-3);
+    padding:6px 12px;border-radius:99px;
+  }
+  .elapsed{font-size:12px;color:var(--sand-dim);font-variant-numeric:tabular-nums;}
+
+  .center{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px 22px;text-align:center;min-height:0;}
+  .step-count{font-size:12px;color:var(--sand-dim);letter-spacing:1px;margin-bottom:6px;}
+  .exo-name{font-size:26px;font-weight:800;line-height:1.15;margin-bottom:6px;}
+  .exo-detail{font-size:14px;color:var(--sand-dim);line-height:1.45;max-width:320px;margin-bottom:14px;}
+
+  .ring-wrap{position:relative;width:min(58vw,240px);aspect-ratio:1;margin-bottom:10px;}
+  .ring-wrap svg{width:100%;height:100%;transform:rotate(-90deg);}
+  .ring-bg{fill:none;stroke:var(--navy-3);stroke-width:9;}
+  .ring-fg{fill:none;stroke-width:9;stroke-linecap:round;transition:stroke-dashoffset .25s linear;}
+  .time-display{
+    position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  }
+  .time-num{font-size:56px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-1px;}
+  .time-label{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--sand-dim);}
+
+  .btn-done{
+    padding:20px 40px;border:none;border-radius:18px;margin:14px 0 6px;
+    background:linear-gradient(135deg,var(--cyan),#0E6FA0);
+    color:#fff;font-size:19px;font-weight:800;cursor:pointer;
+    box-shadow:0 6px 24px rgba(28,163,221,.35);
+  }
+  .btn-done:active{transform:scale(.97);}
+
+  .next-up{
+    font-size:13px;color:var(--sand-dim);background:var(--navy-2);
+    border:1px solid var(--navy-3);border-radius:12px;padding:9px 16px;max-width:92%;
+  }
+  .next-up b{color:var(--white);font-weight:600;}
+
+  .controls{
+    display:flex;gap:12px;padding:14px 22px calc(18px + env(safe-area-inset-bottom));
+  }
+  .ctrl{
+    flex:1;padding:15px 0;border-radius:14px;border:1px solid var(--navy-3);
+    background:var(--navy-2);color:var(--white);font-size:15px;font-weight:700;cursor:pointer;
+  }
+  .ctrl:active{background:var(--navy-3);}
+  .ctrl.pause-btn{flex:1.4;background:var(--navy-3);}
+
+  /* couleurs par type d'étape */
+  .mode-work .ring-fg{stroke:var(--orange);}
+  .mode-work .time-num{color:var(--orange);}
+  .mode-rest .ring-fg{stroke:var(--cyan);}
+  .mode-rest .time-num{color:var(--cyan-soft);}
+  .mode-prep .ring-fg{stroke:var(--sand);}
+  .mode-prep .time-num{color:var(--sand);}
+
+  /* ---------- fin ---------- */
+  #done{align-items:center;justify-content:center;text-align:center;padding:30px 24px;}
+  .done-emoji{font-size:56px;margin-bottom:14px;}
+  #done h2{font-size:30px;font-weight:800;margin-bottom:8px;}
+  #done p{color:var(--sand-dim);font-size:15px;margin-bottom:22px;max-width:300px;line-height:1.5;}
+  .done-stats{display:flex;gap:12px;margin-bottom:26px;}
+  .done-stats .meta{min-width:100px;}
+  .btn-wa{
+    display:inline-block;padding:16px 26px;border-radius:14px;border:none;
+    background:#25D366;color:#fff;font-weight:800;font-size:16px;cursor:pointer;text-decoration:none;
+    margin-bottom:14px;
+  }
+  .btn-ghost{
+    background:none;border:1px solid var(--navy-3);color:var(--sand-dim);
+    padding:13px 22px;border-radius:14px;font-size:14px;cursor:pointer;
+  }
+
+  .paused-overlay{
+    position:absolute;inset:0;background:rgba(7,26,43,.9);z-index:10;
+    display:none;flex-direction:column;align-items:center;justify-content:center;gap:18px;
+  }
+  .paused-overlay.show{display:flex;}
+  .paused-overlay h2{font-size:26px;font-weight:800;letter-spacing:1px;}
+</style>
+</head>
+<body>
+<div id="app">
+
+  <!-- ================= ACCUEIL ================= -->
+  <div class="screen active" id="home">
+    <div class="brand">
+      <div class="brand-mark">BRH</div>
+      <div class="brand-name">BRH Coaching</div>
+    </div>
+    <h1>Séance <span class="accent">Plage</span> 🌊</h1>
+    <p class="sub">Karine · Phase 2 · Full body sans matériel</p>
+
+    <div class="meta-row">
+      <div class="meta"><b>≈45</b><span>minutes</span></div>
+      <div class="meta"><b>4</b><span>blocs</span></div>
+      <div class="meta"><b>0</b><span>matériel</span></div>
+    </div>
+
+    <div class="phase-card">
+      <h3>1 · Échauffement <em>8 min</em></h3>
+      <p>Marche rapide sable dur, mobilité chevilles/hanches/épaules, 2 accélérations progressives.</p>
+    </div>
+    <div class="phase-card">
+      <h3>2 · Sprints sable mou <em>~11 min</em></h3>
+      <p>6 sprints de 30 m à 85 %, retour en marchant. Foulées courtes, fréquence élevée.</p>
+    </div>
+    <div class="phase-card">
+      <h3>3 · Circuit force <em>~20 min</em></h3>
+      <p>3 tours · 6 exercices · 40 s d'effort / 20 s de transition. La qualité avant le nombre de reps.</p>
+    </div>
+    <div class="phase-card">
+      <h3>4 · Retour au calme <em>7 min</em></h3>
+      <p>Marche dans l'eau jusqu'aux mollets, puis étirements face à la mer.</p>
+    </div>
+
+    <div class="tip">
+      <b>Avant de démarrer :</b> séance tôt le matin ou en fin de journée, pas en plein soleil. Vérifie le sable (débris) avant d'être pieds nus. Bouteille d'eau à portée de main. 💧
+    </div>
+
+    <div class="start-bar">
+      <button class="btn-primary" id="startBtn">Démarrer la séance ▶</button>
+    </div>
+    <div class="waves">
+      <svg viewBox="0 0 400 90" preserveAspectRatio="none"><path d="M0,45 C60,15 120,75 200,45 C280,15 340,75 400,45 L400,90 L0,90 Z" fill="#0C2A42"/><path d="M0,60 C70,35 140,85 220,60 C300,35 350,80 400,60 L400,90 L0,90 Z" fill="#123A58" opacity=".7"/></svg>
+    </div>
+  </div>
+
+  <!-- ================= SÉANCE ================= -->
+  <div class="screen" id="workout">
+    <div class="top">
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="top-row">
+        <div class="phase-tag" id="phaseTag">Échauffement</div>
+        <div class="elapsed" id="elapsed">00:00</div>
+      </div>
+    </div>
+
+    <div class="center" id="centerZone">
+      <div class="step-count" id="stepCount"></div>
+      <div class="exo-name" id="exoName"></div>
+      <div class="exo-detail" id="exoDetail"></div>
+
+      <div class="ring-wrap" id="ringWrap">
+        <svg viewBox="0 0 100 100">
+          <circle class="ring-bg" cx="50" cy="50" r="44"/>
+          <circle class="ring-fg" id="ringFg" cx="50" cy="50" r="44"/>
+        </svg>
+        <div class="time-display">
+          <div class="time-num" id="timeNum">0</div>
+          <div class="time-label" id="timeLabel">secondes</div>
+        </div>
+      </div>
+
+      <button class="btn-done" id="doneBtn" style="display:none">Sprint terminé ✓</button>
+
+      <div class="next-up" id="nextUp"></div>
+    </div>
+
+    <div class="controls">
+      <button class="ctrl" id="prevBtn">⏮ Préc.</button>
+      <button class="ctrl pause-btn" id="pauseBtn">⏸ Pause</button>
+      <button class="ctrl" id="skipBtn">Suiv. ⏭</button>
+    </div>
+
+    <div class="paused-overlay" id="pausedOverlay">
+      <h2>⏸ PAUSE</h2>
+      <button class="btn-done" id="resumeBtn">Reprendre ▶</button>
+    </div>
+  </div>
+
+  <!-- ================= FIN ================= -->
+  <div class="screen" id="done">
+    <div class="done-emoji">🏖️💪</div>
+    <h2>Séance terminée !</h2>
+    <p>Bravo Karine ! Hydrate-toi tout de suite et pense à ton apport en protéines dans les 2 h.</p>
+    <div class="done-stats">
+      <div class="meta"><b id="finalTime">–</b><span>durée totale</span></div>
+      <div class="meta"><b>27</b><span>étapes</span></div>
+    </div>
+    <button class="btn-wa" id="waBtn">Envoyer le récap à Vincent 📲</button>
+    <button class="btn-ghost" id="restartBtn">Recommencer la séance</button>
+  </div>
+
+</div>
+
+<script>
+/* =============== PROGRAMME =============== */
+// kind: work (orange) / rest (cyan) / prep (sable)
+// manual:true = validation par bouton (pas de chrono imposé)
+const STEPS = [
+  // --- ÉCHAUFFEMENT ---
+  {ph:"Échauffement", name:"Marche rapide 🚶‍♀️", d:"Sur sable dur, au bord de l'eau. Bras dynamiques, on monte doucement en température.", dur:120, kind:"prep"},
+  {ph:"Échauffement", name:"Cercles de chevilles", d:"15 cercles dans chaque sens, chaque cheville. Le sable sollicite beaucoup les chevilles !", dur:40, kind:"prep"},
+  {ph:"Échauffement", name:"Montées sur pointes", d:"×15, contrôlées, sur sable dur. Réveille les mollets avant les sprints.", dur:40, kind:"prep"},
+  {ph:"Échauffement", name:"Fentes dynamiques", d:"×10 par jambe, buste droit, genou aligné avec le pied.", dur:60, kind:"prep"},
+  {ph:"Échauffement", name:"Rotations épaules + hanches", d:"Grands cercles de bras, rotations de hanches. Amplitude progressive.", dur:60, kind:"prep"},
+  {ph:"Échauffement", name:"Course légère 🏃‍♀️", d:"Allure facile sur sable dur, foulée relâchée.", dur:30, kind:"work"},
+  {ph:"Échauffement", name:"Retour en marchant", d:"On souffle, on secoue les jambes.", dur:30, kind:"rest"},
+  {ph:"Échauffement", name:"Course légère · accélération", d:"Un peu plus vite que la première, sans forcer. Prépare les sprints.", dur:30, kind:"work"},
+  {ph:"Échauffement", name:"Retour en marchant", d:"Dernière récup avant le vrai travail 😉", dur:30, kind:"rest"},
+
+  // --- SPRINTS ---
+  {ph:"Sprints", name:"Sprint 1/6 ⚡", d:"30 m sable mou à ~80 %. Foulées courtes, fréquence élevée, buste légèrement penché.", manual:true, btn:"Sprint terminé ✓", kind:"work"},
+  {ph:"Sprints", name:"Récup · retour en marchant", d:"Marche tranquille jusqu'au point de départ. Respire par le nez.", dur:90, kind:"rest"},
+  {ph:"Sprints", name:"Sprint 2/6 ⚡", d:"30 m à ~85 %. Regarde loin devant, pas tes pieds.", manual:true, btn:"Sprint terminé ✓", kind:"work"},
+  {ph:"Sprints", name:"Récup · retour en marchant", d:"Les mollets chauffent, c'est normal — c'est le sable mou.", dur:90, kind:"rest"},
+  {ph:"Sprints", name:"Sprint 3/6 ⚡", d:"30 m à 85 %. Bras à 90°, ils donnent le rythme.", manual:true, btn:"Sprint terminé ✓", kind:"work"},
+  {ph:"Sprints", name:"Récup · retour en marchant", d:"Mi-parcours du bloc sprints ! 💪", dur:90, kind:"rest"},
+  {ph:"Sprints", name:"Sprint 4/6 ⚡", d:"30 m à 85 %. Attaque le sol sous ton centre de gravité.", manual:true, btn:"Sprint terminé ✓", kind:"work"},
+  {ph:"Sprints", name:"Récup · retour en marchant", d:"Hydrate-toi si besoin 💧", dur:90, kind:"rest"},
+  {ph:"Sprints", name:"Sprint 5/6 ⚡", d:"30 m à 85 %. Avant-dernier, garde de la réserve pour le circuit.", manual:true, btn:"Sprint terminé ✓", kind:"work"},
+  {ph:"Sprints", name:"Récup · retour en marchant", d:"Encore un !", dur:90, kind:"rest"},
+  {ph:"Sprints", name:"Sprint 6/6 ⚡", d:"Le dernier — le plus propre techniquement, pas le plus violent.", manual:true, btn:"Sprint terminé ✓", kind:"work"},
+  {ph:"Sprints", name:"Récup avant le circuit", d:"Marche, bois un coup. Le circuit force arrive.", dur:90, kind:"rest"},
+];
+
+// --- CIRCUIT : généré ---
+const CIRCUIT = [
+  {name:"Squats sautés 🦵", d:"Réception amortie dans le sable mou, genoux souples. Pousse fort, atterris doux."},
+  {name:"Pompes 💥", d:"Mains sur sable dur, corps gainé. Sur les genoux si besoin, sans casser le rythme."},
+  {name:"Fentes marchées", d:"Dans le sable mou, buste droit. Le sable instable travaille l'équilibre — prends ton temps."},
+  {name:"Mountain climbers", d:"Bassin stable, genoux vers la poitrine. Rythme régulier."},
+  {name:"Planche + touchers d'épaules", d:"En planche, touche l'épaule opposée sans balancer le bassin."},
+  {name:"Burpees (sans pompe) 🔥", d:"Descente contrôlée, saut d'extension. Adapte le rythme, garde la technique."},
+];
+for(let t=1;t<=3;t++){
+  CIRCUIT.forEach((ex,i)=>{
+    STEPS.push({ph:`Circuit · Tour ${t}/3`, name:ex.name, d:ex.d, dur:40, kind:"work"});
+    if(i<CIRCUIT.length-1){
+      STEPS.push({ph:`Circuit · Tour ${t}/3`, name:"Transition", d:"Passe au prochain exercice, souffle.", dur:20, kind:"rest"});
+    }
+  });
+  if(t<3){
+    STEPS.push({ph:`Circuit · Tour ${t}/3`, name:`Repos entre tours 🧘‍♀️`, d:"Marche, secoue les jambes, bois de l'eau. Tour "+(t+1)+" dans 2 minutes.", dur:120, kind:"rest"});
+  }
+}
+
+// --- RETOUR AU CALME ---
+STEPS.push(
+  {ph:"Retour au calme", name:"Marche dans l'eau 🌊", d:"Jusqu'aux mollets. L'eau fraîche a un effet drainant sur les jambes.", dur:180, kind:"prep"},
+  {ph:"Retour au calme", name:"Étirement mollets", d:"Face à la mer, un pied en arrière, talon dans le sable. 20 s par jambe.", dur:40, kind:"prep"},
+  {ph:"Retour au calme", name:"Étirement quadriceps", d:"Debout, talon vers la fesse, genoux serrés. 20 s par jambe.", dur:40, kind:"prep"},
+  {ph:"Retour au calme", name:"Étirement ischio-jambiers", d:"Jambe tendue devant, bascule le buste dos plat. 20 s par jambe.", dur:40, kind:"prep"},
+  {ph:"Retour au calme", name:"Ouverture thoracique", d:"Mains croisées dans le dos, ouvre la poitrine, grandes respirations face à la mer 🌅", dur:50, kind:"prep"}
+);
+
+/* =============== ÉTAT =============== */
+const totalSec = STEPS.reduce((s,x)=>s+(x.dur||20),0);
+let idx = 0, remaining = 0, timer = null, paused = false;
+let elapsedSec = 0, elapsedTimer = null, wakeLock = null, audioCtx = null;
+
+const $ = id => document.getElementById(id);
+const screens = {home:$("home"), workout:$("workout"), done:$("done")};
+const RING_C = 2*Math.PI*44;
+$("ringFg").style.strokeDasharray = RING_C;
+
+function show(name){
+  Object.values(screens).forEach(s=>s.classList.remove("active"));
+  screens[name].classList.add("active");
+}
+
+/* =============== AUDIO =============== */
+function beep(freq=880, dur=0.12, when=0){
+  if(!audioCtx) return;
+  const o = audioCtx.createOscillator(), g = audioCtx.createGain();
+  o.frequency.value = freq; o.type = "sine";
+  g.gain.setValueAtTime(0.001, audioCtx.currentTime+when);
+  g.gain.exponentialRampToValueAtTime(0.4, audioCtx.currentTime+when+0.01);
+  g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime+when+dur);
+  o.connect(g); g.connect(audioCtx.destination);
+  o.start(audioCtx.currentTime+when); o.stop(audioCtx.currentTime+when+dur+0.05);
+}
+function beepGo(){ beep(660,0.1,0); beep(880,0.25,0.15); }
+
+/* =============== WAKE LOCK =============== */
+async function requestWake(){
+  try{ if("wakeLock" in navigator){ wakeLock = await navigator.wakeLock.request("screen"); } }catch(e){}
+}
+document.addEventListener("visibilitychange",()=>{ if(document.visibilityState==="visible" && screens.workout.classList.contains("active")) requestWake(); });
+
+/* =============== RENDU =============== */
+function fmt(s){ const m=Math.floor(s/60), sec=s%60; return `${String(m).padStart(2,"0")}:${String(sec).padStart(2,"0")}`; }
+
+function render(){
+  const st = STEPS[idx];
+  $("phaseTag").textContent = st.ph;
+  $("stepCount").textContent = `Étape ${idx+1} / ${STEPS.length}`;
+  $("exoName").textContent = st.name;
+  $("exoDetail").textContent = st.d;
+
+  const cz = $("centerZone");
+  cz.className = "center mode-"+st.kind;
+
+  const next = STEPS[idx+1];
+  $("nextUp").innerHTML = next ? `Ensuite : <b>${next.name}</b>${next.dur? " · "+next.dur+" s":""}` : `Dernière étape ! 🎉`;
+
+  // progression globale (basée sur les étapes)
+  const doneSec = STEPS.slice(0,idx).reduce((s,x)=>s+(x.dur||20),0);
+  $("progressFill").style.width = Math.min(100, doneSec/totalSec*100)+"%";
+
+  if(st.manual){
+    $("ringWrap").style.display = "none";
+    $("doneBtn").style.display = "block";
+    $("doneBtn").textContent = st.btn || "Terminé ✓";
+    clearInterval(timer); timer = null;
+  }else{
+    $("ringWrap").style.display = "block";
+    $("doneBtn").style.display = "none";
+    startCountdown(st.dur);
+  }
+}
+
+function startCountdown(dur){
+  clearInterval(timer);
+  remaining = dur;
+  updateRing(dur, dur);
+  timer = setInterval(()=>{
+    if(paused) return;
+    remaining--;
+    updateRing(remaining, dur);
+    if(remaining===3||remaining===2||remaining===1) beep(880,0.1);
+    if(remaining<=0){ clearInterval(timer); timer=null; beepGo(); advance(); }
+  },1000);
+}
+
+function updateRing(rem, dur){
+  $("timeNum").textContent = rem>=60 ? fmt(rem) : rem;
+  $("timeLabel").textContent = rem>=60 ? "min" : "secondes";
+  $("ringFg").style.strokeDashoffset = RING_C * (1 - rem/dur);
+}
+
+function advance(){
+  if(idx < STEPS.length-1){ idx++; render(); }
+  else finish();
+}
+function goBack(){ if(idx>0){ idx--; render(); } }
+
+function finish(){
+  clearInterval(timer); clearInterval(elapsedTimer);
+  if(wakeLock){ try{wakeLock.release();}catch(e){} }
+  $("finalTime").textContent = fmt(elapsedSec);
+  show("done");
+  const today = new Date().toLocaleDateString("fr-FR",{weekday:"long",day:"numeric",month:"long"});
+  const msg = `🏖️ Séance Plage terminée !\n📅 ${today}\n⏱️ Durée : ${fmt(elapsedSec)}\n✅ Échauffement + 6 sprints + 3 tours de circuit + retour au calme\n\nRessenti (1-10) : \nCommentaire : `;
+  $("waBtn").onclick = ()=> window.open("https://wa.me/?text="+encodeURIComponent(msg),"_blank");
+}
+
+/* =============== CONTRÔLES =============== */
+$("startBtn").onclick = ()=>{
+  try{ audioCtx = new (window.AudioContext||window.webkitAudioContext)(); }catch(e){}
+  requestWake();
+  idx = 0; elapsedSec = 0; paused = false;
+  show("workout");
+  render();
+  clearInterval(elapsedTimer);
+  elapsedTimer = setInterval(()=>{ if(!paused){ elapsedSec++; $("elapsed").textContent = fmt(elapsedSec); } },1000);
+};
+$("doneBtn").onclick = ()=>{ beepGo(); advance(); };
+$("skipBtn").onclick = ()=> advance();
+$("prevBtn").onclick = ()=> goBack();
+$("pauseBtn").onclick = ()=>{ paused = true; $("pausedOverlay").classList.add("show"); };
+$("resumeBtn").onclick = ()=>{ paused = false; $("pausedOverlay").classList.remove("show"); };
+$("restartBtn").onclick = ()=>{ show("home"); window.scrollTo(0,0); };
+</script>
+</body>
+</html>
