@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>BRH Coaching — Séance 12 · Hypertrophie Haut du corps</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@1,600;1,700;1,800&family=Saira:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0A141F;
+  --card:#101F2D;
+  --card2:#0C1826;
+  --line:#1D3346;
+  --cyan:#1CA3DD;
+  --cyan-hi:#4CC3F0;
+  --cyan-dim:rgba(28,163,221,.14);
+  --orange:#E8833A;
+  --green:#2ECC71;
+  --red:#E0412B;
+  --text:#EAF3FA;
+  --muted:#7E97AA;
+  --radius:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--ink);
+  color:var(--text);
+  font-family:'Saira',system-ui,sans-serif;
+  font-size:15px;
+  line-height:1.45;
+  padding-bottom:120px;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:repeating-linear-gradient(115deg,transparent 0 90px,rgba(28,163,221,.03) 90px 92px);
+}
+.wrap{max-width:700px;margin:0 auto;padding:0 14px;position:relative;z-index:1}
+
+/* ---------- HERO ---------- */
+.hero{
+  background:linear-gradient(160deg,#0E2236 0%,#0A1826 55%,#0A141F 100%);
+  border-bottom:1px solid var(--line);
+  position:relative;overflow:hidden;
+  padding:26px 0 20px;
+}
+.hero::after{
+  content:"";position:absolute;right:-60px;top:-40px;width:280px;height:300px;
+  background:linear-gradient(115deg,transparent 48%,rgba(28,163,221,.10) 48%,rgba(28,163,221,.10) 56%,transparent 56%,transparent 64%,rgba(28,163,221,.06) 64%,rgba(28,163,221,.06) 72%,transparent 72%);
+  transform:skewX(-8deg);
+}
+.hero .wrap{display:flex;flex-direction:column;gap:14px}
+.hero img.logo{width:150px;height:auto;display:block}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'Kanit';font-style:italic;font-weight:700;font-size:12px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--cyan-hi);
+}
+.eyebrow::before{content:"";width:22px;height:3px;background:var(--cyan);transform:skewX(-18deg)}
+h1{
+  font-family:'Kanit';font-style:italic;font-weight:800;
+  font-size:clamp(30px,7vw,42px);line-height:1.02;text-transform:uppercase;
+  letter-spacing:.01em;
+}
+h1 .lite{color:var(--cyan)}
+.meta{display:flex;flex-wrap:wrap;gap:8px}
+.chip{
+  font-size:12.5px;font-weight:600;color:var(--muted);
+  border:1px solid var(--line);border-radius:999px;padding:4px 12px;
+  background:rgba(255,255,255,.02);
+}
+.chip strong{color:var(--text);font-weight:600}
+.athlete{
+  display:flex;gap:10px;align-items:stretch;margin-top:2px;
+}
+.athlete input{
+  flex:1;background:var(--card2);border:1px solid var(--line);border-radius:10px;
+  color:var(--text);font-family:'Saira';font-size:16px;font-weight:600;
+  padding:11px 14px;min-width:0;
+}
+.athlete input::placeholder{color:var(--muted);font-weight:400}
+.athlete input:focus{outline:2px solid var(--cyan);outline-offset:1px;border-color:transparent}
+.savebadge{
+  align-self:center;font-size:11.5px;color:var(--muted);white-space:nowrap;
+  display:flex;align-items:center;gap:6px;
+}
+.savebadge .dot{width:8px;height:8px;border-radius:50%;background:var(--muted);transition:background .3s}
+.savebadge.ok .dot{background:var(--green)}
+.savebadge.pending .dot{background:var(--orange)}
+
+/* ---------- PROGRESS BAR (sticky) ---------- */
+.progress{
+  position:sticky;top:0;z-index:40;
+  background:rgba(10,20,31,.92);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.progress .wrap{display:flex;align-items:center;gap:12px;padding:9px 14px}
+.pbar{flex:1;height:8px;border-radius:99px;background:var(--card2);overflow:hidden;border:1px solid var(--line)}
+.pfill{height:100%;width:0%;background:linear-gradient(90deg,var(--cyan),var(--cyan-hi));transition:width .35s ease;border-radius:99px}
+.pnum{font-family:'Kanit';font-style:italic;font-weight:700;font-size:13px;color:var(--cyan-hi);min-width:74px;text-align:right}
+
+/* ---------- BLOCKS ---------- */
+main{display:flex;flex-direction:column;gap:16px;padding-top:18px}
+.block{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  overflow:hidden;
+}
+.bhead{
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  padding:13px 14px 12px;border-bottom:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(28,163,221,.05),transparent);
+}
+.btag{
+  font-family:'Kanit';font-style:italic;font-weight:800;font-size:16px;
+  color:#08131E;background:var(--cyan);
+  padding:3px 13px 3px 11px;
+  clip-path:polygon(0 0,100% 0,calc(100% - 8px) 100%,0 100%);
+  letter-spacing:.03em;
+}
+.btag.acc{background:var(--orange)}
+.btitle{font-family:'Kanit';font-style:italic;font-weight:700;font-size:17px;text-transform:uppercase;letter-spacing:.02em;flex:1;min-width:150px}
+.bsub{width:100%;font-size:12.5px;color:var(--muted);margin-top:-2px}
+.restbtn{
+  margin-left:auto;font-family:'Saira';font-weight:600;font-size:12.5px;
+  color:var(--cyan-hi);background:var(--cyan-dim);border:1px solid rgba(28,163,221,.35);
+  border-radius:999px;padding:5px 12px;cursor:pointer;white-space:nowrap;
+}
+.restbtn:active{transform:scale(.96)}
+
+/* exercise inside block */
+.exo{padding:12px 14px 14px;border-bottom:1px solid var(--line)}
+.exo:last-child{border-bottom:none}
+.exhead{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;margin-bottom:4px}
+.exnum{font-family:'Kanit';font-style:italic;font-weight:800;font-size:13px;color:var(--cyan)}
+.exname{font-weight:700;font-size:15.5px}
+.presc{font-size:12.5px;color:var(--muted);width:100%}
+.presc b{color:var(--orange);font-weight:600}
+
+/* set rows */
+.cols{
+  display:grid;grid-template-columns:34px 1fr 1fr 1fr 46px;gap:7px;
+  font-size:10.5px;font-weight:600;letter-spacing:.1em;color:var(--muted);
+  text-transform:uppercase;margin:10px 0 5px;text-align:center;
+}
+.set{display:grid;grid-template-columns:34px 1fr 1fr 1fr 46px;gap:7px;margin-bottom:7px;align-items:stretch}
+.sn{
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Kanit';font-style:italic;font-weight:700;font-size:14px;color:var(--muted);
+}
+.set input,.set select{
+  width:100%;background:var(--card2);border:1px solid var(--line);border-radius:9px;
+  color:var(--text);font-family:'Saira';font-weight:600;font-size:16px;
+  padding:9px 6px;text-align:center;min-width:0;
+  font-variant-numeric:tabular-nums;
+  appearance:none;-webkit-appearance:none;
+}
+.set input::placeholder{color:#4A6478;font-weight:400;font-size:13.5px}
+.set input:focus,.set select:focus{outline:2px solid var(--cyan);outline-offset:1px;border-color:transparent}
+.set select{color:var(--text)}
+.ck{
+  border:1px solid var(--line);border-radius:9px;background:var(--card2);
+  color:#4A6478;font-size:17px;cursor:pointer;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .15s,color .15s;
+}
+.ck[aria-pressed="true"]{background:var(--green);border-color:var(--green);color:#07131C}
+.ck:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+
+/* circuit / checklist rows */
+.crow{
+  display:flex;align-items:center;gap:10px;padding:9px 0;
+  border-bottom:1px dashed rgba(29,51,70,.7);
+}
+.crow:last-child{border-bottom:none}
+.crow .lbl{flex:1;font-weight:600;font-size:14.5px}
+.crow .det{font-size:12.5px;color:var(--muted);display:block;font-weight:400}
+.chrono{
+  font-family:'Kanit';font-style:italic;font-weight:700;font-size:13px;
+  color:var(--cyan-hi);background:var(--cyan-dim);border:1px solid rgba(28,163,221,.35);
+  border-radius:8px;padding:6px 11px;cursor:pointer;white-space:nowrap;
+}
+.chrono:active{transform:scale(.95)}
+.circuitbtn{
+  width:100%;margin:10px 0 4px;
+  font-family:'Kanit';font-style:italic;font-weight:800;font-size:15px;
+  text-transform:uppercase;letter-spacing:.04em;color:#07131C;
+  background:linear-gradient(120deg,var(--cyan),var(--cyan-hi));
+  border:none;border-radius:10px;padding:11px;cursor:pointer;
+}
+.circuitbtn:active{transform:scale(.98)}
+.tourlabel{
+  font-family:'Kanit';font-style:italic;font-weight:800;font-size:13px;
+  color:var(--cyan);text-transform:uppercase;letter-spacing:.08em;
+  margin:12px 0 2px;display:flex;align-items:center;gap:8px;
+}
+.tourlabel::after{content:"";flex:1;height:1px;background:var(--line)}
+.tourlabel:first-child{margin-top:2px}
+
+/* notes */
+.notesbtn{
+  background:none;border:none;color:var(--muted);font-family:'Saira';font-size:12.5px;
+  font-weight:600;cursor:pointer;padding:4px 0;display:inline-flex;align-items:center;gap:5px;
+}
+.notesbtn::before{content:"✎";color:var(--cyan)}
+textarea{
+  width:100%;background:var(--card2);border:1px solid var(--line);border-radius:9px;
+  color:var(--text);font-family:'Saira';font-size:14px;padding:9px 11px;
+  min-height:56px;resize:vertical;display:none;margin-top:5px;
+}
+textarea.open{display:block}
+textarea:focus{outline:2px solid var(--cyan);outline-offset:1px;border-color:transparent}
+textarea::placeholder{color:#4A6478}
+
+/* ---------- SESSION END ---------- */
+.endcard{padding:16px 14px}
+.endcard .row2{display:grid;grid-template-columns:1fr 110px;gap:10px;margin-bottom:10px}
+.endcard label{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:5px}
+.endcard textarea{display:block;min-height:70px}
+.endcard select{
+  width:100%;background:var(--card2);border:1px solid var(--line);border-radius:9px;
+  color:var(--text);font-family:'Saira';font-weight:600;font-size:16px;padding:10px;text-align:center;
+}
+.bigbtn{
+  width:100%;font-family:'Kanit';font-style:italic;font-weight:800;font-size:19px;
+  text-transform:uppercase;letter-spacing:.04em;color:#07131C;
+  background:linear-gradient(120deg,var(--cyan),var(--cyan-hi));
+  border:none;border-radius:12px;padding:15px;cursor:pointer;margin-top:6px;
+}
+.bigbtn:active{transform:scale(.98)}
+.summary{display:none;margin-top:14px;border-top:1px solid var(--line);padding-top:14px}
+.summary.show{display:block}
+.sgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-bottom:12px}
+.scell{background:var(--card2);border:1px solid var(--line);border-radius:11px;padding:11px 12px}
+.scell .v{font-family:'Kanit';font-style:italic;font-weight:800;font-size:23px;color:var(--cyan-hi);line-height:1.1}
+.scell .k{font-size:11px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+.ghost{
+  width:100%;font-family:'Saira';font-weight:700;font-size:14.5px;color:var(--cyan-hi);
+  background:var(--cyan-dim);border:1px solid rgba(28,163,221,.35);border-radius:11px;
+  padding:12px;cursor:pointer;
+}
+
+/* ---------- TIMER DOCK ---------- */
+.dock{
+  position:fixed;left:0;right:0;bottom:0;z-index:60;
+  transform:translateY(110%);transition:transform .3s cubic-bezier(.2,.9,.3,1);
+  background:rgba(12,24,38,.97);backdrop-filter:blur(10px);
+  border-top:1px solid var(--line);
+}
+.dock.on{transform:translateY(0)}
+.dock .wrap{display:flex;align-items:center;gap:12px;padding:12px 14px calc(12px + env(safe-area-inset-bottom))}
+.dtime{
+  font-family:'Kanit';font-style:italic;font-weight:800;font-size:34px;
+  min-width:104px;font-variant-numeric:tabular-nums;color:var(--cyan-hi);line-height:1;
+}
+.dock.work .dtime{color:var(--orange)}
+.dock.warn .dtime{color:var(--orange)}
+.dock.done .dtime{color:var(--red)}
+.dinfo{flex:1;min-width:0}
+.dlabel{font-weight:700;font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dbar{height:6px;border-radius:99px;background:var(--card);margin-top:6px;overflow:hidden;border:1px solid var(--line)}
+.dfill{height:100%;width:100%;background:linear-gradient(90deg,var(--cyan),var(--cyan-hi));border-radius:99px}
+.dock.work .dfill{background:var(--orange)}
+.dock.warn .dfill{background:var(--orange)}
+.dock.done .dfill{background:var(--red)}
+.dbtns{display:flex;gap:8px}
+.dbtn{
+  border:1px solid var(--line);background:var(--card);color:var(--text);
+  border-radius:10px;font-family:'Saira';font-weight:700;font-size:13px;
+  padding:9px 12px;cursor:pointer;white-space:nowrap;
+}
+.dbtn:active{transform:scale(.95)}
+
+footer{padding:26px 14px 10px;text-align:center;font-size:12px;color:var(--muted)}
+footer b{color:var(--cyan);font-family:'Kanit';font-style:italic}
+
+@media (max-width:420px){
+  .cols,.set{grid-template-columns:28px 1fr 1fr 1fr 42px;gap:6px}
+  .dtime{font-size:29px;min-width:90px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <img class="logo" src="data:image/png;base64,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" alt="BRH Coaching">
+    <div>
+      <span class="eyebrow">Séance 12 · CAO Orsay — Groupe Masters</span>
+      <h1>Hypertrophie<br><span class="lite">Haut du corps</span></h1>
+    </div>
+    <div class="meta">
+      <span class="chip">📅 <strong>13/07/2026</strong></span>
+      <span class="chip">🎯 Objectif : <strong>masse musculaire &amp; explosivité</strong></span>
+      <span class="chip">📝 Notes coach : <strong>RAS</strong></span>
+    </div>
+    <div class="athlete">
+      <input id="athlete" list="athletes" placeholder="Prénom du nageur / de la nageuse…" autocomplete="off" aria-label="Nom de l'athlète">
+      <datalist id="athletes"></datalist>
+      <span class="savebadge" id="savebadge"><span class="dot"></span><span id="savetxt">carnet</span></span>
+    </div>
+  </div>
+</header>
+
+<div class="progress">
+  <div class="wrap">
+    <div class="pbar"><div class="pfill" id="pfill"></div></div>
+    <div class="pnum"><span id="pdone">0</span>/<span id="ptotal">0</span> séries</div>
+  </div>
+</div>
+
+<div class="wrap">
+<main>
+
+  <!-- BLOC A : ÉCHAUFFEMENT -->
+  <section class="block">
+    <div class="bhead">
+      <span class="btag">A</span>
+      <span class="btitle">Échauffement &amp; prévention</span>
+    </div>
+    <div class="exo">
+      <div class="crow">
+        <span class="lbl">Mobilité articulaire haut du corps <span class="det">avec élastique et bande</span></span>
+        <button class="ck" data-f data-set id="a-1" aria-pressed="false" aria-label="Valider mobilité articulaire">✓</button>
+      </div>
+      <div class="crow">
+        <span class="lbl">Abaisseurs d'épaules <span class="det">activation coiffe / grand dentelé</span></span>
+        <button class="ck" data-f data-set id="a-2" aria-pressed="false" aria-label="Valider abaisseurs d'épaules">✓</button>
+      </div>
+      <button class="notesbtn" data-toggle="a-notes">Notes du bloc</button>
+      <textarea data-f id="a-notes" placeholder="Points raides, épaules à surveiller…"></textarea>
+    </div>
+  </section>
+
+  <!-- BLOC B : CEINTURE ABDOMINALE 40/20 -->
+  <section class="block">
+    <div class="bhead">
+      <span class="btag">B</span>
+      <span class="btitle">Ceinture abdominale</span>
+      <span class="bsub">Circuit 4 exercices — 40 s de travail / 20 s de repos · 2 tours</span>
+    </div>
+    <div class="exo">
+      <div class="tourlabel">Tour 1</div>
+      <button class="circuitbtn" data-circuit="1">▶ Lancer le tour 1 — chrono auto 40/20</button>
+      <div class="crow">
+        <span class="lbl">Tirage 1 bras haltère + AB-Wheel <span class="det">autre bras en appui sur la barre de l'AB-Wheel</span></span>
+        <button class="ck" data-f data-set id="b-t1-1" aria-pressed="false" aria-label="Valider exercice 1 tour 1">✓</button>
+      </div>
+      <div class="crow">
+        <span class="lbl">Poussée disque 5 kg + twist <span class="det">disque poussé au-dessus de la tête puis rotation</span></span>
+        <button class="ck" data-f data-set id="b-t1-2" aria-pressed="false" aria-label="Valider exercice 2 tour 1">✓</button>
+      </div>
+      <div class="crow">
+        <span class="lbl">Banane + battements <span class="det">hollow hold, jambes tendues</span></span>
+        <button class="ck" data-f data-set id="b-t1-3" aria-pressed="false" aria-label="Valider exercice 3 tour 1">✓</button>
+      </div>
+      <div class="crow">
+        <span class="lbl">Chinese plank chargé <span class="det">disque sur le bassin</span></span>
+        <button class="ck" data-f data-set id="b-t1-4" aria-pressed="false" aria-label="Valider exercice 4 tour 1">✓</button>
+      </div>
+      <div class="tourlabel">Tour 2</div>
+      <button class="circuitbtn" data-circuit="2">▶ Lancer le tour 2 — chrono auto 40/20</button>
+      <div class="crow">
+        <span class="lbl">Tirage 1 bras haltère + AB-Wheel <span class="det">changer de bras par rapport au tour 1</span></span>
+        <button class="ck" data-f data-set id="b-t2-1" aria-pressed="false" aria-label="Valider exercice 1 tour 2">✓</button>
+      </div>
+      <div class="crow">
+        <span class="lbl">Poussée disque 5 kg + twist <span class="det">disque poussé au-dessus de la tête puis rotation</span></span>
+        <button class="ck" data-f data-set id="b-t2-2" aria-pressed="false" aria-label="Valider exercice 2 tour 2">✓</button>
+      </div>
+      <div class="crow">
+        <span class="lbl">Banane + battements <span class="det">hollow hold, jambes tendues</span></span>
+        <button class="ck" data-f data-set id="b-t2-3" aria-pressed="false" aria-label="Valider exercice 3 tour 2">✓</button>
+      </div>
+      <div class="crow">
+        <span class="lbl">Chinese plank chargé <span class="det">disque sur le bassin</span></span>
+        <button class="ck" data-f data-set id="b-t2-4" aria-pressed="false" aria-label="Valider exercice 4 tour 2">✓</button>
+      </div>
+      <button class="notesbtn" data-toggle="b-notes">Notes du bloc</button>
+      <textarea data-f id="b-notes" placeholder="Charge du Chinese plank, sensations…"></textarea>
+    </div>
+  </section>
+
+  <!-- BLOC C : DC + POMPES EXPLOSIVES -->
+  <section class="block">
+    <div class="bhead">
+      <span class="btag acc">C</span>
+      <span class="btitle">Superset poussée</span>
+      <button class="restbtn" data-chrono="150" data-lbl="Repos — Superset C">⏱ Repos 2:30</button>
+      <span class="bsub">Enchaîner C1 puis C2, repos 2:30 après C2</span>
+    </div>
+    <div class="exo">
+      <div class="exhead"><span class="exnum">C1</span><span class="exname">Développé couché à la barre</span><span class="presc">5 × 5 · force</span></div>
+      <div class="cols"><span>#</span><span>Charge kg</span><span>Réps</span><span>RPE</span><span>OK</span></div>
+      <div class="set"><span class="sn">1</span><input data-f id="c1-1-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="c1-1-r" type="number" inputmode="numeric" min="0" placeholder="5"><select data-f id="c1-1-rpe"></select><button class="ck" data-f data-set id="c1-1-ok" aria-pressed="false" aria-label="Valider série 1">✓</button></div>
+      <div class="set"><span class="sn">2</span><input data-f id="c1-2-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="c1-2-r" type="number" inputmode="numeric" min="0" placeholder="5"><select data-f id="c1-2-rpe"></select><button class="ck" data-f data-set id="c1-2-ok" aria-pressed="false" aria-label="Valider série 2">✓</button></div>
+      <div class="set"><span class="sn">3</span><input data-f id="c1-3-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="c1-3-r" type="number" inputmode="numeric" min="0" placeholder="5"><select data-f id="c1-3-rpe"></select><button class="ck" data-f data-set id="c1-3-ok" aria-pressed="false" aria-label="Valider série 3">✓</button></div>
+      <div class="set"><span class="sn">4</span><input data-f id="c1-4-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="c1-4-r" type="number" inputmode="numeric" min="0" placeholder="5"><select data-f id="c1-4-rpe"></select><button class="ck" data-f data-set id="c1-4-ok" aria-pressed="false" aria-label="Valider série 4">✓</button></div>
+      <div class="set"><span class="sn">5</span><input data-f id="c1-5-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="c1-5-r" type="number" inputmode="numeric" min="0" placeholder="5"><select data-f id="c1-5-rpe"></select><button class="ck" data-f data-set id="c1-5-ok" aria-pressed="false" aria-label="Valider série 5">✓</button></div>
+      <button class="notesbtn" data-toggle="c1-notes">Notes de l'exercice</button>
+      <textarea data-f id="c1-notes" placeholder="Trajectoire de barre, pause poitrine…"></textarea>
+    </div>
+    <div class="exo">
+      <div class="exhead"><span class="exnum">C2</span><span class="exname">Pompes explosives avec élastique</span><span class="presc">5 × 6 · <b>intention de vitesse maximale</b></span></div>
+      <div class="cols"><span>#</span><span>Élastique</span><span>Réps</span><span>RPE</span><span>OK</span></div>
+      <div class="set"><span class="sn">1</span><input data-f id="c2-1-kg" type="text" placeholder="couleur"><input data-f id="c2-1-r" type="number" inputmode="numeric" min="0" placeholder="6"><select data-f id="c2-1-rpe"></select><button class="ck" data-f data-set data-rest="150" id="c2-1-ok" aria-pressed="false" aria-label="Valider série 1">✓</button></div>
+      <div class="set"><span class="sn">2</span><input data-f id="c2-2-kg" type="text" placeholder="couleur"><input data-f id="c2-2-r" type="number" inputmode="numeric" min="0" placeholder="6"><select data-f id="c2-2-rpe"></select><button class="ck" data-f data-set data-rest="150" id="c2-2-ok" aria-pressed="false" aria-label="Valider série 2">✓</button></div>
+      <div class="set"><span class="sn">3</span><input data-f id="c2-3-kg" type="text" placeholder="couleur"><input data-f id="c2-3-r" type="number" inputmode="numeric" min="0" placeholder="6"><select data-f id="c2-3-rpe"></select><button class="ck" data-f data-set data-rest="150" id="c2-3-ok" aria-pressed="false" aria-label="Valider série 3">✓</button></div>
+      <div class="set"><span class="sn">4</span><input data-f id="c2-4-kg" type="text" placeholder="couleur"><input data-f id="c2-4-r" type="number" inputmode="numeric" min="0" placeholder="6"><select data-f id="c2-4-rpe"></select><button class="ck" data-f data-set data-rest="150" id="c2-4-ok" aria-pressed="false" aria-label="Valider série 4">✓</button></div>
+      <div class="set"><span class="sn">5</span><input data-f id="c2-5-kg" type="text" placeholder="couleur"><input data-f id="c2-5-r" type="number" inputmode="numeric" min="0" placeholder="6"><select data-f id="c2-5-rpe"></select><button class="ck" data-f data-set data-rest="150" id="c2-5-ok" aria-pressed="false" aria-label="Valider série 5">✓</button></div>
+      <button class="notesbtn" data-toggle="c2-notes">Notes de l'exercice</button>
+      <textarea data-f id="c2-notes" placeholder="Hauteur du décollage, qualité de l'explosivité…"></textarea>
+    </div>
+  </section>
+
+  <!-- BLOC D : PULL OVER + TRACTIONS -->
+  <section class="block">
+    <div class="bhead">
+      <span class="btag">D</span>
+      <span class="btitle">Superset tirage vertical</span>
+      <button class="restbtn" data-chrono="90" data-lbl="Repos — Superset D">⏱ Repos 1:30</button>
+      <span class="bsub">Enchaîner D1 puis D2, repos 1:30 après D2</span>
+    </div>
+    <div class="exo">
+      <div class="exhead"><span class="exnum">D1</span><span class="exname">Pull Over à la poulie haute</span><span class="presc">4 × 12 · bras quasi tendus, grand dorsal</span></div>
+      <div class="cols"><span>#</span><span>Charge kg</span><span>Réps</span><span>RPE</span><span>OK</span></div>
+      <div class="set"><span class="sn">1</span><input data-f id="d1-1-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="d1-1-r" type="number" inputmode="numeric" min="0" placeholder="12"><select data-f id="d1-1-rpe"></select><button class="ck" data-f data-set id="d1-1-ok" aria-pressed="false" aria-label="Valider série 1">✓</button></div>
+      <div class="set"><span class="sn">2</span><input data-f id="d1-2-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="d1-2-r" type="number" inputmode="numeric" min="0" placeholder="12"><select data-f id="d1-2-rpe"></select><button class="ck" data-f data-set id="d1-2-ok" aria-pressed="false" aria-label="Valider série 2">✓</button></div>
+      <div class="set"><span class="sn">3</span><input data-f id="d1-3-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="d1-3-r" type="number" inputmode="numeric" min="0" placeholder="12"><select data-f id="d1-3-rpe"></select><button class="ck" data-f data-set id="d1-3-ok" aria-pressed="false" aria-label="Valider série 3">✓</button></div>
+      <div class="set"><span class="sn">4</span><input data-f id="d1-4-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="d1-4-r" type="number" inputmode="numeric" min="0" placeholder="12"><select data-f id="d1-4-rpe"></select><button class="ck" data-f data-set id="d1-4-ok" aria-pressed="false" aria-label="Valider série 4">✓</button></div>
+      <button class="notesbtn" data-toggle="d1-notes">Notes de l'exercice</button>
+      <textarea data-f id="d1-notes" placeholder="Réglage poulie, ressenti dorsaux…"></textarea>
+    </div>
+    <div class="exo">
+      <div class="exhead"><span class="exnum">D2</span><span class="exname">Tractions avec élastiques</span><span class="presc">4 séries · maximum de répétitions propres</span></div>
+      <div class="cols"><span>#</span><span>Élastique</span><span>Réps</span><span>RPE</span><span>OK</span></div>
+      <div class="set"><span class="sn">1</span><input data-f id="d2-1-kg" type="text" placeholder="couleur"><input data-f id="d2-1-r" type="number" inputmode="numeric" min="0" placeholder="max"><select data-f id="d2-1-rpe"></select><button class="ck" data-f data-set data-rest="90" id="d2-1-ok" aria-pressed="false" aria-label="Valider série 1">✓</button></div>
+      <div class="set"><span class="sn">2</span><input data-f id="d2-2-kg" type="text" placeholder="couleur"><input data-f id="d2-2-r" type="number" inputmode="numeric" min="0" placeholder="max"><select data-f id="d2-2-rpe"></select><button class="ck" data-f data-set data-rest="90" id="d2-2-ok" aria-pressed="false" aria-label="Valider série 2">✓</button></div>
+      <div class="set"><span class="sn">3</span><input data-f id="d2-3-kg" type="text" placeholder="couleur"><input data-f id="d2-3-r" type="number" inputmode="numeric" min="0" placeholder="max"><select data-f id="d2-3-rpe"></select><button class="ck" data-f data-set data-rest="90" id="d2-3-ok" aria-pressed="false" aria-label="Valider série 3">✓</button></div>
+      <div class="set"><span class="sn">4</span><input data-f id="d2-4-kg" type="text" placeholder="couleur"><input data-f id="d2-4-r" type="number" inputmode="numeric" min="0" placeholder="max"><select data-f id="d2-4-rpe"></select><button class="ck" data-f data-set data-rest="90" id="d2-4-ok" aria-pressed="false" aria-label="Valider série 4">✓</button></div>
+      <button class="notesbtn" data-toggle="d2-notes">Notes de l'exercice</button>
+      <textarea data-f id="d2-notes" placeholder="Élastique utilisé, menton au-dessus de la barre…"></textarea>
+    </div>
+  </section>
+
+  <!-- BLOC E : DM LANDMINE -->
+  <section class="block">
+    <div class="bhead">
+      <span class="btag">E</span>
+      <span class="btitle">Développé militaire 1 bras à genoux — Landmine</span>
+      <button class="restbtn" data-chrono="90" data-lbl="Repos — Landmine">⏱ Repos 1:30</button>
+      <span class="bsub">4 × 8 / côté · gainage anti-rotation, genou au sol côté travaillant</span>
+    </div>
+    <div class="exo">
+      <div class="cols"><span>#</span><span>Charge kg</span><span>Réps/c</span><span>RPE</span><span>OK</span></div>
+      <div class="set"><span class="sn">1</span><input data-f id="e-1-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="e-1-r" type="number" inputmode="numeric" min="0" placeholder="8"><select data-f id="e-1-rpe"></select><button class="ck" data-f data-set data-rest="90" id="e-1-ok" aria-pressed="false" aria-label="Valider série 1">✓</button></div>
+      <div class="set"><span class="sn">2</span><input data-f id="e-2-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="e-2-r" type="number" inputmode="numeric" min="0" placeholder="8"><select data-f id="e-2-rpe"></select><button class="ck" data-f data-set data-rest="90" id="e-2-ok" aria-pressed="false" aria-label="Valider série 2">✓</button></div>
+      <div class="set"><span class="sn">3</span><input data-f id="e-3-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="e-3-r" type="number" inputmode="numeric" min="0" placeholder="8"><select data-f id="e-3-rpe"></select><button class="ck" data-f data-set data-rest="90" id="e-3-ok" aria-pressed="false" aria-label="Valider série 3">✓</button></div>
+      <div class="set"><span class="sn">4</span><input data-f id="e-4-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="e-4-r" type="number" inputmode="numeric" min="0" placeholder="8"><select data-f id="e-4-rpe"></select><button class="ck" data-f data-set data-rest="90" id="e-4-ok" aria-pressed="false" aria-label="Valider série 4">✓</button></div>
+      <button class="notesbtn" data-toggle="e-notes">Notes de l'exercice</button>
+      <textarea data-f id="e-notes" placeholder="Stabilité du tronc, différence gauche/droite…"></textarea>
+    </div>
+  </section>
+
+  <!-- BLOC F : ROWING 1 BRAS POULIE -->
+  <section class="block">
+    <div class="bhead">
+      <span class="btag">F</span>
+      <span class="btitle">Rowing à 1 bras — Poulie horizontale</span>
+      <button class="restbtn" data-chrono="60" data-lbl="Repos — Rowing">⏱ Repos 1:00</button>
+      <span class="bsub">3 × 10 / côté · coude près du corps, omoplate qui termine le tirage</span>
+    </div>
+    <div class="exo">
+      <div class="cols"><span>#</span><span>Charge kg</span><span>Réps/c</span><span>RPE</span><span>OK</span></div>
+      <div class="set"><span class="sn">1</span><input data-f id="f-1-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="f-1-r" type="number" inputmode="numeric" min="0" placeholder="10"><select data-f id="f-1-rpe"></select><button class="ck" data-f data-set data-rest="60" id="f-1-ok" aria-pressed="false" aria-label="Valider série 1">✓</button></div>
+      <div class="set"><span class="sn">2</span><input data-f id="f-2-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="f-2-r" type="number" inputmode="numeric" min="0" placeholder="10"><select data-f id="f-2-rpe"></select><button class="ck" data-f data-set data-rest="60" id="f-2-ok" aria-pressed="false" aria-label="Valider série 2">✓</button></div>
+      <div class="set"><span class="sn">3</span><input data-f id="f-3-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="f-3-r" type="number" inputmode="numeric" min="0" placeholder="10"><select data-f id="f-3-rpe"></select><button class="ck" data-f data-set data-rest="60" id="f-3-ok" aria-pressed="false" aria-label="Valider série 3">✓</button></div>
+      <button class="notesbtn" data-toggle="f-notes">Notes de l'exercice</button>
+      <textarea data-f id="f-notes" placeholder="Gainage latéral, contrôle du retour…"></textarea>
+    </div>
+  </section>
+
+  <!-- BLOC G : DM BARRE + PUSH PRESS -->
+  <section class="block">
+    <div class="bhead">
+      <span class="btag acc">G</span>
+      <span class="btitle">Superset épaules</span>
+      <button class="restbtn" data-chrono="90" data-lbl="Repos — Superset G">⏱ Repos 1:30</button>
+      <span class="bsub">Enchaîner G1 puis G2, repos 1:30 après G2</span>
+    </div>
+    <div class="exo">
+      <div class="exhead"><span class="exnum">G1</span><span class="exname">Développé militaire à la barre</span><span class="presc">4 × 8 · strict, sans élan des jambes</span></div>
+      <div class="cols"><span>#</span><span>Charge kg</span><span>Réps</span><span>RPE</span><span>OK</span></div>
+      <div class="set"><span class="sn">1</span><input data-f id="g1-1-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="g1-1-r" type="number" inputmode="numeric" min="0" placeholder="8"><select data-f id="g1-1-rpe"></select><button class="ck" data-f data-set id="g1-1-ok" aria-pressed="false" aria-label="Valider série 1">✓</button></div>
+      <div class="set"><span class="sn">2</span><input data-f id="g1-2-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="g1-2-r" type="number" inputmode="numeric" min="0" placeholder="8"><select data-f id="g1-2-rpe"></select><button class="ck" data-f data-set id="g1-2-ok" aria-pressed="false" aria-label="Valider série 2">✓</button></div>
+      <div class="set"><span class="sn">3</span><input data-f id="g1-3-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="g1-3-r" type="number" inputmode="numeric" min="0" placeholder="8"><select data-f id="g1-3-rpe"></select><button class="ck" data-f data-set id="g1-3-ok" aria-pressed="false" aria-label="Valider série 3">✓</button></div>
+      <div class="set"><span class="sn">4</span><input data-f id="g1-4-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="g1-4-r" type="number" inputmode="numeric" min="0" placeholder="8"><select data-f id="g1-4-rpe"></select><button class="ck" data-f data-set id="g1-4-ok" aria-pressed="false" aria-label="Valider série 4">✓</button></div>
+      <button class="notesbtn" data-toggle="g1-notes">Notes de l'exercice</button>
+      <textarea data-f id="g1-notes" placeholder="Gainage lombaire, tête qui passe sous la barre…"></textarea>
+    </div>
+    <div class="exo">
+      <div class="exhead"><span class="exnum">G2</span><span class="exname">Push Press</span><span class="presc">4 × 5 · <b>impulsion des jambes, intention explosive</b></span></div>
+      <div class="cols"><span>#</span><span>Charge kg</span><span>Réps</span><span>RPE</span><span>OK</span></div>
+      <div class="set"><span class="sn">1</span><input data-f id="g2-1-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="g2-1-r" type="number" inputmode="numeric" min="0" placeholder="5"><select data-f id="g2-1-rpe"></select><button class="ck" data-f data-set data-rest="90" id="g2-1-ok" aria-pressed="false" aria-label="Valider série 1">✓</button></div>
+      <div class="set"><span class="sn">2</span><input data-f id="g2-2-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="g2-2-r" type="number" inputmode="numeric" min="0" placeholder="5"><select data-f id="g2-2-rpe"></select><button class="ck" data-f data-set data-rest="90" id="g2-2-ok" aria-pressed="false" aria-label="Valider série 2">✓</button></div>
+      <div class="set"><span class="sn">3</span><input data-f id="g2-3-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="g2-3-r" type="number" inputmode="numeric" min="0" placeholder="5"><select data-f id="g2-3-rpe"></select><button class="ck" data-f data-set data-rest="90" id="g2-3-ok" aria-pressed="false" aria-label="Valider série 3">✓</button></div>
+      <div class="set"><span class="sn">4</span><input data-f id="g2-4-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="g2-4-r" type="number" inputmode="numeric" min="0" placeholder="5"><select data-f id="g2-4-rpe"></select><button class="ck" data-f data-set data-rest="90" id="g2-4-ok" aria-pressed="false" aria-label="Valider série 4">✓</button></div>
+      <button class="notesbtn" data-toggle="g2-notes">Notes de l'exercice</button>
+      <textarea data-f id="g2-notes" placeholder="Timing jambes/bras, vitesse de la barre…"></textarea>
+    </div>
+  </section>
+
+  <!-- BLOC H : CURL + TRICEPS -->
+  <section class="block">
+    <div class="bhead">
+      <span class="btag">H</span>
+      <span class="btitle">Superset bras</span>
+      <button class="restbtn" data-chrono="60" data-lbl="Repos — Superset H">⏱ Repos 1:00</button>
+      <span class="bsub">Enchaîner H1 puis H2, repos 1:00 après H2</span>
+    </div>
+    <div class="exo">
+      <div class="exhead"><span class="exnum">H1</span><span class="exname">Curl biceps à la barre</span><span class="presc">3 × 15 · coudes fixes</span></div>
+      <div class="cols"><span>#</span><span>Charge kg</span><span>Réps</span><span>RPE</span><span>OK</span></div>
+      <div class="set"><span class="sn">1</span><input data-f id="h1-1-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="h1-1-r" type="number" inputmode="numeric" min="0" placeholder="15"><select data-f id="h1-1-rpe"></select><button class="ck" data-f data-set id="h1-1-ok" aria-pressed="false" aria-label="Valider série 1">✓</button></div>
+      <div class="set"><span class="sn">2</span><input data-f id="h1-2-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="h1-2-r" type="number" inputmode="numeric" min="0" placeholder="15"><select data-f id="h1-2-rpe"></select><button class="ck" data-f data-set id="h1-2-ok" aria-pressed="false" aria-label="Valider série 2">✓</button></div>
+      <div class="set"><span class="sn">3</span><input data-f id="h1-3-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="h1-3-r" type="number" inputmode="numeric" min="0" placeholder="15"><select data-f id="h1-3-rpe"></select><button class="ck" data-f data-set id="h1-3-ok" aria-pressed="false" aria-label="Valider série 3">✓</button></div>
+      <button class="notesbtn" data-toggle="h1-notes">Notes de l'exercice</button>
+      <textarea data-f id="h1-notes" placeholder="Contrôle de la descente, triche épaules…"></textarea>
+    </div>
+    <div class="exo">
+      <div class="exhead"><span class="exnum">H2</span><span class="exname">Extension triceps à la barre</span><span class="presc">3 × 15 · au poids du corps possible selon variante</span></div>
+      <div class="cols"><span>#</span><span>Charge kg</span><span>Réps</span><span>RPE</span><span>OK</span></div>
+      <div class="set"><span class="sn">1</span><input data-f id="h2-1-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="PDC"><input data-f id="h2-1-r" type="number" inputmode="numeric" min="0" placeholder="15"><select data-f id="h2-1-rpe"></select><button class="ck" data-f data-set data-rest="60" id="h2-1-ok" aria-pressed="false" aria-label="Valider série 1">✓</button></div>
+      <div class="set"><span class="sn">2</span><input data-f id="h2-2-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="PDC"><input data-f id="h2-2-r" type="number" inputmode="numeric" min="0" placeholder="15"><select data-f id="h2-2-rpe"></select><button class="ck" data-f data-set data-rest="60" id="h2-2-ok" aria-pressed="false" aria-label="Valider série 2">✓</button></div>
+      <div class="set"><span class="sn">3</span><input data-f id="h2-3-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="PDC"><input data-f id="h2-3-r" type="number" inputmode="numeric" min="0" placeholder="15"><select data-f id="h2-3-rpe"></select><button class="ck" data-f data-set data-rest="60" id="h2-3-ok" aria-pressed="false" aria-label="Valider série 3">✓</button></div>
+      <button class="notesbtn" data-toggle="h2-notes">Notes de l'exercice</button>
+      <textarea data-f id="h2-notes" placeholder="Coudes serrés, amplitude…"></textarea>
+    </div>
+  </section>
+
+  <!-- BLOC I : EXPLOSIVITÉ -->
+  <section class="block">
+    <div class="bhead">
+      <span class="btag acc">I</span>
+      <span class="btitle">Explosivité — Snatch départ genoux</span>
+      <span class="bsub">Séries de 5 répétitions · <b style="color:var(--orange)">technique et explosivité avant tout</b> — la charge reste légère, la vitesse prime</span>
+    </div>
+    <div class="exo">
+      <div class="cols"><span>#</span><span>Charge kg</span><span>Réps</span><span>RPE</span><span>OK</span></div>
+      <div class="set"><span class="sn">1</span><input data-f id="i-1-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="i-1-r" type="number" inputmode="numeric" min="0" placeholder="5"><select data-f id="i-1-rpe"></select><button class="ck" data-f data-set id="i-1-ok" aria-pressed="false" aria-label="Valider série 1">✓</button></div>
+      <div class="set"><span class="sn">2</span><input data-f id="i-2-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="i-2-r" type="number" inputmode="numeric" min="0" placeholder="5"><select data-f id="i-2-rpe"></select><button class="ck" data-f data-set id="i-2-ok" aria-pressed="false" aria-label="Valider série 2">✓</button></div>
+      <div class="set"><span class="sn">3</span><input data-f id="i-3-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="i-3-r" type="number" inputmode="numeric" min="0" placeholder="5"><select data-f id="i-3-rpe"></select><button class="ck" data-f data-set id="i-3-ok" aria-pressed="false" aria-label="Valider série 3">✓</button></div>
+      <button class="notesbtn" data-toggle="i-notes">Notes de l'exercice</button>
+      <textarea data-f id="i-notes" placeholder="Extension de hanche, réception, points techniques…"></textarea>
+    </div>
+  </section>
+
+  <!-- FIN DE SÉANCE -->
+  <section class="block">
+    <div class="bhead">
+      <span class="btag acc">✦</span>
+      <span class="btitle">Bilan de séance</span>
+    </div>
+    <div class="endcard">
+      <div class="row2">
+        <div>
+          <label for="s-notes">Ressenti global</label>
+          <textarea data-f id="s-notes" placeholder="Forme du jour, sommeil, courbatures, remarques pour Vincent & le coach…"></textarea>
+        </div>
+        <div>
+          <label for="s-rpe">RPE séance</label>
+          <select data-f id="s-rpe"></select>
+        </div>
+      </div>
+      <button class="bigbtn" id="finish">Terminer la séance</button>
+      <div class="summary" id="summary">
+        <div class="sgrid">
+          <div class="scell"><div class="v" id="sum-sets">—</div><div class="k">Séries validées</div></div>
+          <div class="scell"><div class="v" id="sum-ton">—</div><div class="k">Tonnage estimé</div></div>
+          <div class="scell"><div class="v" id="sum-rpe">—</div><div class="k">RPE moyen</div></div>
+          <div class="scell"><div class="v" id="sum-dur">—</div><div class="k">Durée</div></div>
+        </div>
+        <button class="ghost" id="copywa">📋 Copier le bilan (WhatsApp)</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+<footer>Carnet d'entraînement <b>BRH COACHING</b> × CAO Orsay Masters — les données sont enregistrées automatiquement par athlète.</footer>
+</div>
+
+<!-- TIMER DOCK -->
+<div class="dock" id="dock" role="timer" aria-live="off">
+  <div class="wrap">
+    <div class="dtime" id="dtime">0:00</div>
+    <div class="dinfo">
+      <div class="dlabel" id="dlabel">Repos</div>
+      <div class="dbar"><div class="dfill" id="dfill"></div></div>
+    </div>
+    <div class="dbtns">
+      <button class="dbtn" id="dplus">+15 s</button>
+      <button class="dbtn" id="dpause">⏸</button>
+      <button class="dbtn" id="dstop">✕</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var SKEY = 's12v1:';
+  var LKEY = 's12v1:athletes';
+
+  /* ---------- RPE selects ---------- */
+  document.querySelectorAll('select[data-f]').forEach(function(sel){
+    var isSession = sel.id === 's-rpe';
+    var opt = document.createElement('option');
+    opt.value=''; opt.textContent = isSession ? 'RPE /10' : 'RPE';
+    sel.appendChild(opt);
+    for(var v=5; v<=10; v+=0.5){
+      var o=document.createElement('option');
+      o.value=v; o.textContent=(v%1===0? v : v.toFixed(1));
+      sel.appendChild(o);
+    }
+  });
+
+  /* ---------- storage (avec repli mémoire) ---------- */
+  var mem = {};
+  var hasStore = typeof window.storage !== 'undefined' && window.storage && typeof window.storage.get === 'function';
+  function sGet(k){
+    if(!hasStore){ return Promise.resolve(mem[k] || null); }
+    return window.storage.get(k).then(function(r){ return r ? r.value : null; }).catch(function(){ return null; });
+  }
+  function sSet(k,v){
+    mem[k]=v;
+    if(!hasStore){ return Promise.resolve(); }
+    return window.storage.set(k,v).then(function(){}).catch(function(){});
+  }
+
+  /* ---------- état & sauvegarde ---------- */
+  var fields = Array.prototype.slice.call(document.querySelectorAll('[data-f]'));
+  var badge = document.getElementById('savebadge');
+  var savetxt = document.getElementById('savetxt');
+  var athleteInput = document.getElementById('athlete');
+  var startedAt = null;
+  var saveTimer = null;
+  var loading = false;
+
+  function slug(s){ return (s||'').trim().toLowerCase().replace(/\s+/g,'-'); }
+  function currentKey(){ var s = slug(athleteInput.value); return s ? SKEY + s : null; }
+
+  function collect(){
+    var data = { startedAt: startedAt, fields: {} };
+    fields.forEach(function(el){
+      if(el.classList.contains('ck')){
+        data.fields[el.id] = el.getAttribute('aria-pressed') === 'true';
+      } else {
+        data.fields[el.id] = el.value;
+      }
+    });
+    return data;
+  }
+
+  function apply(data){
+    loading = true;
+    fields.forEach(function(el){
+      var v = data && data.fields ? data.fields[el.id] : undefined;
+      if(el.classList.contains('ck')){
+        el.setAttribute('aria-pressed', v === true ? 'true' : 'false');
+      } else {
+        el.value = (v === undefined || v === null) ? '' : v;
+        if(el.tagName==='TEXTAREA' && el.value && !el.classList.contains('open')) el.classList.add('open');
+      }
+    });
+    startedAt = data && data.startedAt ? data.startedAt : null;
+    loading = false;
+    updateProgress();
+  }
+
+  function markSaving(state, txt){
+    badge.className = 'savebadge ' + state;
+    savetxt.textContent = txt;
+  }
+
+  function save(){
+    var key = currentKey();
+    if(!key){ markSaving('', 'carnet'); return; }
+    markSaving('pending','sauvegarde…');
+    if(saveTimer) clearTimeout(saveTimer);
+    saveTimer = setTimeout(function(){
+      sSet(key, JSON.stringify(collect())).then(function(){
+        markSaving('ok','enregistré');
+        registerAthlete(athleteInput.value);
+      });
+    }, 700);
+  }
+
+  function registerAthlete(name){
+    name = (name||'').trim();
+    if(!name) return;
+    sGet(LKEY).then(function(raw){
+      var list = [];
+      try{ list = raw ? JSON.parse(raw) : []; }catch(e){}
+      if(list.indexOf(name) === -1){
+        list.push(name);
+        sSet(LKEY, JSON.stringify(list));
+        renderAthletes(list);
+      }
+    });
+  }
+
+  function renderAthletes(list){
+    var dl = document.getElementById('athletes');
+    dl.innerHTML = '';
+    list.forEach(function(n){
+      var o = document.createElement('option'); o.value = n; dl.appendChild(o);
+    });
+  }
+
+  function loadAthlete(){
+    var key = currentKey();
+    if(!key) return;
+    sGet(key).then(function(raw){
+      if(raw){
+        try{ apply(JSON.parse(raw)); markSaving('ok','carnet chargé'); }
+        catch(e){ apply(null); }
+      } else {
+        apply(null);
+        markSaving('ok','nouveau carnet');
+      }
+    });
+  }
+
+  sGet(LKEY).then(function(raw){
+    try{ renderAthletes(raw ? JSON.parse(raw) : []); }catch(e){}
+  });
+
+  athleteInput.addEventListener('change', loadAthlete);
+
+  /* ---------- interactions ---------- */
+  function touch(){
+    if(loading) return;
+    if(!startedAt) startedAt = Date.now();
+    save();
+  }
+
+  fields.forEach(function(el){
+    if(el.classList.contains('ck')){
+      el.addEventListener('click', function(){
+        var on = el.getAttribute('aria-pressed') === 'true';
+        el.setAttribute('aria-pressed', on ? 'false' : 'true');
+        updateProgress();
+        touch();
+        if(!on && el.hasAttribute('data-rest')){
+          startTimer(parseInt(el.getAttribute('data-rest'),10), 'Repos');
+        }
+      });
+    } else {
+      el.addEventListener('input', touch);
+    }
+  });
+
+  /* toggles notes */
+  document.querySelectorAll('[data-toggle]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var ta = document.getElementById(btn.getAttribute('data-toggle'));
+      ta.classList.toggle('open');
+      if(ta.classList.contains('open')) ta.focus();
+    });
+  });
+
+  /* ---------- progression ---------- */
+  var setBtns = Array.prototype.slice.call(document.querySelectorAll('[data-set]'));
+  document.getElementById('ptotal').textContent = setBtns.length;
+  function updateProgress(){
+    var done = setBtns.filter(function(b){ return b.getAttribute('aria-pressed')==='true'; }).length;
+    document.getElementById('pdone').textContent = done;
+    document.getElementById('pfill').style.width = (done/setBtns.length*100) + '%';
+  }
+  updateProgress();
+
+  /* ---------- chrono (avec file d'attente pour le circuit) ---------- */
+  var dock = document.getElementById('dock');
+  var dtime = document.getElementById('dtime');
+  var dlabel = document.getElementById('dlabel');
+  var dfill = document.getElementById('dfill');
+  var t = { total:0, left:0, iv:null, paused:false, queue:[], work:false };
+  var actx = null;
+
+  function beep(freq, dur, when){
+    try{
+      if(!actx) actx = new (window.AudioContext||window.webkitAudioContext)();
+      var o = actx.createOscillator(), g = actx.createGain();
+      o.type='square'; o.frequency.value=freq;
+      g.gain.setValueAtTime(0.0001, actx.currentTime + when);
+      g.gain.exponentialRampToValueAtTime(0.25, actx.currentTime + when + 0.02);
+      g.gain.exponentialRampToValueAtTime(0.0001, actx.currentTime + when + dur);
+      o.connect(g); g.connect(actx.destination);
+      o.start(actx.currentTime + when); o.stop(actx.currentTime + when + dur + 0.05);
+    }catch(e){}
+  }
+
+  function fmt(s){ var m=Math.floor(s/60), r=s%60; return m + ':' + (r<10?'0':'') + r; }
+
+  function render(){
+    dtime.textContent = fmt(Math.max(0,t.left));
+    dfill.style.width = (t.total? (t.left/t.total*100) : 0) + '%';
+    dock.classList.toggle('work', t.work && t.left>0);
+    dock.classList.toggle('warn', !t.work && t.left<=10 && t.left>0);
+    dock.classList.toggle('done', t.left<=0 && t.queue.length===0);
+  }
+
+  function startSeg(seg){
+    t.total = seg.s; t.left = seg.s; t.work = !!seg.work;
+    dlabel.textContent = seg.lbl;
+    render();
+  }
+
+  function tick(){
+    if(t.paused) return;
+    t.left--;
+    render();
+    if(t.left === 10 && !t.work){ beep(880,.09,0); }
+    if(t.left === 3 && t.work){ beep(880,.08,0); beep(880,.08,1); beep(880,.08,2); }
+    if(t.left <= 0){
+      if(t.queue.length){
+        var next = t.queue.shift();
+        beep(next.work ? 1400 : 900, .18, 0);
+        if(navigator.vibrate) navigator.vibrate(next.work ? [250] : [120,60,120]);
+        startSeg(next);
+        return;
+      }
+      clearInterval(t.iv); t.iv=null;
+      beep(1100,.12,0); beep(1100,.12,.2); beep(1400,.28,.4);
+      if(navigator.vibrate) navigator.vibrate([180,90,180,90,300]);
+      dlabel.textContent = t.work ? 'Circuit terminé — bravo !' : 'Terminé — au travail !';
+      t.work = false;
+      render();
+      setTimeout(function(){ if(t.left<=0 && !t.iv) hideDock(); }, 3500);
+    }
+  }
+
+  function startTimer(sec, label){
+    if(t.iv) clearInterval(t.iv);
+    t.queue = [];
+    t.paused = false;
+    document.getElementById('dpause').textContent = '⏸';
+    dock.classList.add('on');
+    startSeg({s:sec, lbl:label, work:false});
+    t.iv = setInterval(tick, 1000);
+  }
+
+  var CIRCUIT = [
+    'Tirage 1 bras + AB-Wheel',
+    'Poussée disque 5 kg + twist',
+    'Banane + battements',
+    'Chinese plank chargé'
+  ];
+  function startCircuit(tour){
+    if(t.iv) clearInterval(t.iv);
+    t.paused = false;
+    document.getElementById('dpause').textContent = '⏸';
+    var q = [];
+    CIRCUIT.forEach(function(name, i){
+      q.push({s:40, lbl:'🔥 ' + name + ' (' + (i+1) + '/4)', work:true});
+      if(i < CIRCUIT.length-1) q.push({s:20, lbl:'Repos — suivant : ' + CIRCUIT[i+1], work:false});
+    });
+    var first = q.shift();
+    t.queue = q;
+    dock.classList.add('on');
+    beep(1400,.18,0);
+    startSeg(first);
+    t.iv = setInterval(tick, 1000);
+  }
+
+  document.querySelectorAll('[data-chrono]').forEach(function(b){
+    b.addEventListener('click', function(){
+      startTimer(parseInt(b.getAttribute('data-chrono'),10), b.getAttribute('data-lbl') || 'Chrono');
+    });
+  });
+  document.querySelectorAll('[data-circuit]').forEach(function(b){
+    b.addEventListener('click', function(){
+      startCircuit(b.getAttribute('data-circuit'));
+    });
+  });
+  document.getElementById('dplus').addEventListener('click', function(){
+    t.left += 15; t.total = Math.max(t.total, t.left); render();
+    if(!t.iv && t.left>0){ t.iv = setInterval(tick,1000); dock.classList.remove('done'); }
+  });
+  document.getElementById('dpause').addEventListener('click', function(){
+    t.paused = !t.paused;
+    this.textContent = t.paused ? '▶' : '⏸';
+  });
+  document.getElementById('dstop').addEventListener('click', hideDock);
+
+  function hideDock(){
+    dock.classList.remove('on','warn','done','work');
+    t.queue = [];
+    if(t.iv){ clearInterval(t.iv); t.iv=null; }
+  }
+
+  /* ---------- bilan ---------- */
+  function computeSummary(){
+    var done = setBtns.filter(function(b){ return b.getAttribute('aria-pressed')==='true'; }).length;
+    var ton = 0, rpes = [];
+    document.querySelectorAll('.set').forEach(function(row){
+      var kg = row.querySelector('input[id$="-kg"]');
+      var r  = row.querySelector('input[id$="-r"]');
+      var rpe= row.querySelector('select');
+      var kgv = kg && kg.type==='number' ? parseFloat(kg.value) : NaN;
+      var rv  = r ? parseInt(r.value,10) : NaN;
+      if(!isNaN(kgv) && !isNaN(rv)) ton += kgv * rv;
+      if(rpe && rpe.value){ rpes.push(parseFloat(rpe.value)); }
+    });
+    var avg = rpes.length ? (rpes.reduce(function(a,b){return a+b;},0)/rpes.length) : null;
+    var dur = startedAt ? Math.round((Date.now()-startedAt)/60000) : null;
+    return { done:done, total:setBtns.length, ton:Math.round(ton), rpe:avg, dur:dur };
+  }
+
+  document.getElementById('finish').addEventListener('click', function(){
+    var s = computeSummary();
+    document.getElementById('sum-sets').textContent = s.done + '/' + s.total;
+    document.getElementById('sum-ton').textContent = s.ton ? s.ton.toLocaleString('fr-FR') + ' kg' : '—';
+    document.getElementById('sum-rpe').textContent = s.rpe ? s.rpe.toFixed(1) : '—';
+    document.getElementById('sum-dur').textContent = s.dur ? s.dur + ' min' : '—';
+    document.getElementById('summary').classList.add('show');
+    document.getElementById('summary').scrollIntoView({behavior:'smooth', block:'center'});
+    touch();
+  });
+
+  document.getElementById('copywa').addEventListener('click', function(){
+    var s = computeSummary();
+    var name = athleteInput.value.trim() || 'Athlète';
+    var srpe = document.getElementById('s-rpe').value;
+    var notes = document.getElementById('s-notes').value.trim();
+    var lines = [
+      '🏋️ *BRH Coaching — Séance 12 · Hypertrophie haut du corps*',
+      '👤 ' + name + ' · 📅 13/07/2026 · CAO Orsay Masters',
+      '',
+      '✅ Séries validées : ' + s.done + '/' + s.total,
+      '⚖️ Tonnage estimé : ' + (s.ton ? s.ton.toLocaleString('fr-FR') + ' kg' : '—'),
+      '🔥 RPE moyen : ' + (s.rpe ? s.rpe.toFixed(1) : '—') + (srpe ? ' · RPE séance : ' + srpe : ''),
+      '⏱ Durée : ' + (s.dur ? s.dur + ' min' : '—')
+    ];
+    if(notes) lines.push('', '📝 ' + notes);
+    var txt = lines.join('\n');
+    var self = this;
+    function ok(){ self.textContent = '✅ Bilan copié !'; setTimeout(function(){ self.textContent='📋 Copier le bilan (WhatsApp)'; }, 2200); }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(ok).catch(function(){ fallbackCopy(txt); ok(); });
+    } else { fallbackCopy(txt); ok(); }
+  });
+
+  function fallbackCopy(txt){
+    var ta = document.createElement('textarea');
+    ta.value = txt; ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.select();
+    try{ document.execCommand('copy'); }catch(e){}
+    document.body.removeChild(ta);
+  }
+})();
+</script>
+</body>
+</html>
