@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>BRH Coaching — Spécial Stéphane · Haut du corps dos protégé</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@1,600;1,700;1,800&family=Saira:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0A141F;
+  --card:#101F2D;
+  --card2:#0C1826;
+  --line:#1D3346;
+  --cyan:#1CA3DD;
+  --cyan-hi:#4CC3F0;
+  --cyan-dim:rgba(28,163,221,.14);
+  --orange:#E8833A;
+  --green:#2ECC71;
+  --red:#E0412B;
+  --text:#EAF3FA;
+  --muted:#7E97AA;
+  --radius:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--ink);
+  color:var(--text);
+  font-family:'Saira',system-ui,sans-serif;
+  font-size:15px;
+  line-height:1.45;
+  padding-bottom:120px;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:repeating-linear-gradient(115deg,transparent 0 90px,rgba(28,163,221,.03) 90px 92px);
+}
+.wrap{max-width:700px;margin:0 auto;padding:0 14px;position:relative;z-index:1}
+
+/* ---------- HERO ---------- */
+.hero{
+  background:linear-gradient(160deg,#0E2236 0%,#0A1826 55%,#0A141F 100%);
+  border-bottom:1px solid var(--line);
+  position:relative;overflow:hidden;
+  padding:26px 0 20px;
+}
+.hero::after{
+  content:"";position:absolute;right:-60px;top:-40px;width:280px;height:300px;
+  background:linear-gradient(115deg,transparent 48%,rgba(28,163,221,.10) 48%,rgba(28,163,221,.10) 56%,transparent 56%,transparent 64%,rgba(28,163,221,.06) 64%,rgba(28,163,221,.06) 72%,transparent 72%);
+  transform:skewX(-8deg);
+}
+.hero .wrap{display:flex;flex-direction:column;gap:14px}
+.hero img.logo{width:150px;height:auto;display:block}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'Kanit';font-style:italic;font-weight:700;font-size:12px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--cyan-hi);
+}
+.eyebrow::before{content:"";width:22px;height:3px;background:var(--cyan);transform:skewX(-18deg)}
+h1{
+  font-family:'Kanit';font-style:italic;font-weight:800;
+  font-size:clamp(30px,7vw,42px);line-height:1.02;text-transform:uppercase;
+  letter-spacing:.01em;
+}
+h1 .lite{color:var(--cyan)}
+.meta{display:flex;flex-wrap:wrap;gap:8px}
+.chip{
+  font-size:12.5px;font-weight:600;color:var(--muted);
+  border:1px solid var(--line);border-radius:999px;padding:4px 12px;
+  background:rgba(255,255,255,.02);
+}
+.chip strong{color:var(--text);font-weight:600}
+.athlete{
+  display:flex;gap:10px;align-items:stretch;margin-top:2px;
+}
+.athlete input{
+  flex:1;background:var(--card2);border:1px solid var(--line);border-radius:10px;
+  color:var(--text);font-family:'Saira';font-size:16px;font-weight:600;
+  padding:11px 14px;min-width:0;
+}
+.athlete input::placeholder{color:var(--muted);font-weight:400}
+.athlete input:focus{outline:2px solid var(--cyan);outline-offset:1px;border-color:transparent}
+.savebadge{
+  align-self:center;font-size:11.5px;color:var(--muted);white-space:nowrap;
+  display:flex;align-items:center;gap:6px;
+}
+.savebadge .dot{width:8px;height:8px;border-radius:50%;background:var(--muted);transition:background .3s}
+.savebadge.ok .dot{background:var(--green)}
+.savebadge.pending .dot{background:var(--orange)}
+
+/* ---------- PROGRESS BAR (sticky) ---------- */
+.progress{
+  position:sticky;top:0;z-index:40;
+  background:rgba(10,20,31,.92);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.progress .wrap{display:flex;align-items:center;gap:12px;padding:9px 14px}
+.pbar{flex:1;height:8px;border-radius:99px;background:var(--card2);overflow:hidden;border:1px solid var(--line)}
+.pfill{height:100%;width:0%;background:linear-gradient(90deg,var(--cyan),var(--cyan-hi));transition:width .35s ease;border-radius:99px}
+.pnum{font-family:'Kanit';font-style:italic;font-weight:700;font-size:13px;color:var(--cyan-hi);min-width:74px;text-align:right}
+
+/* ---------- BLOCKS ---------- */
+main{display:flex;flex-direction:column;gap:16px;padding-top:18px}
+.block{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  overflow:hidden;
+}
+.bhead{
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  padding:13px 14px 12px;border-bottom:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(28,163,221,.05),transparent);
+}
+.btag{
+  font-family:'Kanit';font-style:italic;font-weight:800;font-size:16px;
+  color:#08131E;background:var(--cyan);
+  padding:3px 13px 3px 11px;
+  clip-path:polygon(0 0,100% 0,calc(100% - 8px) 100%,0 100%);
+  letter-spacing:.03em;
+}
+.btag.acc{background:var(--orange)}
+.btitle{font-family:'Kanit';font-style:italic;font-weight:700;font-size:17px;text-transform:uppercase;letter-spacing:.02em;flex:1;min-width:150px}
+.bsub{width:100%;font-size:12.5px;color:var(--muted);margin-top:-2px}
+.restbtn{
+  margin-left:auto;font-family:'Saira';font-weight:600;font-size:12.5px;
+  color:var(--cyan-hi);background:var(--cyan-dim);border:1px solid rgba(28,163,221,.35);
+  border-radius:999px;padding:5px 12px;cursor:pointer;white-space:nowrap;
+}
+.restbtn:active{transform:scale(.96)}
+
+/* exercise inside block */
+.exo{padding:12px 14px 14px;border-bottom:1px solid var(--line)}
+.exo:last-child{border-bottom:none}
+.exhead{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;margin-bottom:4px}
+.exnum{font-family:'Kanit';font-style:italic;font-weight:800;font-size:13px;color:var(--cyan)}
+.exname{font-weight:700;font-size:15.5px}
+.presc{font-size:12.5px;color:var(--muted);width:100%}
+.presc b{color:var(--orange);font-weight:600}
+
+/* set rows */
+.cols{
+  display:grid;grid-template-columns:34px 1fr 1fr 1fr 46px;gap:7px;
+  font-size:10.5px;font-weight:600;letter-spacing:.1em;color:var(--muted);
+  text-transform:uppercase;margin:10px 0 5px;text-align:center;
+}
+.set{display:grid;grid-template-columns:34px 1fr 1fr 1fr 46px;gap:7px;margin-bottom:7px;align-items:stretch}
+.sn{
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Kanit';font-style:italic;font-weight:700;font-size:14px;color:var(--muted);
+}
+.set input,.set select{
+  width:100%;background:var(--card2);border:1px solid var(--line);border-radius:9px;
+  color:var(--text);font-family:'Saira';font-weight:600;font-size:16px;
+  padding:9px 6px;text-align:center;min-width:0;
+  font-variant-numeric:tabular-nums;
+  appearance:none;-webkit-appearance:none;
+}
+.set input::placeholder{color:#4A6478;font-weight:400;font-size:13.5px}
+.set input:focus,.set select:focus{outline:2px solid var(--cyan);outline-offset:1px;border-color:transparent}
+.set select{color:var(--text)}
+.ck{
+  border:1px solid var(--line);border-radius:9px;background:var(--card2);
+  color:#4A6478;font-size:17px;cursor:pointer;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .15s,color .15s;
+}
+.ck[aria-pressed="true"]{background:var(--green);border-color:var(--green);color:#07131C}
+.ck:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+
+/* circuit / checklist rows */
+.crow{
+  display:flex;align-items:center;gap:10px;padding:9px 0;
+  border-bottom:1px dashed rgba(29,51,70,.7);
+}
+.crow:last-child{border-bottom:none}
+.crow .lbl{flex:1;font-weight:600;font-size:14.5px}
+.crow .det{font-size:12.5px;color:var(--muted);display:block;font-weight:400}
+.chrono{
+  font-family:'Kanit';font-style:italic;font-weight:700;font-size:13px;
+  color:var(--cyan-hi);background:var(--cyan-dim);border:1px solid rgba(28,163,221,.35);
+  border-radius:8px;padding:6px 11px;cursor:pointer;white-space:nowrap;
+}
+.chrono:active{transform:scale(.95)}
+.circuitbtn{
+  width:100%;margin:10px 0 4px;
+  font-family:'Kanit';font-style:italic;font-weight:800;font-size:15px;
+  text-transform:uppercase;letter-spacing:.04em;color:#07131C;
+  background:linear-gradient(120deg,var(--cyan),var(--cyan-hi));
+  border:none;border-radius:10px;padding:11px;cursor:pointer;
+}
+.circuitbtn:active{transform:scale(.98)}
+.tourlabel{
+  font-family:'Kanit';font-style:italic;font-weight:800;font-size:13px;
+  color:var(--cyan);text-transform:uppercase;letter-spacing:.08em;
+  margin:12px 0 2px;display:flex;align-items:center;gap:8px;
+}
+.tourlabel::after{content:"";flex:1;height:1px;background:var(--line)}
+.tourlabel:first-child{margin-top:2px}
+
+/* notes */
+.notesbtn{
+  background:none;border:none;color:var(--muted);font-family:'Saira';font-size:12.5px;
+  font-weight:600;cursor:pointer;padding:4px 0;display:inline-flex;align-items:center;gap:5px;
+}
+.notesbtn::before{content:"✎";color:var(--cyan)}
+textarea{
+  width:100%;background:var(--card2);border:1px solid var(--line);border-radius:9px;
+  color:var(--text);font-family:'Saira';font-size:14px;padding:9px 11px;
+  min-height:56px;resize:vertical;display:none;margin-top:5px;
+}
+textarea.open{display:block}
+textarea:focus{outline:2px solid var(--cyan);outline-offset:1px;border-color:transparent}
+textarea::placeholder{color:#4A6478}
+
+/* ---------- SESSION END ---------- */
+.endcard{padding:16px 14px}
+.endcard .row2{display:grid;grid-template-columns:1fr 110px;gap:10px;margin-bottom:10px}
+.endcard label{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:5px}
+.endcard textarea{display:block;min-height:70px}
+.endcard select{
+  width:100%;background:var(--card2);border:1px solid var(--line);border-radius:9px;
+  color:var(--text);font-family:'Saira';font-weight:600;font-size:16px;padding:10px;text-align:center;
+}
+.bigbtn{
+  width:100%;font-family:'Kanit';font-style:italic;font-weight:800;font-size:19px;
+  text-transform:uppercase;letter-spacing:.04em;color:#07131C;
+  background:linear-gradient(120deg,var(--cyan),var(--cyan-hi));
+  border:none;border-radius:12px;padding:15px;cursor:pointer;margin-top:6px;
+}
+.bigbtn:active{transform:scale(.98)}
+.summary{display:none;margin-top:14px;border-top:1px solid var(--line);padding-top:14px}
+.summary.show{display:block}
+.sgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-bottom:12px}
+.scell{background:var(--card2);border:1px solid var(--line);border-radius:11px;padding:11px 12px}
+.scell .v{font-family:'Kanit';font-style:italic;font-weight:800;font-size:23px;color:var(--cyan-hi);line-height:1.1}
+.scell .k{font-size:11px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+.ghost{
+  width:100%;font-family:'Saira';font-weight:700;font-size:14.5px;color:var(--cyan-hi);
+  background:var(--cyan-dim);border:1px solid rgba(28,163,221,.35);border-radius:11px;
+  padding:12px;cursor:pointer;
+}
+
+/* ---------- TIMER DOCK ---------- */
+.dock{
+  position:fixed;left:0;right:0;bottom:0;z-index:60;
+  transform:translateY(110%);transition:transform .3s cubic-bezier(.2,.9,.3,1);
+  background:rgba(12,24,38,.97);backdrop-filter:blur(10px);
+  border-top:1px solid var(--line);
+}
+.dock.on{transform:translateY(0)}
+.dock .wrap{display:flex;align-items:center;gap:12px;padding:12px 14px calc(12px + env(safe-area-inset-bottom))}
+.dtime{
+  font-family:'Kanit';font-style:italic;font-weight:800;font-size:34px;
+  min-width:104px;font-variant-numeric:tabular-nums;color:var(--cyan-hi);line-height:1;
+}
+.dock.work .dtime{color:var(--orange)}
+.dock.warn .dtime{color:var(--orange)}
+.dock.done .dtime{color:var(--red)}
+.dinfo{flex:1;min-width:0}
+.dlabel{font-weight:700;font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dbar{height:6px;border-radius:99px;background:var(--card);margin-top:6px;overflow:hidden;border:1px solid var(--line)}
+.dfill{height:100%;width:100%;background:linear-gradient(90deg,var(--cyan),var(--cyan-hi));border-radius:99px}
+.dock.work .dfill{background:var(--orange)}
+.dock.warn .dfill{background:var(--orange)}
+.dock.done .dfill{background:var(--red)}
+.dbtns{display:flex;gap:8px}
+.dbtn{
+  border:1px solid var(--line);background:var(--card);color:var(--text);
+  border-radius:10px;font-family:'Saira';font-weight:700;font-size:13px;
+  padding:9px 12px;cursor:pointer;white-space:nowrap;
+}
+.dbtn:active{transform:scale(.95)}
+
+footer{padding:26px 14px 10px;text-align:center;font-size:12px;color:var(--muted)}
+footer b{color:var(--cyan);font-family:'Kanit';font-style:italic}
+
+@media (max-width:420px){
+  .cols,.set{grid-template-columns:28px 1fr 1fr 1fr 42px;gap:6px}
+  .dtime{font-size:29px;min-width:90px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+}
+
+.exrow{display:flex;gap:12px;align-items:center;margin-bottom:2px}
+.exrow .exhead{flex:1;margin:0}
+.pic{flex:0 0 104px;height:66px;background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:4px;display:flex}
+.pic svg{width:100%;height:100%}
+.pic.sm{flex:0 0 64px;height:42px;padding:2px;border-radius:8px}
+@media (max-width:420px){.pic{flex-basis:88px;height:56px}.pic.sm{flex-basis:54px;height:36px}}
+
+.rules{list-style:none;display:flex;flex-direction:column;gap:9px;margin:2px 0 12px;font-size:13.5px}
+.rules li{padding-left:18px;position:relative;color:var(--text)}
+.rules li::before{content:"";position:absolute;left:0;top:7px;width:9px;height:9px;border-radius:50%;background:var(--muted)}
+.rules li.g::before{background:var(--green)}
+.rules li.o::before{background:var(--orange)}
+.rules li.r::before{background:var(--red)}
+.block.safety{border-color:rgba(232,131,58,.45)}
+.painrow{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
+.painrow label{font-size:13px;font-weight:600;color:var(--muted);flex:1}
+.painrow input{width:84px;background:var(--card2);border:1px solid var(--line);border-radius:9px;color:var(--text);font-family:'Saira';font-weight:700;font-size:16px;padding:9px;text-align:center}
+.painrow input:focus{outline:2px solid var(--cyan);outline-offset:1px;border-color:transparent}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <img class="logo" src="data:image/png;base64,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" alt="BRH Coaching">
+    <div>
+      <span class="eyebrow">Séance adaptée · CAO Orsay — Masters</span>
+      <h1>Spécial Stéphane<br><span class="lite">Haut du corps · dos protégé</span></h1>
+    </div>
+    <div class="meta">
+      <span class="chip">📅 <strong>21/09/2026</strong></span>
+      <span class="chip">🎯 Objectif : <strong>entretien musculaire sans contrainte lombaire</strong></span>
+      <span class="chip">📝 Notes coach : <strong>RAS</strong></span>
+    </div>
+    <div class="athlete">
+      <input id="athlete" list="athletes" value="Stéphane" placeholder="Prénom…" autocomplete="off" aria-label="Nom de l'athlète">
+      <datalist id="athletes"></datalist>
+      <span class="savebadge" id="savebadge"><span class="dot"></span><span id="savetxt">carnet</span></span>
+    </div>
+  </div>
+</header>
+
+<div class="progress">
+  <div class="wrap">
+    <div class="pbar"><div class="pfill" id="pfill"></div></div>
+    <div class="pnum"><span id="pdone">0</span>/<span id="ptotal">0</span> séries</div>
+  </div>
+</div>
+
+<div class="wrap">
+<main>
+
+  <section class="block safety">
+    <div class="bhead">
+      <span class="btag acc">!</span>
+      <span class="btitle">Avant de commencer</span>
+    </div>
+    <div class="exo">
+      <ul class="rules">
+        <li class="g"><b>Feu vert</b> — douleur ≤ 3/10 pendant l'exercice, et revenue à son niveau habituel le lendemain matin : on continue.</li>
+        <li class="o"><b>Feu orange</b> — douleur &gt; 3/10 ou qui augmente au fil des séries : on baisse la charge ou on saute l'exercice.</li>
+        <li class="r"><b>Feu rouge — stop et avis médical</b> — douleur qui descend dans la jambe sous le genou, fourmillements, perte de force. <b>Urgence</b> : troubles urinaires ou insensibilité entre les cuisses.</li>
+        <li><b>Règles de la séance</b> — dos neutre en permanence, jamais de charge ramassée au sol, on expire pendant l'effort (pas de blocage), <b>RPE 7 maximum</b> partout.</li>
+      </ul>
+      <div class="painrow">
+        <label for="p-avant">Douleur au dos en arrivant (0-10)</label>
+        <input data-f id="p-avant" type="number" inputmode="numeric" min="0" max="10" placeholder="0-10">
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="bhead">
+      <span class="btag">A</span>
+      <span class="btitle">Échauffement</span>
+      <span class="bsub">On réveille la colonne sans la contraindre, puis les épaules</span>
+    </div>
+    <div class="exo">
+<div class="crow"><div class="pic sm"><svg viewBox="0 0 160 100" aria-hidden="true"><line x1="8" y1="92" x2="152" y2="92" stroke="var(--line)" stroke-width="2"/><line x1="28" y1="86" x2="122" y2="86" stroke="var(--cyan)" stroke-width="6" stroke-linecap="round" /><line x1="118" y1="86" x2="128" y2="38" stroke="var(--cyan)" stroke-width="4" stroke-linecap="round" /><line x1="128" y1="38" x2="110" y2="44" stroke="var(--cyan)" stroke-width="4" stroke-linecap="round" /><circle cx="72" cy="22" r="7" fill="var(--text)"/><polyline points="72,32 72,60" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polyline points="58,86 72,60 86,86" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polyline points="62,54 72,36 84,52" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></div><span class="lbl">Marche sur tapis <span class="det">10 min · allure confortable, bras qui balancent librement</span></span><button class="chrono" data-chrono="600" data-lbl="Marche — échauffement">⏱ 10:00</button><button class="ck" data-f data-set id="a-1" aria-pressed="false" aria-label="Valider Marche sur tapis">✓</button></div>
+<div class="crow"><div class="pic sm"><svg viewBox="0 0 160 100" aria-hidden="true"><line x1="8" y1="92" x2="152" y2="92" stroke="var(--line)" stroke-width="2"/><path d="M55 60 Q80 40 105 60" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polyline points="55,90 55,60" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polyline points="105,90 105,60" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polyline points="55,90 38,90" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="116" cy="66" r="7" fill="var(--text)"/><path d="M66 34 q14 -10 28 0" stroke="var(--orange)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="lbl">Cat-camel <span class="det">8 cycles lents · mobiliser sans chercher l'amplitude maximale</span></span><button class="ck" data-f data-set id="a-2" aria-pressed="false" aria-label="Valider Cat-camel">✓</button></div>
+<div class="crow"><div class="pic sm"><svg viewBox="0 0 160 100" aria-hidden="true"><line x1="8" y1="92" x2="152" y2="92" stroke="var(--line)" stroke-width="2"/><rect x="48" y="4" width="64" height="88" fill="var(--cyan)" opacity=".13" rx="4"/><circle cx="80" cy="28" r="7" fill="var(--text)"/><polyline points="80,38 80,64" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polyline points="70,90 80,64 90,90" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polyline points="62,16 62,40 80,40 98,40 98,16" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M44 34 l0 -16 m-4 4 l4 -4 l4 4" stroke="var(--orange)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M116 34 l0 -16 m-4 4 l4 -4 l4 4" stroke="var(--orange)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="lbl">Glissements au mur <span class="det">2 × 10 · lombaires plaquées au mur, bras de W vers Y</span></span><button class="ck" data-f data-set id="a-3" aria-pressed="false" aria-label="Valider Glissements au mur">✓</button></div>
+<div class="crow"><div class="pic sm"><svg viewBox="0 0 160 100" aria-hidden="true"><line x1="8" y1="92" x2="152" y2="92" stroke="var(--line)" stroke-width="2"/><line x1="46" y1="40" x2="114" y2="40" stroke="var(--cyan)" stroke-width="3" stroke-linecap="round" /><circle cx="80" cy="24" r="7" fill="var(--text)"/><polyline points="80,34 80,62" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polyline points="70,90 80,62 90,90" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polyline points="48,40 80,36 112,40" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M40 52 l-12 0 m4 -4 l-4 4 l4 4" stroke="var(--orange)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M120 52 l12 0 m-4 -4 l4 4 l-4 4" stroke="var(--orange)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="lbl">Écartés à l'élastique <span class="det">2 × 15 · bras tendus devant, omoplates qui se serrent</span></span><button class="ck" data-f data-set id="a-4" aria-pressed="false" aria-label="Valider Écartés à l'élastique">✓</button></div>
+      <button class="notesbtn" data-toggle="a-notes">Notes du bloc</button>
+      <textarea data-f id="a-notes" placeholder="Sensations du dos pendant la marche…"></textarea>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="bhead">
+      <span class="btag">B</span>
+      <span class="btitle">Gainage — Big 3 de McGill</span>
+      <span class="bsub">Pyramide descendante : maintiens de 10 s, 10 s de pause entre chaque. On cherche la qualité et la respiration, jamais l'épuisement.</span>
+    </div>
+    <div class="exo">
+<div class="tourlabel">Palier 1 — 6 maintiens de 10 s</div>
+<div class="crow"><div class="pic sm"><svg viewBox="0 0 160 100" aria-hidden="true"><line x1="8" y1="92" x2="152" y2="92" stroke="var(--line)" stroke-width="2"/><circle cx="34" cy="76" r="7" fill="var(--text)"/><polyline points="44,82 88,86" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polyline points="88,86 106,66 122,90" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polyline points="88,86 136,90" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="56" y="86" width="16" height="4" rx="2" fill="var(--cyan)"/><path d="M30 60 l0 -10 m-4 4 l4 -4 l4 4" stroke="var(--orange)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="lbl">Curl-up modifié <span class="det">6 × 10 s · une jambe fléchie, mains sous les lombaires, tête et épaules décollées de 2-3 cm</span></span><button class="chrono" data-chrono="10" data-lbl="Curl-up — maintien">⏱ 10 s</button><button class="ck" data-f data-set id="b-p1-1" aria-pressed="false" aria-label="Valider Curl-up modifié">✓</button></div>
+<div class="crow"><div class="pic sm"><svg viewBox="0 0 160 100" aria-hidden="true"><line x1="8" y1="92" x2="152" y2="92" stroke="var(--line)" stroke-width="2"/><polyline points="110,90 108,66 78,76 50,88 38,76" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="118" cy="58" r="7" fill="var(--text)"/><polyline points="108,66 92,62 80,72" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M70 60 l0 -12 m-4 4 l4 -4 l4 4" stroke="var(--orange)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="lbl">Planche latérale <span class="det">6 × 10 s / côté · sur les genoux si besoin</span></span><button class="chrono" data-chrono="10" data-lbl="Planche latérale — maintien">⏱ 10 s</button><button class="ck" data-f data-set id="b-p1-2" aria-pressed="false" aria-label="Valider Planche latérale">✓</button></div>
+<div class="crow"><div class="pic sm"><svg viewBox="0 0 160 100" aria-hidden="true"><line x1="8" y1="92" x2="152" y2="92" stroke="var(--line)" stroke-width="2"/><polyline points="100,90 100,62 60,62 60,90 42,90" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polyline points="100,62 138,56" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polyline points="60,62 20,58" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="112" cy="56" r="7" fill="var(--text)"/><path d="M26 48 l-10 0" stroke="var(--orange)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M132 46 l10 0" stroke="var(--orange)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="lbl">Bird dog <span class="det">6 × 10 s / côté · bras et jambe opposés, bassin immobile</span></span><button class="chrono" data-chrono="10" data-lbl="Bird dog — maintien">⏱ 10 s</button><button class="ck" data-f data-set id="b-p1-3" aria-pressed="false" aria-label="Valider Bird dog">✓</button></div>
+<div class="tourlabel">Palier 2 — 4 maintiens de 10 s</div>
+<div class="crow"><div class="pic sm"><svg viewBox="0 0 160 100" aria-hidden="true"><line x1="8" y1="92" x2="152" y2="92" stroke="var(--line)" stroke-width="2"/><circle cx="34" cy="76" r="7" fill="var(--text)"/><polyline points="44,82 88,86" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polyline points="88,86 106,66 122,90" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polyline points="88,86 136,90" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="56" y="86" width="16" height="4" rx="2" fill="var(--cyan)"/><path d="M30 60 l0 -10 m-4 4 l4 -4 l4 4" stroke="var(--orange)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="lbl">Curl-up modifié <span class="det">4 × 10 s · une jambe fléchie, mains sous les lombaires, tête et épaules décollées de 2-3 cm</span></span><button class="chrono" data-chrono="10" data-lbl="Curl-up — maintien">⏱ 10 s</button><button class="ck" data-f data-set id="b-p2-1" aria-pressed="false" aria-label="Valider Curl-up modifié">✓</button></div>
+<div class="crow"><div class="pic sm"><svg viewBox="0 0 160 100" aria-hidden="true"><line x1="8" y1="92" x2="152" y2="92" stroke="var(--line)" stroke-width="2"/><polyline points="110,90 108,66 78,76 50,88 38,76" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="118" cy="58" r="7" fill="var(--text)"/><polyline points="108,66 92,62 80,72" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M70 60 l0 -12 m-4 4 l4 -4 l4 4" stroke="var(--orange)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="lbl">Planche latérale <span class="det">4 × 10 s / côté · sur les genoux si besoin</span></span><button class="chrono" data-chrono="10" data-lbl="Planche latérale — maintien">⏱ 10 s</button><button class="ck" data-f data-set id="b-p2-2" aria-pressed="false" aria-label="Valider Planche latérale">✓</button></div>
+<div class="crow"><div class="pic sm"><svg viewBox="0 0 160 100" aria-hidden="true"><line x1="8" y1="92" x2="152" y2="92" stroke="var(--line)" stroke-width="2"/><polyline points="100,90 100,62 60,62 60,90 42,90" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polyline points="100,62 138,56" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polyline points="60,62 20,58" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="112" cy="56" r="7" fill="var(--text)"/><path d="M26 48 l-10 0" stroke="var(--orange)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M132 46 l10 0" stroke="var(--orange)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="lbl">Bird dog <span class="det">4 × 10 s / côté · bras et jambe opposés, bassin immobile</span></span><button class="chrono" data-chrono="10" data-lbl="Bird dog — maintien">⏱ 10 s</button><button class="ck" data-f data-set id="b-p2-3" aria-pressed="false" aria-label="Valider Bird dog">✓</button></div>
+<div class="tourlabel">Palier 3 — 2 maintiens de 10 s</div>
+<div class="crow"><div class="pic sm"><svg viewBox="0 0 160 100" aria-hidden="true"><line x1="8" y1="92" x2="152" y2="92" stroke="var(--line)" stroke-width="2"/><circle cx="34" cy="76" r="7" fill="var(--text)"/><polyline points="44,82 88,86" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polyline points="88,86 106,66 122,90" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polyline points="88,86 136,90" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="56" y="86" width="16" height="4" rx="2" fill="var(--cyan)"/><path d="M30 60 l0 -10 m-4 4 l4 -4 l4 4" stroke="var(--orange)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="lbl">Curl-up modifié <span class="det">2 × 10 s · une jambe fléchie, mains sous les lombaires, tête et épaules décollées de 2-3 cm</span></span><button class="chrono" data-chrono="10" data-lbl="Curl-up — maintien">⏱ 10 s</button><button class="ck" data-f data-set id="b-p3-1" aria-pressed="false" aria-label="Valider Curl-up modifié">✓</button></div>
+<div class="crow"><div class="pic sm"><svg viewBox="0 0 160 100" aria-hidden="true"><line x1="8" y1="92" x2="152" y2="92" stroke="var(--line)" stroke-width="2"/><polyline points="110,90 108,66 78,76 50,88 38,76" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="118" cy="58" r="7" fill="var(--text)"/><polyline points="108,66 92,62 80,72" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M70 60 l0 -12 m-4 4 l4 -4 l4 4" stroke="var(--orange)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="lbl">Planche latérale <span class="det">2 × 10 s / côté · sur les genoux si besoin</span></span><button class="chrono" data-chrono="10" data-lbl="Planche latérale — maintien">⏱ 10 s</button><button class="ck" data-f data-set id="b-p3-2" aria-pressed="false" aria-label="Valider Planche latérale">✓</button></div>
+<div class="crow"><div class="pic sm"><svg viewBox="0 0 160 100" aria-hidden="true"><line x1="8" y1="92" x2="152" y2="92" stroke="var(--line)" stroke-width="2"/><polyline points="100,90 100,62 60,62 60,90 42,90" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polyline points="100,62 138,56" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polyline points="60,62 20,58" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="112" cy="56" r="7" fill="var(--text)"/><path d="M26 48 l-10 0" stroke="var(--orange)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M132 46 l10 0" stroke="var(--orange)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="lbl">Bird dog <span class="det">2 × 10 s / côté · bras et jambe opposés, bassin immobile</span></span><button class="chrono" data-chrono="10" data-lbl="Bird dog — maintien">⏱ 10 s</button><button class="ck" data-f data-set id="b-p3-3" aria-pressed="false" aria-label="Valider Bird dog">✓</button></div>
+
+      <button class="notesbtn" data-toggle="b-notes">Notes du bloc</button>
+      <textarea data-f id="b-notes" placeholder="Version planche (genoux / pieds), sensations…"></textarea>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="bhead">
+      <span class="btag acc">C</span>
+      <span class="btitle">Pompes inclinées</span>
+      <button class="restbtn" data-chrono="90" data-lbl="Repos — Pompes inclinées">⏱ Repos 1:30</button>
+    </div>
+    <div class="exo">
+      <div class="exrow"><div class="pic"><svg viewBox="0 0 160 100" aria-hidden="true"><line x1="8" y1="92" x2="152" y2="92" stroke="var(--line)" stroke-width="2"/><line x1="96" y1="62" x2="140" y2="62" stroke="var(--cyan)" stroke-width="5" stroke-linecap="round" /><line x1="104" y1="62" x2="104" y2="92" stroke="var(--cyan)" stroke-width="4" stroke-linecap="round" /><line x1="132" y1="62" x2="132" y2="92" stroke="var(--cyan)" stroke-width="4" stroke-linecap="round" /><polyline points="24,90 108,52" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="118" cy="44" r="7" fill="var(--text)"/><polyline points="104,54 116,62" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M78 44 l0 -14 m-4 4 l4 -4 l4 4" stroke="var(--orange)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="exhead"><span class="presc">4 × 10-12 · <b>RPE 7</b> · mains sur un banc, corps gainé en planche : <b>le bassin ne s'affaisse jamais</b>. Plus le support est haut, plus c'est facile</span></div></div>
+      <div class="cols"><span>#</span><span>Support</span><span>Réps</span><span>RPE</span><span>OK</span></div>
+<div class="set"><span class="sn">1</span><input data-f id="c-1-kg" type="text" placeholder="banc / sol"><input data-f id="c-1-r" type="number" inputmode="numeric" min="0" placeholder="10-12"><select data-f id="c-1-rpe"></select><button class="ck" data-f data-set data-rest="90" id="c-1-ok" aria-pressed="false" aria-label="Valider série 1">✓</button></div>
+<div class="set"><span class="sn">2</span><input data-f id="c-2-kg" type="text" placeholder="banc / sol"><input data-f id="c-2-r" type="number" inputmode="numeric" min="0" placeholder="10-12"><select data-f id="c-2-rpe"></select><button class="ck" data-f data-set data-rest="90" id="c-2-ok" aria-pressed="false" aria-label="Valider série 2">✓</button></div>
+<div class="set"><span class="sn">3</span><input data-f id="c-3-kg" type="text" placeholder="banc / sol"><input data-f id="c-3-r" type="number" inputmode="numeric" min="0" placeholder="10-12"><select data-f id="c-3-rpe"></select><button class="ck" data-f data-set data-rest="90" id="c-3-ok" aria-pressed="false" aria-label="Valider série 3">✓</button></div>
+<div class="set"><span class="sn">4</span><input data-f id="c-4-kg" type="text" placeholder="banc / sol"><input data-f id="c-4-r" type="number" inputmode="numeric" min="0" placeholder="10-12"><select data-f id="c-4-rpe"></select><button class="ck" data-f data-set data-rest="90" id="c-4-ok" aria-pressed="false" aria-label="Valider série 4">✓</button></div>
+      <button class="notesbtn" data-toggle="c-notes">Notes de l'exercice</button>
+      <textarea data-f id="c-notes" placeholder="Hauteur du support, qualité du gainage…"></textarea>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="bhead">
+      <span class="btag">D</span>
+      <span class="btitle">Tirage poulie haute</span>
+      <button class="restbtn" data-chrono="90" data-lbl="Repos — Tirage poulie haute">⏱ Repos 1:30</button>
+    </div>
+    <div class="exo">
+      <div class="exrow"><div class="pic"><svg viewBox="0 0 160 100" aria-hidden="true"><line x1="8" y1="92" x2="152" y2="92" stroke="var(--line)" stroke-width="2"/><line x1="80" y1="2" x2="80" y2="22" stroke="var(--cyan)" stroke-width="2" stroke-linecap="round" stroke-dasharray="4 3"/><line x1="44" y1="22" x2="116" y2="22" stroke="var(--cyan)" stroke-width="4" stroke-linecap="round" /><line x1="58" y1="70" x2="102" y2="70" stroke="var(--cyan)" stroke-width="5" stroke-linecap="round" /><circle cx="80" cy="34" r="7" fill="var(--text)"/><polyline points="80,44 80,66" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polyline points="58,24 62,50 80,46 98,50 102,24" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polyline points="66,90 68,70 80,66 92,70 94,90" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M124 20 l0 16 m-4 -4 l4 4 l4 -4" stroke="var(--orange)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="exhead"><span class="presc">4 × 12 · <b>RPE 7</b> · cuisses calées, buste droit — ne pas se pencher en arrière</span></div></div>
+      <div class="cols"><span>#</span><span>Charge kg</span><span>Réps</span><span>RPE</span><span>OK</span></div>
+<div class="set"><span class="sn">1</span><input data-f id="d-1-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="d-1-r" type="number" inputmode="numeric" min="0" placeholder="12"><select data-f id="d-1-rpe"></select><button class="ck" data-f data-set data-rest="90" id="d-1-ok" aria-pressed="false" aria-label="Valider série 1">✓</button></div>
+<div class="set"><span class="sn">2</span><input data-f id="d-2-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="d-2-r" type="number" inputmode="numeric" min="0" placeholder="12"><select data-f id="d-2-rpe"></select><button class="ck" data-f data-set data-rest="90" id="d-2-ok" aria-pressed="false" aria-label="Valider série 2">✓</button></div>
+<div class="set"><span class="sn">3</span><input data-f id="d-3-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="d-3-r" type="number" inputmode="numeric" min="0" placeholder="12"><select data-f id="d-3-rpe"></select><button class="ck" data-f data-set data-rest="90" id="d-3-ok" aria-pressed="false" aria-label="Valider série 3">✓</button></div>
+<div class="set"><span class="sn">4</span><input data-f id="d-4-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="d-4-r" type="number" inputmode="numeric" min="0" placeholder="12"><select data-f id="d-4-rpe"></select><button class="ck" data-f data-set data-rest="90" id="d-4-ok" aria-pressed="false" aria-label="Valider série 4">✓</button></div>
+      <button class="notesbtn" data-toggle="d-notes">Notes de l'exercice</button>
+      <textarea data-f id="d-notes" placeholder="Prise utilisée, amplitude…"></textarea>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="bhead">
+      <span class="btag">E</span>
+      <span class="btitle">Rowing poitrine appuyée</span>
+      <button class="restbtn" data-chrono="90" data-lbl="Repos — Rowing poitrine appuyée">⏱ Repos 1:30</button>
+    </div>
+    <div class="exo">
+      <div class="exrow"><div class="pic"><svg viewBox="0 0 160 100" aria-hidden="true"><line x1="8" y1="92" x2="152" y2="92" stroke="var(--line)" stroke-width="2"/><line x1="36" y1="84" x2="112" y2="46" stroke="var(--cyan)" stroke-width="5" stroke-linecap="round" /><line x1="62" y1="72" x2="62" y2="92" stroke="var(--cyan)" stroke-width="4" stroke-linecap="round" /><polyline points="42,90 58,70 100,50" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="110" cy="42" r="7" fill="var(--text)"/><polyline points="100,50 90,64 100,72" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="96" y1="76" x2="104" y2="68" stroke="var(--cyan)" stroke-width="7" stroke-linecap="round" /><path d="M120 76 l0 -14 m-4 4 l4 -4 l4 4" stroke="var(--orange)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="exhead"><span class="presc">3 × 12 · <b>RPE 7</b> · machine ou haltères sur banc incliné, le buste ne décolle pas</span></div></div>
+      <div class="cols"><span>#</span><span>Charge kg</span><span>Réps</span><span>RPE</span><span>OK</span></div>
+<div class="set"><span class="sn">1</span><input data-f id="e-1-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="e-1-r" type="number" inputmode="numeric" min="0" placeholder="12"><select data-f id="e-1-rpe"></select><button class="ck" data-f data-set data-rest="90" id="e-1-ok" aria-pressed="false" aria-label="Valider série 1">✓</button></div>
+<div class="set"><span class="sn">2</span><input data-f id="e-2-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="e-2-r" type="number" inputmode="numeric" min="0" placeholder="12"><select data-f id="e-2-rpe"></select><button class="ck" data-f data-set data-rest="90" id="e-2-ok" aria-pressed="false" aria-label="Valider série 2">✓</button></div>
+<div class="set"><span class="sn">3</span><input data-f id="e-3-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="e-3-r" type="number" inputmode="numeric" min="0" placeholder="12"><select data-f id="e-3-rpe"></select><button class="ck" data-f data-set data-rest="90" id="e-3-ok" aria-pressed="false" aria-label="Valider série 3">✓</button></div>
+      <button class="notesbtn" data-toggle="e-notes">Notes de l'exercice</button>
+      <textarea data-f id="e-notes" placeholder="Machine ou banc, charge…"></textarea>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="bhead">
+      <span class="btag">F</span>
+      <span class="btitle">Élévations latérales</span>
+      <button class="restbtn" data-chrono="60" data-lbl="Repos — Élévations latérales">⏱ Repos 1:00</button>
+    </div>
+    <div class="exo">
+      <div class="exrow"><div class="pic"><svg viewBox="0 0 160 100" aria-hidden="true"><line x1="8" y1="92" x2="152" y2="92" stroke="var(--line)" stroke-width="2"/><circle cx="80" cy="24" r="7" fill="var(--text)"/><polyline points="80,34 80,62" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polyline points="70,90 80,62 90,90" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polyline points="48,46 80,36 112,46" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="46" y1="40" x2="46" y2="52" stroke="var(--cyan)" stroke-width="7" stroke-linecap="round" /><line x1="114" y1="40" x2="114" y2="52" stroke="var(--cyan)" stroke-width="7" stroke-linecap="round" /><path d="M34 60 q-6 -10 2 -20" stroke="var(--orange)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M126 60 q6 -10 -2 -20" stroke="var(--orange)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="exhead"><span class="presc">3 × 15 · <b>charge légère</b> · debout, genoux souples, sans élan</span></div></div>
+      <div class="cols"><span>#</span><span>Charge kg</span><span>Réps</span><span>RPE</span><span>OK</span></div>
+<div class="set"><span class="sn">1</span><input data-f id="f-1-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="f-1-r" type="number" inputmode="numeric" min="0" placeholder="15"><select data-f id="f-1-rpe"></select><button class="ck" data-f data-set data-rest="60" id="f-1-ok" aria-pressed="false" aria-label="Valider série 1">✓</button></div>
+<div class="set"><span class="sn">2</span><input data-f id="f-2-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="f-2-r" type="number" inputmode="numeric" min="0" placeholder="15"><select data-f id="f-2-rpe"></select><button class="ck" data-f data-set data-rest="60" id="f-2-ok" aria-pressed="false" aria-label="Valider série 2">✓</button></div>
+<div class="set"><span class="sn">3</span><input data-f id="f-3-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="f-3-r" type="number" inputmode="numeric" min="0" placeholder="15"><select data-f id="f-3-rpe"></select><button class="ck" data-f data-set data-rest="60" id="f-3-ok" aria-pressed="false" aria-label="Valider série 3">✓</button></div>
+      <button class="notesbtn" data-toggle="f-notes">Notes de l'exercice</button>
+      <textarea data-f id="f-notes" placeholder="Charge, contrôle…"></textarea>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="bhead">
+      <span class="btag">G</span>
+      <span class="btitle">Face pull à la poulie</span>
+      <button class="restbtn" data-chrono="60" data-lbl="Repos — Face pull à la poulie">⏱ Repos 1:00</button>
+    </div>
+    <div class="exo">
+      <div class="exrow"><div class="pic"><svg viewBox="0 0 160 100" aria-hidden="true"><line x1="8" y1="92" x2="152" y2="92" stroke="var(--line)" stroke-width="2"/><circle cx="18" cy="28" r="5" fill="var(--cyan)"/><line x1="18" y1="28" x2="80" y2="26" stroke="var(--cyan)" stroke-width="2" stroke-linecap="round" stroke-dasharray="4 3"/><circle cx="92" cy="22" r="7" fill="var(--text)"/><polyline points="92,32 92,62" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polyline points="84,90 92,62 100,90" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polyline points="92,36 106,28 82,26" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M52 16 l14 0 m-4 -4 l4 4 l-4 4" stroke="var(--orange)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="exhead"><span class="presc">3 × 15 · poulie à hauteur de visage, rotation externe en fin de tirage</span></div></div>
+      <div class="cols"><span>#</span><span>Charge kg</span><span>Réps</span><span>RPE</span><span>OK</span></div>
+<div class="set"><span class="sn">1</span><input data-f id="g-1-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="g-1-r" type="number" inputmode="numeric" min="0" placeholder="15"><select data-f id="g-1-rpe"></select><button class="ck" data-f data-set data-rest="60" id="g-1-ok" aria-pressed="false" aria-label="Valider série 1">✓</button></div>
+<div class="set"><span class="sn">2</span><input data-f id="g-2-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="g-2-r" type="number" inputmode="numeric" min="0" placeholder="15"><select data-f id="g-2-rpe"></select><button class="ck" data-f data-set data-rest="60" id="g-2-ok" aria-pressed="false" aria-label="Valider série 2">✓</button></div>
+<div class="set"><span class="sn">3</span><input data-f id="g-3-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="g-3-r" type="number" inputmode="numeric" min="0" placeholder="15"><select data-f id="g-3-rpe"></select><button class="ck" data-f data-set data-rest="60" id="g-3-ok" aria-pressed="false" aria-label="Valider série 3">✓</button></div>
+      <button class="notesbtn" data-toggle="g-notes">Notes de l'exercice</button>
+      <textarea data-f id="g-notes" placeholder="Charge, coudes hauts…"></textarea>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="bhead">
+      <span class="btag">H</span>
+      <span class="btitle">Extension triceps à la poulie</span>
+      <button class="restbtn" data-chrono="60" data-lbl="Repos — Extension triceps à la poulie">⏱ Repos 1:00</button>
+    </div>
+    <div class="exo">
+      <div class="exrow"><div class="pic"><svg viewBox="0 0 160 100" aria-hidden="true"><line x1="8" y1="92" x2="152" y2="92" stroke="var(--line)" stroke-width="2"/><circle cx="112" cy="8" r="5" fill="var(--cyan)"/><line x1="112" y1="8" x2="98" y2="54" stroke="var(--cyan)" stroke-width="2" stroke-linecap="round" stroke-dasharray="4 3"/><circle cx="72" cy="22" r="7" fill="var(--text)"/><polyline points="72,32 72,62" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polyline points="64,90 72,62 80,90" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polyline points="72,34 78,54 98,56" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M108 62 l0 16 m-4 -4 l4 4 l4 -4" stroke="var(--orange)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="exhead"><span class="presc">3 × 12 · coudes collés au corps, buste droit</span></div></div>
+      <div class="cols"><span>#</span><span>Charge kg</span><span>Réps</span><span>RPE</span><span>OK</span></div>
+<div class="set"><span class="sn">1</span><input data-f id="h-1-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="h-1-r" type="number" inputmode="numeric" min="0" placeholder="12"><select data-f id="h-1-rpe"></select><button class="ck" data-f data-set data-rest="60" id="h-1-ok" aria-pressed="false" aria-label="Valider série 1">✓</button></div>
+<div class="set"><span class="sn">2</span><input data-f id="h-2-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="h-2-r" type="number" inputmode="numeric" min="0" placeholder="12"><select data-f id="h-2-rpe"></select><button class="ck" data-f data-set data-rest="60" id="h-2-ok" aria-pressed="false" aria-label="Valider série 2">✓</button></div>
+<div class="set"><span class="sn">3</span><input data-f id="h-3-kg" type="number" inputmode="decimal" step="0.5" min="0" placeholder="kg"><input data-f id="h-3-r" type="number" inputmode="numeric" min="0" placeholder="12"><select data-f id="h-3-rpe"></select><button class="ck" data-f data-set data-rest="60" id="h-3-ok" aria-pressed="false" aria-label="Valider série 3">✓</button></div>
+      <button class="notesbtn" data-toggle="h-notes">Notes de l'exercice</button>
+      <textarea data-f id="h-notes" placeholder="Corde ou barre…"></textarea>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="bhead">
+      <span class="btag acc">I</span>
+      <span class="btitle">Retour au calme — Marche</span>
+    </div>
+    <div class="exo">
+<div class="crow"><div class="pic sm"><svg viewBox="0 0 160 100" aria-hidden="true"><line x1="8" y1="92" x2="152" y2="92" stroke="var(--line)" stroke-width="2"/><line x1="28" y1="86" x2="122" y2="86" stroke="var(--cyan)" stroke-width="6" stroke-linecap="round" /><line x1="118" y1="86" x2="128" y2="38" stroke="var(--cyan)" stroke-width="4" stroke-linecap="round" /><line x1="128" y1="38" x2="110" y2="44" stroke="var(--cyan)" stroke-width="4" stroke-linecap="round" /><circle cx="72" cy="22" r="7" fill="var(--text)"/><polyline points="72,32 72,60" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polyline points="58,86 72,60 86,86" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polyline points="62,54 72,36 84,52" stroke="var(--text)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></div><span class="lbl">Marche sur tapis <span class="det">10-15 min · allure soutenue mais on peut parler · inclinaison 1-3 % seulement si confortable</span></span><button class="chrono" data-chrono="600" data-lbl="Marche — retour au calme">⏱ 10:00</button><button class="ck" data-f data-set id="i-1" aria-pressed="false" aria-label="Valider Marche sur tapis">✓</button></div>
+      <button class="notesbtn" data-toggle="i-notes">Notes</button>
+      <textarea data-f id="i-notes" placeholder="Durée, vitesse, inclinaison…"></textarea>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="bhead">
+      <span class="btag acc">✦</span>
+      <span class="btitle">Bilan de séance</span>
+    </div>
+    <div class="endcard">
+      <div class="painrow">
+        <label for="p-apres">Douleur au dos après la séance (0-10)</label>
+        <input data-f id="p-apres" type="number" inputmode="numeric" min="0" max="10" placeholder="0-10">
+      </div>
+      <div class="painrow">
+        <label for="p-lendemain">Douleur le lendemain matin (0-10)</label>
+        <input data-f id="p-lendemain" type="number" inputmode="numeric" min="0" max="10" placeholder="0-10">
+      </div>
+      <div class="row2">
+        <div>
+          <label for="s-notes">Ressenti global</label>
+          <textarea data-f id="s-notes" placeholder="Exercices qui ont gêné, sensations dans la jambe, forme du jour…"></textarea>
+        </div>
+        <div>
+          <label for="s-rpe">RPE séance</label>
+          <select data-f id="s-rpe"></select>
+        </div>
+      </div>
+      <button class="bigbtn" id="finish">Terminer la séance</button>
+      <div class="summary" id="summary">
+        <div class="sgrid">
+          <div class="scell"><div class="v" id="sum-sets">—</div><div class="k">Séries validées</div></div>
+          <div class="scell"><div class="v" id="sum-ton">—</div><div class="k">Tonnage estimé</div></div>
+          <div class="scell"><div class="v" id="sum-rpe">—</div><div class="k">RPE moyen</div></div>
+          <div class="scell"><div class="v" id="sum-dur">—</div><div class="k">Durée</div></div>
+        </div>
+        <button class="ghost" id="copywa">📋 Copier le bilan (WhatsApp)</button>
+        <button class="ghost" id="copyfull" style="margin-top:8px">🗂 Copier le carnet complet — toutes les séries</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+<footer>Carnet d'entraînement <b>BRH COACHING</b> × CAO Orsay Masters — les données sont enregistrées automatiquement par athlète.</footer>
+</div>
+
+<!-- TIMER DOCK -->
+<div class="dock" id="dock" role="timer" aria-live="off">
+  <div class="wrap">
+    <div class="dtime" id="dtime">0:00</div>
+    <div class="dinfo">
+      <div class="dlabel" id="dlabel">Repos</div>
+      <div class="dbar"><div class="dfill" id="dfill"></div></div>
+    </div>
+    <div class="dbtns">
+      <button class="dbtn" id="dplus">+15 s</button>
+      <button class="dbtn" id="dpause">⏸</button>
+      <button class="dbtn" id="dstop">✕</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var SKEY = 'sstephane20260921:';
+  var LKEY = 'sstephane20260921:athletes';
+
+  /* ---------- RPE selects ---------- */
+  document.querySelectorAll('select[data-f]').forEach(function(sel){
+    var isSession = sel.id === 's-rpe';
+    var opt = document.createElement('option');
+    opt.value=''; opt.textContent = isSession ? 'RPE /10' : 'RPE';
+    sel.appendChild(opt);
+    for(var v=5; v<=10; v+=0.5){
+      var o=document.createElement('option');
+      o.value=v; o.textContent=(v%1===0? v : v.toFixed(1));
+      sel.appendChild(o);
+    }
+  });
+
+  /* ---------- storage (avec repli mémoire) ---------- */
+  var mem = {};
+  var hasStore = typeof window.storage !== 'undefined' && window.storage && typeof window.storage.get === 'function';
+  var hasLocal = false;
+  try{ localStorage.setItem('sstephane-test','1'); localStorage.removeItem('sstephane-test'); hasLocal = true; }catch(e){}
+  function sGet(k){
+    if(hasStore){ return window.storage.get(k).then(function(r){ return r ? r.value : null; }).catch(function(){ return null; }); }
+    if(hasLocal){ return Promise.resolve(localStorage.getItem(k)); }
+    return Promise.resolve(mem[k] || null);
+  }
+  function sSet(k,v){
+    mem[k] = v;
+    if(hasStore){ return window.storage.set(k,v).then(function(){}).catch(function(){}); }
+    if(hasLocal){ try{ localStorage.setItem(k,v); }catch(e){} return Promise.resolve(); }
+    return Promise.resolve();
+  }
+
+  /* ---------- état & sauvegarde ---------- */
+  var fields = Array.prototype.slice.call(document.querySelectorAll('[data-f]'));
+  var badge = document.getElementById('savebadge');
+  var savetxt = document.getElementById('savetxt');
+  var athleteInput = document.getElementById('athlete');
+  var startedAt = null;
+  var saveTimer = null;
+  var loading = false;
+
+  function slug(s){ return (s||'').trim().toLowerCase().replace(/\s+/g,'-'); }
+  function currentKey(){ var s = slug(athleteInput.value); return s ? SKEY + s : null; }
+
+  function collect(){
+    var data = { startedAt: startedAt, fields: {} };
+    fields.forEach(function(el){
+      if(el.classList.contains('ck')){
+        data.fields[el.id] = el.getAttribute('aria-pressed') === 'true';
+      } else {
+        data.fields[el.id] = el.value;
+      }
+    });
+    return data;
+  }
+
+  function apply(data){
+    loading = true;
+    fields.forEach(function(el){
+      var v = data && data.fields ? data.fields[el.id] : undefined;
+      if(el.classList.contains('ck')){
+        el.setAttribute('aria-pressed', v === true ? 'true' : 'false');
+      } else {
+        el.value = (v === undefined || v === null) ? '' : v;
+        if(el.tagName==='TEXTAREA' && el.value && !el.classList.contains('open')) el.classList.add('open');
+      }
+    });
+    startedAt = data && data.startedAt ? data.startedAt : null;
+    loading = false;
+    updateProgress();
+  }
+
+  function markSaving(state, txt){
+    badge.className = 'savebadge ' + state;
+    savetxt.textContent = txt;
+  }
+
+  function save(){
+    var key = currentKey();
+    if(!key){ markSaving('', 'carnet'); return; }
+    markSaving('pending','sauvegarde…');
+    if(saveTimer) clearTimeout(saveTimer);
+    saveTimer = setTimeout(function(){
+      sSet(key, JSON.stringify(collect())).then(function(){
+        markSaving('ok','enregistré');
+        registerAthlete(athleteInput.value);
+      });
+    }, 700);
+  }
+
+  function registerAthlete(name){
+    name = (name||'').trim();
+    if(!name) return;
+    sGet(LKEY).then(function(raw){
+      var list = [];
+      try{ list = raw ? JSON.parse(raw) : []; }catch(e){}
+      if(list.indexOf(name) === -1){
+        list.push(name);
+        sSet(LKEY, JSON.stringify(list));
+        renderAthletes(list);
+      }
+    });
+  }
+
+  function renderAthletes(list){
+    var dl = document.getElementById('athletes');
+    dl.innerHTML = '';
+    list.forEach(function(n){
+      var o = document.createElement('option'); o.value = n; dl.appendChild(o);
+    });
+  }
+
+  function loadAthlete(){
+    var key = currentKey();
+    if(!key) return;
+    sGet(key).then(function(raw){
+      if(raw){
+        try{ apply(JSON.parse(raw)); markSaving('ok','carnet chargé'); }
+        catch(e){ apply(null); }
+      } else {
+        apply(null);
+        markSaving('ok','nouveau carnet');
+      }
+    });
+  }
+
+  sGet(LKEY).then(function(raw){
+    try{ renderAthletes(raw ? JSON.parse(raw) : []); }catch(e){}
+  });
+
+  athleteInput.addEventListener('change', loadAthlete);
+  if(athleteInput.value.trim()) loadAthlete();
+
+  /* ---------- interactions ---------- */
+  function touch(){
+    if(loading) return;
+    if(!startedAt) startedAt = Date.now();
+    save();
+  }
+
+  fields.forEach(function(el){
+    if(el.classList.contains('ck')){
+      el.addEventListener('click', function(){
+        var on = el.getAttribute('aria-pressed') === 'true';
+        el.setAttribute('aria-pressed', on ? 'false' : 'true');
+        updateProgress();
+        touch();
+        if(!on && el.hasAttribute('data-rest')){
+          startTimer(parseInt(el.getAttribute('data-rest'),10), 'Repos');
+        }
+      });
+    } else {
+      el.addEventListener('input', touch);
+    }
+  });
+
+  /* toggles notes */
+  document.querySelectorAll('[data-toggle]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var ta = document.getElementById(btn.getAttribute('data-toggle'));
+      ta.classList.toggle('open');
+      if(ta.classList.contains('open')) ta.focus();
+    });
+  });
+
+  /* ---------- progression ---------- */
+  var setBtns = Array.prototype.slice.call(document.querySelectorAll('[data-set]'));
+  document.getElementById('ptotal').textContent = setBtns.length;
+  function updateProgress(){
+    var done = setBtns.filter(function(b){ return b.getAttribute('aria-pressed')==='true'; }).length;
+    document.getElementById('pdone').textContent = done;
+    document.getElementById('pfill').style.width = (done/setBtns.length*100) + '%';
+  }
+  updateProgress();
+
+  /* ---------- chrono (avec file d'attente pour le circuit) ---------- */
+  var dock = document.getElementById('dock');
+  var dtime = document.getElementById('dtime');
+  var dlabel = document.getElementById('dlabel');
+  var dfill = document.getElementById('dfill');
+  var t = { total:0, left:0, iv:null, paused:false, queue:[], work:false };
+  var actx = null;
+
+  function beep(freq, dur, when){
+    try{
+      if(!actx) actx = new (window.AudioContext||window.webkitAudioContext)();
+      var o = actx.createOscillator(), g = actx.createGain();
+      o.type='square'; o.frequency.value=freq;
+      g.gain.setValueAtTime(0.0001, actx.currentTime + when);
+      g.gain.exponentialRampToValueAtTime(0.25, actx.currentTime + when + 0.02);
+      g.gain.exponentialRampToValueAtTime(0.0001, actx.currentTime + when + dur);
+      o.connect(g); g.connect(actx.destination);
+      o.start(actx.currentTime + when); o.stop(actx.currentTime + when + dur + 0.05);
+    }catch(e){}
+  }
+
+  function fmt(s){ var m=Math.floor(s/60), r=s%60; return m + ':' + (r<10?'0':'') + r; }
+
+  function render(){
+    dtime.textContent = fmt(Math.max(0,t.left));
+    dfill.style.width = (t.total? (t.left/t.total*100) : 0) + '%';
+    dock.classList.toggle('work', t.work && t.left>0);
+    dock.classList.toggle('warn', !t.work && t.left<=10 && t.left>0);
+    dock.classList.toggle('done', t.left<=0 && t.queue.length===0);
+  }
+
+  function startSeg(seg){
+    t.total = seg.s; t.left = seg.s; t.work = !!seg.work;
+    dlabel.textContent = seg.lbl;
+    render();
+  }
+
+  function tick(){
+    if(t.paused) return;
+    t.left--;
+    render();
+    if(t.left === 10 && !t.work){ beep(880,.09,0); }
+    if(t.left === 3 && t.work){ beep(880,.08,0); beep(880,.08,1); beep(880,.08,2); }
+    if(t.left <= 0){
+      if(t.queue.length){
+        var next = t.queue.shift();
+        beep(next.work ? 1400 : 900, .18, 0);
+        if(navigator.vibrate) navigator.vibrate(next.work ? [250] : [120,60,120]);
+        startSeg(next);
+        return;
+      }
+      clearInterval(t.iv); t.iv=null;
+      beep(1100,.12,0); beep(1100,.12,.2); beep(1400,.28,.4);
+      if(navigator.vibrate) navigator.vibrate([180,90,180,90,300]);
+      dlabel.textContent = t.work ? 'Circuit terminé — bravo !' : 'Terminé — au travail !';
+      t.work = false;
+      render();
+      setTimeout(function(){ if(t.left<=0 && !t.iv) hideDock(); }, 3500);
+    }
+  }
+
+  function startTimer(sec, label){
+    if(t.iv) clearInterval(t.iv);
+    t.queue = [];
+    t.paused = false;
+    document.getElementById('dpause').textContent = '⏸';
+    dock.classList.add('on');
+    startSeg({s:sec, lbl:label, work:false});
+    t.iv = setInterval(tick, 1000);
+  }
+
+  var CIRCUIT = [];
+  function startCircuit(tour){
+    if(t.iv) clearInterval(t.iv);
+    t.paused = false;
+    document.getElementById('dpause').textContent = '⏸';
+    var q = [];
+    CIRCUIT.forEach(function(name, i){
+      q.push({s:40, lbl:'🔥 ' + name + ' (' + (i+1) + '/4)', work:true});
+      if(i < CIRCUIT.length-1) q.push({s:20, lbl:'Repos — suivant : ' + CIRCUIT[i+1], work:false});
+    });
+    var first = q.shift();
+    t.queue = q;
+    dock.classList.add('on');
+    beep(1400,.18,0);
+    startSeg(first);
+    t.iv = setInterval(tick, 1000);
+  }
+
+  document.querySelectorAll('[data-chrono]').forEach(function(b){
+    b.addEventListener('click', function(){
+      startTimer(parseInt(b.getAttribute('data-chrono'),10), b.getAttribute('data-lbl') || 'Chrono');
+    });
+  });
+  document.querySelectorAll('[data-circuit]').forEach(function(b){
+    b.addEventListener('click', function(){
+      startCircuit(b.getAttribute('data-circuit'));
+    });
+  });
+  document.getElementById('dplus').addEventListener('click', function(){
+    t.left += 15; t.total = Math.max(t.total, t.left); render();
+    if(!t.iv && t.left>0){ t.iv = setInterval(tick,1000); dock.classList.remove('done'); }
+  });
+  document.getElementById('dpause').addEventListener('click', function(){
+    t.paused = !t.paused;
+    this.textContent = t.paused ? '▶' : '⏸';
+  });
+  document.getElementById('dstop').addEventListener('click', hideDock);
+
+  function hideDock(){
+    dock.classList.remove('on','warn','done','work');
+    t.queue = [];
+    if(t.iv){ clearInterval(t.iv); t.iv=null; }
+  }
+
+  /* ---------- bilan ---------- */
+  function painLine(){ var a=document.getElementById('p-avant').value, b=document.getElementById('p-apres').value, c=document.getElementById('p-lendemain').value; return '🩺 Douleur dos : avant ' + (a||'—') + '/10 · après ' + (b||'—') + '/10 · lendemain ' + (c||'—') + '/10'; }
+  function computeSummary(){
+    var done = setBtns.filter(function(b){ return b.getAttribute('aria-pressed')==='true'; }).length;
+    var ton = 0, rpes = [];
+    document.querySelectorAll('.set').forEach(function(row){
+      var kg = row.querySelector('input[id$="-kg"]');
+      var r  = row.querySelector('input[id$="-r"]');
+      var rpe= row.querySelector('select');
+      var kgv = kg && kg.type==='number' ? parseFloat(kg.value) : NaN;
+      var rv  = r ? parseInt(r.value,10) : NaN;
+      if(!isNaN(kgv) && !isNaN(rv)) ton += kgv * rv;
+      if(rpe && rpe.value){ rpes.push(parseFloat(rpe.value)); }
+    });
+    var avg = rpes.length ? (rpes.reduce(function(a,b){return a+b;},0)/rpes.length) : null;
+    var dur = startedAt ? Math.round((Date.now()-startedAt)/60000) : null;
+    return { done:done, total:setBtns.length, ton:Math.round(ton), rpe:avg, dur:dur };
+  }
+
+  document.getElementById('finish').addEventListener('click', function(){
+    var s = computeSummary();
+    document.getElementById('sum-sets').textContent = s.done + '/' + s.total;
+    document.getElementById('sum-ton').textContent = s.ton ? s.ton.toLocaleString('fr-FR') + ' kg' : '—';
+    document.getElementById('sum-rpe').textContent = s.rpe ? s.rpe.toFixed(1) : '—';
+    document.getElementById('sum-dur').textContent = s.dur ? s.dur + ' min' : '—';
+    document.getElementById('summary').classList.add('show');
+    document.getElementById('summary').scrollIntoView({behavior:'smooth', block:'center'});
+    touch();
+  });
+
+  document.getElementById('copywa').addEventListener('click', function(){
+    var s = computeSummary();
+    var name = athleteInput.value.trim() || 'Athlète';
+    var srpe = document.getElementById('s-rpe').value;
+    var notes = document.getElementById('s-notes').value.trim();
+    var lines = [
+      '🏋️ *BRH Coaching — Spécial Stéphane · Haut du corps dos protégé*',
+      '👤 ' + name + ' · 📅 21/09/2026 · CAO Orsay Masters',
+      '',
+      '✅ Séries validées : ' + s.done + '/' + s.total,
+      '⚖️ Tonnage estimé : ' + (s.ton ? s.ton.toLocaleString('fr-FR') + ' kg' : '—'),
+      '🔥 RPE moyen : ' + (s.rpe ? s.rpe.toFixed(1) : '—') + (srpe ? ' · RPE séance : ' + srpe : ''),
+      '⏱ Durée : ' + (s.dur ? s.dur + ' min' : '—')
+    ];
+    lines.push('', painLine());
+    if(notes) lines.push('', '📝 ' + notes);
+    var txt = lines.join('\n');
+    var self = this;
+    function ok(){ self.textContent = '✅ Bilan copié !'; setTimeout(function(){ self.textContent='📋 Copier le bilan (WhatsApp)'; }, 2200); }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(ok).catch(function(){ fallbackCopy(txt); ok(); });
+    } else { fallbackCopy(txt); ok(); }
+  });
+
+  var EXOS = [
+    ['c','Pompes inclinées',''],
+    ['d','Tirage poulie haute','kg'],
+    ['e','Rowing poitrine appuyée','kg'],
+    ['f','Élévations latérales','kg'],
+    ['g','Face pull poulie','kg'],
+    ['h','Extension triceps poulie','kg']
+  ];
+
+  function countChecked(prefix){
+    var btns = setBtns.filter(function(b){ return b.id.indexOf(prefix) === 0; });
+    var on = btns.filter(function(b){ return b.getAttribute('aria-pressed')==='true'; }).length;
+    return on + '/' + btns.length;
+  }
+
+  document.getElementById('copyfull').addEventListener('click', function(){
+    var name = athleteInput.value.trim() || 'Athlète';
+    var s = computeSummary();
+    var lines = [
+      '🏋️ *BRH Coaching — Carnet Spécial Stéphane · 21/09/2026*',
+      '👤 ' + name + ' · 📅 21/09/2026 · CAO Orsay Masters',
+      '✅ ' + s.done + '/' + s.total + ' séries · ⚖️ ' + (s.ton ? s.ton.toLocaleString('fr-FR') + ' kg' : '—') + ' · ⏱ ' + (s.dur ? s.dur + ' min' : '—'),
+      '',
+      'Échauffement : ' + countChecked('a-') + ' · Big 3 McGill : ' + countChecked('b-') + ' · Marche finale : ' + countChecked('i-')
+    ];
+    EXOS.forEach(function(ex){
+      var p = ex[0], label = ex[1], unit = ex[2];
+      var rows = [];
+      for(var i=1; i<=8; i++){
+        var kg = document.getElementById(p+'-'+i+'-kg');
+        if(!kg) break;
+        var r   = document.getElementById(p+'-'+i+'-r');
+        var rpe = document.getElementById(p+'-'+i+'-rpe');
+        var ok  = document.getElementById(p+'-'+i+'-ok');
+        var parts = [];
+        if(kg.value) parts.push(kg.value + (unit==='kg' ? ' kg' : ''));
+        if(r && r.value) parts.push('× ' + r.value);
+        if(rpe && rpe.value) parts.push('@ RPE ' + rpe.value);
+        var checked = ok && ok.getAttribute('aria-pressed')==='true';
+        if(parts.length || checked){
+          rows.push('  S' + i + ' : ' + (parts.length ? parts.join(' ') : 'validée') + (checked ? ' ✓' : ''));
+        }
+      }
+      var notesEl = document.getElementById(p+'-notes');
+      var notes = notesEl ? notesEl.value.trim() : '';
+      if(rows.length || notes){
+        lines.push('', '*' + label + '*');
+        rows.forEach(function(l){ lines.push(l); });
+        if(notes) lines.push('  📝 ' + notes);
+      }
+    });
+    ['a','b'].forEach(function(p){
+      var n = document.getElementById(p+'-notes');
+      if(n && n.value.trim()) lines.push('', '📝 ' + (p==='a'?'Échauffement':'Abdos') + ' : ' + n.value.trim());
+    });
+    lines.push('', painLine());
+    var gNotes = document.getElementById('s-notes').value.trim();
+    var gRpe = document.getElementById('s-rpe').value;
+    if(gRpe) lines.push('', '🔥 RPE séance : ' + gRpe + '/10');
+    if(gNotes) lines.push((gRpe?'':'\n') + '📝 Ressenti : ' + gNotes);
+    var txt = lines.join('\n');
+    var self = this;
+    function ok2(){ self.textContent = '✅ Carnet copié !'; setTimeout(function(){ self.textContent='🗂 Copier le carnet complet — toutes les séries'; }, 2200); }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(ok2).catch(function(){ fallbackCopy(txt); ok2(); });
+    } else { fallbackCopy(txt); ok2(); }
+  });
+
+  function fallbackCopy(txt){
+    var ta = document.createElement('textarea');
+    ta.value = txt; ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.select();
+    try{ document.execCommand('copy'); }catch(e){}
+    document.body.removeChild(ta);
+  }
+})();
+</script>
+</body>
+</html>
