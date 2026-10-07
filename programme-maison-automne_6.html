@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0A141F">
+<title>Programme maison d’automne | BRH Coaching</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏋️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@1,600;1,700;1,800&family=Saira:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0A141F; --s1:#101F2D; --s2:#0C1826; --line:#1D3346;
+  --text:#EAF3FA; --muted:#7E97AA;
+  --force:#1CA3DD; --force-hi:#4CC3F0; --cardio:#E8833A; --warn:#E0412B; --ok:#2ECC71;
+  --display:"Kanit","Arial Narrow",system-ui,sans-serif;
+  --body:"Saira",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--text);font:400 17px/1.55 var(--body);padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background:repeating-linear-gradient(115deg,transparent 0 90px,rgba(28,163,221,.03) 90px 92px)}
+.wrap,.tabs,.bar{position:relative;z-index:1}
+h1,h2,h3,h4,.verdict,.brand,.tabs button,.weeks button,.set,.kg input,#bar-label,#bar-time,.sess-head .theme,th,td:first-child,.scale button,.day .d,.day .w{font-style:italic}
+.wrap{max-width:720px;margin:0 auto;padding:0 18px}
+button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+:focus-visible{outline:2px solid var(--force);outline-offset:2px}
+p{margin:0 0 10px}
+
+/* En-tête */
+.hero{padding:calc(26px + env(safe-area-inset-top,0px)) 0 22px}
+.brand{display:flex;align-items:center;gap:12px;font:700 13px/1 var(--display);letter-spacing:.14em;text-transform:uppercase;color:var(--force-hi)}
+/* Pour mettre le logo BRH : remplace le contenu de .mark par <img src="data:image/png;base64,..." alt="BRH"> */
+.mark{width:104px;height:auto;display:block}
+.mark img{width:100%;height:auto;display:block}
+h1{font:800 clamp(40px,11vw,64px)/.92 var(--display);margin:18px 0 12px;letter-spacing:.01em;text-transform:uppercase}
+h1 em{font-style:italic;color:var(--force);display:block}
+.for{display:inline-flex;align-items:center;gap:8px;margin:22px 0 0;font:700 13px/1 var(--display);font-style:italic;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.for::before{content:"";width:22px;height:3px;background:var(--force);transform:skewX(-18deg)}
+.for b{color:var(--force-hi);font-weight:700}
+.lede{color:var(--muted);max-width:50ch;margin:0 0 22px}
+.who{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.who label{color:var(--muted);font-size:15px}
+.who input{background:var(--s1);border:1px solid var(--line);color:var(--text);border-radius:10px;padding:10px 12px;font:inherit;width:220px;max-width:100%}
+.weeks{margin-top:22px}
+.weeks .lbl{color:var(--muted);font-size:15px}
+.weeks .row{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-top:8px}
+.weeks button{background:var(--s1);border:1px solid var(--line);border-radius:10px;padding:11px 0;font:600 19px/1 var(--display)}
+.weeks button.on{background:linear-gradient(120deg,var(--force),var(--force-hi));border-color:var(--force);color:#07131C}
+.weeks .phase{color:var(--muted);font-size:15px;margin-top:9px}
+.weeks .phase b{color:var(--text);font-weight:600}
+
+/* Onglets */
+.tabs{position:sticky;top:0;z-index:5;background:rgba(10,20,31,.92);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.tabs .wrap{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.tabs button{background:none;border:0;border-bottom:3px solid transparent;padding:15px 12px 12px;font:600 20px/1 var(--display);color:var(--muted);white-space:nowrap}
+.tabs button[aria-selected="true"]{color:var(--force-hi);border-color:var(--force)}
+main{padding-top:8px}
+
+/* Guide */
+h2{font:800 30px/1.05 var(--display);margin:38px 0 14px;text-transform:uppercase;letter-spacing:.02em}
+h3{font:700 22px/1.1 var(--display);margin:0;text-transform:uppercase;letter-spacing:.02em}
+.answer{background:var(--s1);border:1px solid var(--line);border-radius:14px;padding:22px 20px 14px;margin-top:24px}
+.answer h2{margin:0 0 10px;font-size:26px;color:var(--muted)}
+.verdict{font:600 clamp(28px,7vw,40px)/1.05 var(--display);margin:0 0 16px}
+ul.plain{margin:0;padding-left:20px}
+ul.plain li{margin-bottom:8px}
+ul.plain li::marker{color:var(--force)}
+.days{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.day{background:var(--s1);border:1px solid var(--line);border-radius:10px;padding:10px 6px 12px;text-align:center;min-height:96px;border-top:3px solid var(--line)}
+.day .d{font:600 16px/1 var(--display);color:var(--muted)}
+.day .w{font:700 24px/1.1 var(--display);margin-top:8px}
+.day .t{font-size:13px;line-height:1.3;color:var(--muted);margin-top:4px}
+.day.f{border-top-color:var(--force)} .day.f .w{color:var(--force)}
+.day.c{border-top-color:var(--cardio)} .day.c .w{color:var(--cardio)}
+@media (max-width:560px){.days{grid-template-columns:repeat(4,1fr)}}
+.note{color:var(--muted);font-size:15px;margin-top:12px}
+.alert{border:1px solid var(--warn);border-radius:12px;padding:14px 16px;margin-top:16px}
+.alert h3{color:var(--warn);font-size:20px;margin-bottom:6px}
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:15px}
+th,td{text-align:left;padding:10px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:600 17px/1.2 var(--display);color:var(--muted)}
+td:first-child{font:700 18px/1.2 var(--display);white-space:nowrap}
+ol.howto{padding-left:22px;margin:0}
+ol.howto li{margin-bottom:8px}
+
+/* Séance */
+.sess-head{padding:26px 0 6px}
+.sess-head h2{margin:0;font-size:40px}
+.sess-head .theme{font:600 22px/1.2 var(--display);color:var(--force);margin-top:4px}
+.sess-head .meta{color:var(--muted);font-size:15px;margin-top:10px}
+details{background:var(--s1);border-radius:12px;margin:16px 0}
+summary{padding:14px 16px;font:600 20px/1.1 var(--display);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:24px;color:var(--muted)}
+details[open] summary::after{content:"–"}
+details ol{margin:0;padding:0 16px 14px 38px}
+details li{margin-bottom:8px}
+details li span{display:block;color:var(--muted);font-size:15px}
+.block{margin-top:30px}
+.block-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:10px}
+.block-head p{color:var(--muted);font-size:15px;margin:2px 0 0}
+.rest-btn{flex:none;background:var(--s2);border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:15px;font-weight:600}
+.ex{background:var(--s1);border:1px solid var(--line);border-radius:14px;border-left:3px solid var(--force);padding:16px;margin-bottom:10px}
+.ex-top{display:flex;gap:14px;align-items:flex-start}
+.pic{flex:none;width:58px;height:58px;border-radius:10px;background:var(--s2);color:var(--force);display:grid;place-items:center}
+.pic svg{width:46px;height:46px;fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.ex h4{font:600 21px/1.15 var(--display);margin:2px 0 4px}
+.dose{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:15px;color:var(--muted);margin:0}
+.dose b{color:var(--text);font-weight:600}
+.illu{margin:14px 0 2px;background:var(--s2);border:1px solid var(--line);border-radius:12px;padding:10px 8px 4px}
+.illu svg{width:100%;height:auto;display:block;font-family:var(--body)}
+dl.how{margin:14px 0 0;display:grid;gap:10px}
+dl.how dt{font:700 12.5px/1 var(--display);font-style:italic;letter-spacing:.12em;text-transform:uppercase;color:var(--force-hi)}
+dl.how dt.av{color:var(--cardio)}
+dl.how dd{margin:4px 0 0;font-size:15.5px;line-height:1.5;color:#D3E1EC}
+.cues{margin:12px 0 0;padding-left:20px;font-size:15px;color:#C2D3E0}
+.cues li{margin-bottom:4px}
+.track{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:14px;flex-wrap:wrap}
+.sets{display:flex;gap:8px}
+.set{width:44px;height:44px;border-radius:50%;border:2px solid var(--line);background:none;font:600 18px/1 var(--display)}
+.set.on{background:var(--ok);border-color:var(--ok);color:#07131C}
+.kg{display:flex;align-items:center;gap:6px;color:var(--muted);font-size:15px}
+.kg input{width:70px;background:var(--s2);border:1px solid var(--line);border-radius:8px;color:var(--text);font:600 18px/1 var(--display);padding:9px 8px;text-align:center}
+.small{font-size:14px;color:var(--muted)}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.primary{background:linear-gradient(120deg,var(--force),var(--force-hi));color:#07131C;border:0;border-radius:10px;padding:12px 16px;font-weight:600}
+.ghost{background:none;border:1px solid var(--line);border-radius:10px;padding:12px 16px;color:var(--muted)}
+.ghost[aria-pressed="true"]{border-color:var(--cardio);color:var(--cardio)}
+.scale{display:grid;grid-template-columns:repeat(10,1fr);gap:4px}
+.scale button,.choice button{background:var(--s1);border:1px solid var(--line);border-radius:8px;padding:10px 0;font:600 17px/1 var(--display)}
+.scale button.on,.choice button.on{background:linear-gradient(120deg,var(--force),var(--force-hi));border-color:var(--force);color:#07131C}
+.choice{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.choice button{font:500 15px/1.2 var(--body);padding:11px 4px}
+textarea{width:100%;background:var(--s1);border:1px solid var(--line);border-radius:10px;color:var(--text);font:inherit;padding:12px}
+
+/* Chrono */
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:10;background:var(--s2);border-top:3px solid var(--muted);padding:12px 18px calc(12px + env(safe-area-inset-bottom,0px))}
+.bar[hidden]{display:none}
+.bar .in{max-width:720px;margin:0 auto;display:flex;align-items:center;gap:14px}
+.bar.work{border-top-color:var(--cardio)} .bar.prep{border-top-color:var(--force)}
+.bar-info{flex:1;min-width:0}
+#bar-label{display:block;font:700 20px/1.1 var(--display)}
+.bar.work #bar-label{color:var(--cardio)} .bar.prep #bar-label{color:var(--force)}
+#bar-sub{display:block;font-size:14px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#bar-time{font:700 44px/1 var(--display);font-variant-numeric:tabular-nums;min-width:3ch;text-align:right}
+#bar-stop{background:none;border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:14px}
+footer{color:var(--muted);font-size:13px;margin-top:48px}
+footer b{color:var(--force);font-family:var(--display);font-style:italic}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header class="hero wrap">
+  <div class="brand"><span class="mark"><img src="data:image/png;base64,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" alt="BRH Coaching"></span></div>
+  <p class="for">Le programme de <b>Delphine</b></p>
+  <h1>Programme maison<em>d’automne</em></h1>
+  <p class="lede">Six semaines pour entretenir ton muscle à la maison, sans impact, avec un travail complet du haut et du bas du corps.</p>
+  <div class="weeks">
+    <span class="lbl">Semaine en cours</span>
+    <div class="row" role="group" aria-label="Semaine">
+      <button data-action="week" data-w="1">S1</button><button data-action="week" data-w="2">S2</button><button data-action="week" data-w="3">S3</button><button data-action="week" data-w="4">S4</button><button data-action="week" data-w="5">S5</button><button data-action="week" data-w="6">S6</button>
+    </div>
+    <p class="phase" id="phase"></p>
+  </div>
+</header>
+
+<nav class="tabs" aria-label="Sections">
+  <div class="wrap">
+    <button data-action="tab" data-tab="guide">Le guide</button>
+    <button data-action="tab" data-tab="A">Séance A</button>
+    <button data-action="tab" data-tab="B">Séance B</button>
+    <button data-action="tab" data-tab="C">Séance C</button>
+  </div>
+</nav>
+
+<main class="wrap" id="main"></main>
+
+<div class="wrap"><footer><b>BRH COACHING</b> — Ta progression reste enregistrée sur cet appareil.</footer></div>
+
+<div id="bar" class="bar" hidden role="timer" aria-live="polite">
+  <div class="in">
+    <div class="bar-info"><span id="bar-label"></span><span id="bar-sub"></span></div>
+    <span id="bar-time">0:00</span>
+    <button id="bar-stop">Arrêter</button>
+  </div>
+</div>
+
+<noscript><p class="wrap">Active JavaScript pour utiliser les chronos et le suivi.</p></noscript>
+
+<script>
+/* ---------- Pictogrammes ---------- */
+const ICONS = {
+  push:'<path d="M6 44h44M12 44v10M44 44v10"/><circle cx="11" cy="35" r="4"/><path d="M15 37h24l7 7v10"/><path d="M24 37V21"/><path d="M18 19h12"/>',
+  press:'<circle cx="32" cy="15" r="4"/><path d="M32 19v20h11v14"/><path d="M32 24l-9-6V9M32 24l9-6V9"/><path d="M18 8h10M36 8h10"/><path d="M24 41h20"/>',
+  pull:'<circle cx="13" cy="21" r="4"/><path d="M17 23l23 9"/><path d="M40 32l3 12-1 12"/><path d="M22 25l8 9-4 6"/><path d="M21 42h10"/>',
+  pullv:'<path d="M32 4l-8 12M32 4l8 12" stroke-dasharray="3 4"/><circle cx="32" cy="24" r="4"/><path d="M32 28v16M32 44l-9 2v8M32 44l9 2v8"/><path d="M32 32l-9-3-1-12M32 32l9-3 1-12"/>',
+  hinge:'<circle cx="16" cy="17" r="4"/><path d="M20 20l17 11"/><path d="M37 31l2 12-1 13"/><path d="M23 22l2 19"/><path d="M19 43h12"/>',
+  legcurl:'<path d="M4 46h44M10 46v8M42 46v8"/><circle cx="9" cy="37" r="4"/><path d="M13 39h27l8-15"/><path d="M45 21l6 5"/>',
+  core:'<path d="M4 54h56"/><circle cx="10" cy="46" r="4"/><path d="M14 48h22"/><path d="M20 48V30M22 48L10 36"/><path d="M36 48l8-12h10M36 48l22-3"/>',
+  glute:'<path d="M4 54h56"/><circle cx="9" cy="47" r="4"/><path d="M13 49l21-15 12 4v16"/><path d="M18 46l-2 8"/>',
+  lateral:'<circle cx="32" cy="10" r="4"/><path d="M32 14v18M32 32l-10 11-2 13M32 32l10 11 2 13"/><path d="M23 41h18" stroke-dasharray="3 3"/><path d="M50 24l7 5-7 5M14 24l-7 5 7 5"/><path d="M32 19l-7 8M32 19l7 8"/>',
+  curl:'<circle cx="32" cy="10" r="4"/><path d="M32 14v22M32 36l-6 20M32 36l6 20"/><path d="M32 19l-7 10 6-7M32 19l7 10-6-7"/><path d="M22 22h20"/>',
+  skull:'<path d="M6 44h44M12 44v10M44 44v10"/><circle cx="11" cy="35" r="4"/><path d="M15 37h24l7 7v10"/><path d="M24 37l3-15-9-3"/><path d="M14 16l8 5"/>',
+  squat:'<path d="M8 40h20M12 40v14"/><circle cx="34" cy="10" r="4"/><path d="M34 14l-4 18"/><path d="M30 32l14 3-2 18"/><path d="M33 19l7 5-6 2"/>',
+  pushup:'<path d="M38 38h20M42 38v16M54 38v16"/><circle cx="44" cy="22" r="4"/><path d="M40 26L8 52"/><path d="M37 28l6 10"/>',
+  lateralraise:'<circle cx="32" cy="12" r="4"/><path d="M32 16v22M32 38l-5 18M32 38l5 18"/><path d="M32 21l-18 2M32 21l18 2"/><path d="M14 18v10M50 18v10"/>',
+  sideplank:'<path d="M4 54h56"/><circle cx="13" cy="34" r="4"/><path d="M14 54l2-14"/><path d="M17 38l30 10 8 6"/><path d="M24 40l4-12"/>',
+  cardio:'<circle cx="30" cy="10" r="4"/><path d="M30 14v20M30 34l-2 22M30 34l12-3-2 12"/><path d="M30 19l10 3 10-4M30 19l-8 7 5 4"/>'
+};
+const icon = k => `<svg viewBox="0 0 64 64" aria-hidden="true">${ICONS[k]||ICONS.core}</svg>`;
+
+const ILLU = {"a1": "<svg viewBox=\"0 0 260 112\" role=\"img\"><line x1=\"4\" y1=\"95\" x2=\"116\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><line x1=\"58\" y1=\"68\" x2=\"92\" y2=\"68\" stroke=\"var(--force)\" stroke-width=\"6\" stroke-linecap=\"round\"/><line x1=\"58\" y1=\"68\" x2=\"18\" y2=\"46\" stroke=\"var(--force)\" stroke-width=\"6\" stroke-linecap=\"round\"/><line x1=\"76\" y1=\"68\" x2=\"76\" y2=\"95\" stroke=\"var(--force)\" stroke-width=\"5\" stroke-linecap=\"round\"/><line x1=\"32\" y1=\"54\" x2=\"32\" y2=\"95\" stroke=\"var(--force)\" stroke-width=\"5\" stroke-linecap=\"round\"/><polyline points=\"66,62 92,60\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"92,60 96,93\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"66,62 32,44\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"23\" cy=\"38\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"36,46 48,58 48,40\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"48\" cy=\"36\" r=\"6\" fill=\"var(--force)\"/><path d=\"M122 52 l16 0 m-6 -6 l6 6 l-6 6\" stroke=\"var(--cardio)\" stroke-width=\"3\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"144\" y1=\"95\" x2=\"256\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><line x1=\"198\" y1=\"68\" x2=\"232\" y2=\"68\" stroke=\"var(--force)\" stroke-width=\"6\" stroke-linecap=\"round\"/><line x1=\"198\" y1=\"68\" x2=\"158\" y2=\"46\" stroke=\"var(--force)\" stroke-width=\"6\" stroke-linecap=\"round\"/><line x1=\"216\" y1=\"68\" x2=\"216\" y2=\"95\" stroke=\"var(--force)\" stroke-width=\"5\" stroke-linecap=\"round\"/><line x1=\"172\" y1=\"54\" x2=\"172\" y2=\"95\" stroke=\"var(--force)\" stroke-width=\"5\" stroke-linecap=\"round\"/><polyline points=\"206,62 232,60\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"232,60 236,93\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"206,62 172,44\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"163\" cy=\"38\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"176,46 186,16\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"186\" cy=\"12\" r=\"6\" fill=\"var(--force)\"/><text x=\"60\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">DÉPART</text><text x=\"200\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">ARRIVÉE</text></svg>", "a3": "<svg viewBox=\"0 0 260 112\" role=\"img\"><line x1=\"4\" y1=\"95\" x2=\"116\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><circle cx=\"60\" cy=\"12\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"60,22 60,50\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"60,50 62,72 60,93\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"60,26 62,58\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"63\" cy=\"62\" r=\"6\" fill=\"var(--force)\"/><path d=\"M122 52 l16 0 m-6 -6 l6 6 l-6 6\" stroke=\"var(--cardio)\" stroke-width=\"3\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"144\" y1=\"95\" x2=\"256\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><polyline points=\"186,50 194,72 194,93\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"186,50 222,34\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"232\" cy=\"28\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"218,38 218,68\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"218\" cy=\"72\" r=\"6\" fill=\"var(--force)\"/><text x=\"60\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">DÉPART</text><text x=\"200\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">ARRIVÉE</text></svg>", "a5": "<svg viewBox=\"0 0 260 112\" role=\"img\"><line x1=\"4\" y1=\"95\" x2=\"116\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><line x1=\"8\" y1=\"20\" x2=\"8\" y2=\"95\" stroke=\"var(--force)\" stroke-width=\"6\" stroke-linecap=\"round\"/><circle cx=\"66\" cy=\"14\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"66,24 66,52\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"66,52 60,93\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"66,52 74,93\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><line x1=\"10\" y1=\"38\" x2=\"74\" y2=\"40\" stroke=\"var(--force)\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-dasharray=\"4 3\"/><polyline points=\"66,28 62,44 74,40\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><path d=\"M122 52 l16 0 m-6 -6 l6 6 l-6 6\" stroke=\"var(--cardio)\" stroke-width=\"3\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"144\" y1=\"95\" x2=\"256\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><line x1=\"148\" y1=\"20\" x2=\"148\" y2=\"95\" stroke=\"var(--force)\" stroke-width=\"6\" stroke-linecap=\"round\"/><circle cx=\"206\" cy=\"14\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"206,24 206,52\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"206,52 200,93\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"206,52 214,93\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><line x1=\"150\" y1=\"38\" x2=\"240\" y2=\"32\" stroke=\"var(--force)\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-dasharray=\"4 3\"/><polyline points=\"206,28 240,32\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><text x=\"60\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">DÉPART</text><text x=\"200\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">ARRIVÉE</text></svg>", "b2": "<svg viewBox=\"0 0 260 112\" role=\"img\"><line x1=\"4\" y1=\"95\" x2=\"116\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><line x1=\"40\" y1=\"20\" x2=\"42\" y2=\"68\" stroke=\"var(--force)\" stroke-width=\"6\" stroke-linecap=\"round\"/><line x1=\"42\" y1=\"68\" x2=\"80\" y2=\"68\" stroke=\"var(--force)\" stroke-width=\"6\" stroke-linecap=\"round\"/><line x1=\"62\" y1=\"68\" x2=\"62\" y2=\"95\" stroke=\"var(--force)\" stroke-width=\"5\" stroke-linecap=\"round\"/><polyline points=\"52,64 84,66\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"84,66 86,93\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"52,64 54,36\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"56\" cy=\"24\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"56,38 70,48 70,30\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"70\" cy=\"26\" r=\"6\" fill=\"var(--force)\"/><path d=\"M122 52 l16 0 m-6 -6 l6 6 l-6 6\" stroke=\"var(--cardio)\" stroke-width=\"3\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"144\" y1=\"95\" x2=\"256\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><line x1=\"180\" y1=\"20\" x2=\"182\" y2=\"68\" stroke=\"var(--force)\" stroke-width=\"6\" stroke-linecap=\"round\"/><line x1=\"182\" y1=\"68\" x2=\"220\" y2=\"68\" stroke=\"var(--force)\" stroke-width=\"6\" stroke-linecap=\"round\"/><line x1=\"202\" y1=\"68\" x2=\"202\" y2=\"95\" stroke=\"var(--force)\" stroke-width=\"5\" stroke-linecap=\"round\"/><polyline points=\"192,64 224,66\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"224,66 226,93\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"192,64 194,36\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"196\" cy=\"24\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"196,38 202,10\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"203\" cy=\"6\" r=\"6\" fill=\"var(--force)\"/><text x=\"60\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">DÉPART</text><text x=\"200\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">ARRIVÉE</text></svg>", "b3": "<svg viewBox=\"0 0 260 112\" role=\"img\"><line x1=\"4\" y1=\"95\" x2=\"116\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><rect x=\"4\" y=\"56\" width=\"28\" height=\"39\" rx=\"3\" fill=\"var(--force)\" opacity=\".85\"/><circle cx=\"22\" cy=\"46\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"32,54 60,80\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"60,80 86,70\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"86,70 88,93\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"60\" cy=\"70\" r=\"8\" fill=\"var(--force)\"/><path d=\"M122 52 l16 0 m-6 -6 l6 6 l-6 6\" stroke=\"var(--cardio)\" stroke-width=\"3\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"144\" y1=\"95\" x2=\"256\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><rect x=\"144\" y=\"56\" width=\"28\" height=\"39\" rx=\"3\" fill=\"var(--force)\" opacity=\".85\"/><circle cx=\"162\" cy=\"46\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"172,54 204,52\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"204,52 230,58\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"230,58 230,93\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"204\" cy=\"42\" r=\"8\" fill=\"var(--force)\"/><text x=\"60\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">DÉPART</text><text x=\"200\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">ARRIVÉE</text></svg>", "b4": "<svg viewBox=\"0 0 260 112\" role=\"img\"><line x1=\"4\" y1=\"95\" x2=\"116\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><circle cx=\"60\" cy=\"14\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"60,24 60,52\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"60,30 50,46 60,44\" stroke=\"var(--text)\" stroke-width=\"7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"60,30 70,46 60,44\" stroke=\"var(--text)\" stroke-width=\"7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"60,52 48,72 46,93\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"60,52 72,72 74,93\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><line x1=\"50\" y1=\"68\" x2=\"70\" y2=\"68\" stroke=\"var(--cardio)\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-dasharray=\"4 3\"/><path d=\"M122 52 l16 0 m-6 -6 l6 6 l-6 6\" stroke=\"var(--cardio)\" stroke-width=\"3\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"144\" y1=\"95\" x2=\"256\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><circle cx=\"200\" cy=\"14\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"200,24 200,52\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"200,30 190,46 200,44\" stroke=\"var(--text)\" stroke-width=\"7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"200,30 210,46 200,44\" stroke=\"var(--text)\" stroke-width=\"7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"200,52 180,72 172,93\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"200,52 214,72 216,93\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><line x1=\"182\" y1=\"68\" x2=\"212\" y2=\"68\" stroke=\"var(--cardio)\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-dasharray=\"4 3\"/><path d=\"M164 80 l-12 0 m4 -4 l-4 4 l4 4\" stroke=\"var(--cardio)\" stroke-width=\"2.5\" fill=\"none\" stroke-linecap=\"round\"/><text x=\"60\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">DÉPART</text><text x=\"200\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">ARRIVÉE</text></svg>", "b5": "<svg viewBox=\"0 0 260 112\" role=\"img\"><line x1=\"4\" y1=\"95\" x2=\"116\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><circle cx=\"60\" cy=\"12\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"60,22 60,52\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"60,52 56,93\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"60,52 66,93\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"60,26 64,56\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"66\" cy=\"58\" r=\"6\" fill=\"var(--force)\"/><path d=\"M122 52 l16 0 m-6 -6 l6 6 l-6 6\" stroke=\"var(--cardio)\" stroke-width=\"3\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"144\" y1=\"95\" x2=\"256\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><circle cx=\"200\" cy=\"12\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"200,22 200,52\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"200,52 196,93\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"200,52 206,93\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"200,26 200,46 216,30\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"218\" cy=\"28\" r=\"6\" fill=\"var(--force)\"/><text x=\"60\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">DÉPART</text><text x=\"200\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">ARRIVÉE</text></svg>", "b7": "<svg viewBox=\"0 0 260 112\" role=\"img\"><line x1=\"4\" y1=\"95\" x2=\"116\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><circle cx=\"18\" cy=\"84\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"28,88 70,88\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"34,86 34,54\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"70,88 72,62\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"72,62 96,62\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><path d=\"M122 52 l16 0 m-6 -6 l6 6 l-6 6\" stroke=\"var(--cardio)\" stroke-width=\"3\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"144\" y1=\"95\" x2=\"256\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><circle cx=\"158\" cy=\"84\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"168,88 210,88\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"174,86 174,54\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"174,86 148,74\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"210,88 212,62\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"212,62 236,62\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"210,88 252,82\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><text x=\"60\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">DÉPART</text><text x=\"200\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">ARRIVÉE</text></svg>", "c1": "<svg viewBox=\"0 0 260 112\" role=\"img\"><line x1=\"4\" y1=\"95\" x2=\"116\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><rect x=\"10\" y=\"64\" width=\"30\" height=\"31\" rx=\"3\" fill=\"var(--force)\" opacity=\".85\"/><circle cx=\"64\" cy=\"12\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"64,22 64,52\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"64,52 62,93\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"64,28 74,38 72,30\" stroke=\"var(--text)\" stroke-width=\"7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"74\" cy=\"30\" r=\"6\" fill=\"var(--force)\"/><path d=\"M122 52 l16 0 m-6 -6 l6 6 l-6 6\" stroke=\"var(--cardio)\" stroke-width=\"3\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"144\" y1=\"95\" x2=\"256\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><rect x=\"150\" y=\"64\" width=\"30\" height=\"31\" rx=\"3\" fill=\"var(--force)\" opacity=\".85\"/><polyline points=\"182,62 210,66\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"210,66 206,93\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"182,62 196,36\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"200\" cy=\"25\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"196,40 208,46\" stroke=\"var(--text)\" stroke-width=\"7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"210\" cy=\"44\" r=\"6\" fill=\"var(--force)\"/><text x=\"60\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">DÉPART</text><text x=\"200\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">ARRIVÉE</text></svg>", "c5": "<svg viewBox=\"0 0 260 112\" role=\"img\"><line x1=\"4\" y1=\"95\" x2=\"116\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><circle cx=\"14\" cy=\"84\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"24,88 56,88\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"56,88 76,70\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"76,70 80,93\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"56,88 98,78\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><path d=\"M122 52 l16 0 m-6 -6 l6 6 l-6 6\" stroke=\"var(--cardio)\" stroke-width=\"3\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"144\" y1=\"95\" x2=\"256\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><circle cx=\"154\" cy=\"84\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"164,88 198,68\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"198,68 220,70\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"220,70 222,93\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"198,68 246,56\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><text x=\"60\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">DÉPART</text><text x=\"200\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">ARRIVÉE</text></svg>", "c6": "<svg viewBox=\"0 0 260 112\" role=\"img\"><line x1=\"4\" y1=\"95\" x2=\"116\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><polyline points=\"88,93 104,91\" stroke=\"var(--text)\" stroke-width=\"7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"88,93 86,74\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"95\" cy=\"63\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"86,74 54,90\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"54,90 36,93\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"36,93 22,86\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><path d=\"M122 52 l16 0 m-6 -6 l6 6 l-6 6\" stroke=\"var(--cardio)\" stroke-width=\"3\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"144\" y1=\"95\" x2=\"256\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><polyline points=\"228,93 244,91\" stroke=\"var(--text)\" stroke-width=\"7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"228,93 226,74\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"235\" cy=\"63\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"226,74 192,76\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"192,76 174,92\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"174,92 160,86\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"224,76 210,70\" stroke=\"var(--text)\" stroke-width=\"7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><text x=\"60\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">DÉPART</text><text x=\"200\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">ARRIVÉE</text></svg>", "a2t": "<svg viewBox=\"0 0 260 112\" role=\"img\"><line x1=\"4\" y1=\"95\" x2=\"116\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><circle cx=\"104\" cy=\"4\" r=\"4\" fill=\"var(--force)\"/><line x1=\"104\" y1=\"4\" x2=\"66\" y2=\"34\" stroke=\"var(--force)\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-dasharray=\"4 3\"/><polyline points=\"72,93 54,66\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"54,66 38,40\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"31\" cy=\"31\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"40,42 66,34\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><path d=\"M122 52 l16 0 m-6 -6 l6 6 l-6 6\" stroke=\"var(--cardio)\" stroke-width=\"3\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"144\" y1=\"95\" x2=\"256\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><circle cx=\"244\" cy=\"4\" r=\"4\" fill=\"var(--force)\"/><line x1=\"244\" y1=\"4\" x2=\"206\" y2=\"30\" stroke=\"var(--force)\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-dasharray=\"4 3\"/><polyline points=\"212,93 198,64\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"198,64 188,36\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"183\" cy=\"26\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"190,38 180,46 204,32\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><text x=\"60\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">DÉPART</text><text x=\"200\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">ARRIVÉE</text></svg>", "a4t": "<svg viewBox=\"0 0 260 112\" role=\"img\"><line x1=\"4\" y1=\"95\" x2=\"116\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><circle cx=\"104\" cy=\"4\" r=\"4\" fill=\"var(--force)\"/><line x1=\"104\" y1=\"4\" x2=\"100\" y2=\"62\" stroke=\"var(--force)\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-dasharray=\"4 3\"/><circle cx=\"12\" cy=\"84\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"22,88 52,78\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"52,78 100,64\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><path d=\"M122 52 l16 0 m-6 -6 l6 6 l-6 6\" stroke=\"var(--cardio)\" stroke-width=\"3\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"144\" y1=\"95\" x2=\"256\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><circle cx=\"244\" cy=\"4\" r=\"4\" fill=\"var(--force)\"/><line x1=\"244\" y1=\"4\" x2=\"208\" y2=\"70\" stroke=\"var(--force)\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-dasharray=\"4 3\"/><circle cx=\"152\" cy=\"84\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"162,88 192,68\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"192,68 216,50\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"216,50 208,72\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><text x=\"60\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">DÉPART</text><text x=\"200\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">ARRIVÉE</text></svg>", "b1t": "<svg viewBox=\"0 0 260 112\" role=\"img\"><line x1=\"4\" y1=\"95\" x2=\"116\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><line x1=\"16\" y1=\"20\" x2=\"104\" y2=\"20\" stroke=\"var(--force)\" stroke-width=\"6\" stroke-linecap=\"round\"/><line x1=\"62\" y1=\"22\" x2=\"60\" y2=\"92\" stroke=\"var(--cardio)\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-dasharray=\"4 3\"/><polyline points=\"46,22 54,46\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"74,22 66,46\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"60\" cy=\"40\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"60,50 60,74\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"60,74 56,93\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"60,74 66,93\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><path d=\"M122 52 l16 0 m-6 -6 l6 6 l-6 6\" stroke=\"var(--cardio)\" stroke-width=\"3\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"144\" y1=\"95\" x2=\"256\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><line x1=\"156\" y1=\"20\" x2=\"244\" y2=\"20\" stroke=\"var(--force)\" stroke-width=\"6\" stroke-linecap=\"round\"/><line x1=\"202\" y1=\"22\" x2=\"200\" y2=\"78\" stroke=\"var(--cardio)\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-dasharray=\"4 3\"/><polyline points=\"186,22 178,34 192,32\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"214,22 222,34 208,32\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"200\" cy=\"12\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"200,24 200,52\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"200,52 192,70 200,80\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"200,52 208,70 202,80\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><text x=\"60\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">DÉPART</text><text x=\"200\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">ARRIVÉE</text></svg>", "b6t": "<svg viewBox=\"0 0 260 112\" role=\"img\"><line x1=\"4\" y1=\"95\" x2=\"116\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><circle cx=\"12\" cy=\"4\" r=\"4\" fill=\"var(--force)\"/><line x1=\"12\" y1=\"4\" x2=\"86\" y2=\"32\" stroke=\"var(--force)\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-dasharray=\"4 3\"/><polyline points=\"38,93 56,64\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"56,64 74,38\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"80\" cy=\"29\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"72,40 94,28 86,34\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><path d=\"M122 52 l16 0 m-6 -6 l6 6 l-6 6\" stroke=\"var(--cardio)\" stroke-width=\"3\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"144\" y1=\"95\" x2=\"256\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><circle cx=\"152\" cy=\"4\" r=\"4\" fill=\"var(--force)\"/><line x1=\"152\" y1=\"4\" x2=\"244\" y2=\"24\" stroke=\"var(--force)\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-dasharray=\"4 3\"/><polyline points=\"178,93 196,64\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"196,64 214,38\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"220\" cy=\"29\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"212,40 244,24\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><text x=\"60\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">DÉPART</text><text x=\"200\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">ARRIVÉE</text></svg>", "c2t": "<svg viewBox=\"0 0 260 112\" role=\"img\"><line x1=\"4\" y1=\"95\" x2=\"116\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><circle cx=\"12\" cy=\"4\" r=\"4\" fill=\"var(--force)\"/><line x1=\"12\" y1=\"4\" x2=\"96\" y2=\"48\" stroke=\"var(--force)\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-dasharray=\"4 3\"/><polyline points=\"36,93 54,66\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"54,66 72,40\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"79\" cy=\"31\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"72,42 96,48\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><path d=\"M122 52 l16 0 m-6 -6 l6 6 l-6 6\" stroke=\"var(--cardio)\" stroke-width=\"3\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"144\" y1=\"95\" x2=\"256\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><circle cx=\"152\" cy=\"4\" r=\"4\" fill=\"var(--force)\"/><line x1=\"152\" y1=\"4\" x2=\"228\" y2=\"56\" stroke=\"var(--force)\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-dasharray=\"4 3\"/><polyline points=\"176,93 198,72\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"198,72 222,52\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"231\" cy=\"45\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"220,54 210,42 228,56\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><text x=\"60\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">DÉPART</text><text x=\"200\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">ARRIVÉE</text></svg>", "c4t": "<svg viewBox=\"0 0 260 112\" role=\"img\"><line x1=\"4\" y1=\"95\" x2=\"116\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><circle cx=\"104\" cy=\"4\" r=\"4\" fill=\"var(--force)\"/><line x1=\"104\" y1=\"4\" x2=\"68\" y2=\"32\" stroke=\"var(--force)\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-dasharray=\"4 3\"/><polyline points=\"72,93 54,66\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"54,66 38,40\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"31\" cy=\"31\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"40,42 68,32\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><path d=\"M122 52 l16 0 m-6 -6 l6 6 l-6 6\" stroke=\"var(--cardio)\" stroke-width=\"3\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"144\" y1=\"95\" x2=\"256\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><circle cx=\"244\" cy=\"4\" r=\"4\" fill=\"var(--force)\"/><line x1=\"244\" y1=\"4\" x2=\"220\" y2=\"12\" stroke=\"var(--force)\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-dasharray=\"4 3\"/><polyline points=\"212,93 200,64\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"200,64 194,36\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"191\" cy=\"26\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"196,38 220,12\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><text x=\"60\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">DÉPART</text><text x=\"200\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">ARRIVÉE</text></svg>", "a2": "<svg viewBox=\"0 0 260 112\" role=\"img\"><line x1=\"4\" y1=\"95\" x2=\"116\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><line x1=\"18\" y1=\"66\" x2=\"98\" y2=\"66\" stroke=\"var(--force)\" stroke-width=\"6\" stroke-linecap=\"round\"/><line x1=\"26\" y1=\"66\" x2=\"26\" y2=\"95\" stroke=\"var(--force)\" stroke-width=\"5\" stroke-linecap=\"round\"/><line x1=\"90\" y1=\"66\" x2=\"90\" y2=\"95\" stroke=\"var(--force)\" stroke-width=\"5\" stroke-linecap=\"round\"/><polyline points=\"72,50 74,62\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"74,62 94,62\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"72,50 100,74 104,93\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"72,50 38,46\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"28\" cy=\"42\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"40,48 38,62\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"46,50 48,82\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"48\" cy=\"86\" r=\"6\" fill=\"var(--force)\"/><path d=\"M122 52 l16 0 m-6 -6 l6 6 l-6 6\" stroke=\"var(--cardio)\" stroke-width=\"3\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"144\" y1=\"95\" x2=\"256\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><line x1=\"158\" y1=\"66\" x2=\"238\" y2=\"66\" stroke=\"var(--force)\" stroke-width=\"6\" stroke-linecap=\"round\"/><line x1=\"166\" y1=\"66\" x2=\"166\" y2=\"95\" stroke=\"var(--force)\" stroke-width=\"5\" stroke-linecap=\"round\"/><line x1=\"230\" y1=\"66\" x2=\"230\" y2=\"95\" stroke=\"var(--force)\" stroke-width=\"5\" stroke-linecap=\"round\"/><polyline points=\"212,50 214,62\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"214,62 234,62\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"212,50 240,74 244,93\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"212,50 178,46\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"168\" cy=\"42\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"180,48 178,62\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"186,50 200,38 194,58\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"194\" cy=\"62\" r=\"6\" fill=\"var(--force)\"/><text x=\"60\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">DÉPART</text><text x=\"200\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">ARRIVÉE</text></svg>", "b1": "<svg viewBox=\"0 0 260 112\" role=\"img\"><line x1=\"4\" y1=\"95\" x2=\"116\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><line x1=\"40\" y1=\"82\" x2=\"94\" y2=\"44\" stroke=\"var(--force)\" stroke-width=\"6\" stroke-linecap=\"round\"/><line x1=\"60\" y1=\"70\" x2=\"60\" y2=\"95\" stroke=\"var(--force)\" stroke-width=\"5\" stroke-linecap=\"round\"/><polyline points=\"46,72 30,93\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"46,72 86,48\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"96\" cy=\"40\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"82,52 84,82\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"84\" cy=\"86\" r=\"6\" fill=\"var(--force)\"/><path d=\"M122 52 l16 0 m-6 -6 l6 6 l-6 6\" stroke=\"var(--cardio)\" stroke-width=\"3\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"144\" y1=\"95\" x2=\"256\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><line x1=\"180\" y1=\"82\" x2=\"234\" y2=\"44\" stroke=\"var(--force)\" stroke-width=\"6\" stroke-linecap=\"round\"/><line x1=\"200\" y1=\"70\" x2=\"200\" y2=\"95\" stroke=\"var(--force)\" stroke-width=\"5\" stroke-linecap=\"round\"/><polyline points=\"186,72 170,93\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"186,72 226,48\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"236\" cy=\"40\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"222,52 208,60 216,74\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"217\" cy=\"78\" r=\"6\" fill=\"var(--force)\"/><text x=\"60\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">DÉPART</text><text x=\"200\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">ARRIVÉE</text></svg>", "c2": "<svg viewBox=\"0 0 260 112\" role=\"img\"><line x1=\"4\" y1=\"95\" x2=\"116\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><line x1=\"80\" y1=\"60\" x2=\"118\" y2=\"60\" stroke=\"var(--force)\" stroke-width=\"6\" stroke-linecap=\"round\"/><line x1=\"88\" y1=\"60\" x2=\"88\" y2=\"95\" stroke=\"var(--force)\" stroke-width=\"5\" stroke-linecap=\"round\"/><line x1=\"112\" y1=\"60\" x2=\"112\" y2=\"95\" stroke=\"var(--force)\" stroke-width=\"5\" stroke-linecap=\"round\"/><polyline points=\"10,93 44,66\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"44,66 78,36\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"88\" cy=\"28\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"78,38 88,58\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><path d=\"M122 52 l16 0 m-6 -6 l6 6 l-6 6\" stroke=\"var(--cardio)\" stroke-width=\"3\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"144\" y1=\"95\" x2=\"256\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><line x1=\"220\" y1=\"60\" x2=\"258\" y2=\"60\" stroke=\"var(--force)\" stroke-width=\"6\" stroke-linecap=\"round\"/><line x1=\"228\" y1=\"60\" x2=\"228\" y2=\"95\" stroke=\"var(--force)\" stroke-width=\"5\" stroke-linecap=\"round\"/><line x1=\"252\" y1=\"60\" x2=\"252\" y2=\"95\" stroke=\"var(--force)\" stroke-width=\"5\" stroke-linecap=\"round\"/><polyline points=\"150,93 186,78\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"186,78 222,60\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"234\" cy=\"54\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"220,60 210,46 228,58\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><text x=\"60\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">DÉPART</text><text x=\"200\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">ARRIVÉE</text></svg>", "c4": "<svg viewBox=\"0 0 260 112\" role=\"img\"><line x1=\"4\" y1=\"95\" x2=\"116\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><circle cx=\"60\" cy=\"14\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"60,24 60,54\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"60,54 54,93\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"60,54 66,93\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"56,30 46,60\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"64,30 74,60\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"45\" cy=\"63\" r=\"5\" fill=\"var(--force)\"/><circle cx=\"75\" cy=\"63\" r=\"5\" fill=\"var(--force)\"/><path d=\"M122 52 l16 0 m-6 -6 l6 6 l-6 6\" stroke=\"var(--cardio)\" stroke-width=\"3\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"144\" y1=\"95\" x2=\"256\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><circle cx=\"200\" cy=\"14\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"200,24 200,54\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"200,54 194,93\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"200,54 206,93\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"196,30 166,32\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"204,30 234,32\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"162\" cy=\"33\" r=\"5\" fill=\"var(--force)\"/><circle cx=\"238\" cy=\"33\" r=\"5\" fill=\"var(--force)\"/><text x=\"60\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">DÉPART</text><text x=\"200\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">ARRIVÉE</text></svg>", "c7": "<svg viewBox=\"0 0 260 112\" role=\"img\"><line x1=\"4\" y1=\"95\" x2=\"116\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><circle cx=\"60\" cy=\"12\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"60,22 60,50\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"60,50 57,93\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"60,50 64,93\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"60,26 55,54\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><line x1=\"55\" y1=\"52\" x2=\"55\" y2=\"64\" stroke=\"var(--force)\" stroke-width=\"7\" stroke-linecap=\"round\"/><path d=\"M122 52 l16 0 m-6 -6 l6 6 l-6 6\" stroke=\"var(--cardio)\" stroke-width=\"3\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"144\" y1=\"95\" x2=\"256\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><polyline points=\"198,54 216,70 216,93\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"198,54 184,88 166,92\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"198,54 200,28\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"201\" cy=\"17\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"200,32 197,60\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><line x1=\"197\" y1=\"58\" x2=\"197\" y2=\"70\" stroke=\"var(--force)\" stroke-width=\"7\" stroke-linecap=\"round\"/><text x=\"60\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">DÉPART</text><text x=\"200\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">ARRIVÉE</text></svg>", "c8": "<svg viewBox=\"0 0 260 112\" role=\"img\"><line x1=\"4\" y1=\"95\" x2=\"116\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><polyline points=\"88,62 88,93\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"50,62 50,93\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"50,93 34,93\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"50,62 88,62\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"98\" cy=\"56\" r=\"8\" fill=\"var(--text)\"/><path d=\"M122 52 l16 0 m-6 -6 l6 6 l-6 6\" stroke=\"var(--cardio)\" stroke-width=\"3\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"144\" y1=\"95\" x2=\"256\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><polyline points=\"228,62 228,93\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"190,62 190,93\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"190,93 174,93\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"190,62 228,62\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"238\" cy=\"56\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"228,62 256,54\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"190,62 160,56\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><text x=\"60\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">DÉPART</text><text x=\"200\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">ARRIVÉE</text></svg>", "a4": "<svg viewBox=\"0 0 260 112\" role=\"img\"><line x1=\"4\" y1=\"95\" x2=\"116\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><line x1=\"14\" y1=\"64\" x2=\"96\" y2=\"64\" stroke=\"var(--force)\" stroke-width=\"6\" stroke-linecap=\"round\"/><line x1=\"24\" y1=\"64\" x2=\"24\" y2=\"95\" stroke=\"var(--force)\" stroke-width=\"5\" stroke-linecap=\"round\"/><line x1=\"86\" y1=\"64\" x2=\"86\" y2=\"95\" stroke=\"var(--force)\" stroke-width=\"5\" stroke-linecap=\"round\"/><circle cx=\"12\" cy=\"50\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"22,56 60,58\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"60,58 92,58\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"26,58 20,70\" stroke=\"var(--text)\" stroke-width=\"7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"92,58 116,60\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"114\" cy=\"68\" r=\"6\" stroke=\"var(--force)\" stroke-width=\"3\" fill=\"none\"/><path d=\"M122 52 l16 0 m-6 -6 l6 6 l-6 6\" stroke=\"var(--cardio)\" stroke-width=\"3\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"144\" y1=\"95\" x2=\"256\" y2=\"95\" stroke=\"var(--line)\" stroke-width=\"2\"/><line x1=\"154\" y1=\"64\" x2=\"236\" y2=\"64\" stroke=\"var(--force)\" stroke-width=\"6\" stroke-linecap=\"round\"/><line x1=\"164\" y1=\"64\" x2=\"164\" y2=\"95\" stroke=\"var(--force)\" stroke-width=\"5\" stroke-linecap=\"round\"/><line x1=\"226\" y1=\"64\" x2=\"226\" y2=\"95\" stroke=\"var(--force)\" stroke-width=\"5\" stroke-linecap=\"round\"/><circle cx=\"152\" cy=\"50\" r=\"8\" fill=\"var(--text)\"/><polyline points=\"162,56 200,58\" stroke=\"var(--text)\" stroke-width=\"15\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"200,58 232,58\" stroke=\"var(--text)\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"166,58 160,70\" stroke=\"var(--text)\" stroke-width=\"7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><polyline points=\"232,58 242,30\" stroke=\"var(--text)\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/><circle cx=\"248\" cy=\"32\" r=\"6\" stroke=\"var(--force)\" stroke-width=\"3\" fill=\"none\"/><text x=\"60\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">DÉPART</text><text x=\"200\" y=\"108\" text-anchor=\"middle\" fill=\"var(--muted)\" font-size=\"9\" font-weight=\"700\" letter-spacing=\"1.5\">ARRIVÉE</text></svg>"};
+
+/* ---------- Programme ---------- */
+const WARMUP = [
+  ["Respiration et périnée", "5 cycles : inspire en gonflant le ventre, expire en remontant doucement le périnée"],
+  ["Chat-vache à quatre pattes", "8 lents"],
+  ["Pont fessier au sol", "12, en expirant à la montée"],
+  ["Écarté élastique bras tendus", "15"],
+  ["Rotations du buste allongée sur le côté", "6 de chaque côté"],
+  ["Charnière de hanche à vide", "10, mains sur les hanches, fesses vers l’arrière"]
+];
+const COOLDOWN = [
+  ["Étirement de l’avant de la hanche, un genou au sol", "30 s par côté"],
+  ["Posture de l’enfant", "45 s en respirant lentement"],
+  ["Étirement des pectoraux contre un mur", "30 s par côté"]
+];
+
+const SESSIONS = {
+ "A": {
+  "title": "Séance A",
+  "theme": "Poussée et chaîne arrière",
+  "time": "40 min",
+  "blocks": [
+   {
+    "name": "Bloc 1",
+    "kind": "Superset : enchaîne les deux exercices, puis récupère",
+    "rest": 90,
+    "ex": [
+     {
+      "id": "a1",
+      "name": "Développé couché haltères, banc incliné",
+      "sets": 4,
+      "reps": "10 à 12",
+      "tempo": "Descente en 2 s",
+      "unit": "",
+      "how": {
+       "pos": "Règle le dossier du banc à environ 30°. Assieds-toi, haltères sur les cuisses, puis allonge-toi en les ramenant au niveau de la poitrine. Pieds à plat au sol, omoplates serrées contre le dossier.",
+       "move": "Pousse les haltères vers le plafond jusqu’à ce que les bras soient presque tendus au-dessus de la poitrine. Redescends en 2 secondes jusqu’à ramener les haltères au niveau de la poitrine.",
+       "breath": "Expire en poussant, inspire en descendant.",
+       "avoid": "Cambrer fortement le bas du dos, ou laisser les épaules remonter vers les oreilles."
+      }
+     },
+     {
+      "id": "a2t",
+      "name": "Rowing au TRX",
+      "sets": 4,
+      "reps": "10 à 12",
+      "tempo": "Pause 1 s en haut",
+      "unit": "réglage",
+      "how": {
+       "pos": "Poignées du TRX en main, face au point d’ancrage. Avance les pieds sous l’ancrage, puis penche-toi en arrière, bras tendus, corps droit et gainé des talons à la tête.",
+       "move": "Tire ta poitrine vers les poignées en amenant les coudes le long du corps. Tiens 1 seconde en serrant les omoplates, puis redescends lentement jusqu’à bras tendus.",
+       "breath": "Expire en tirant.",
+       "avoid": "Laisser les hanches tomber. Pour régler la difficulté : plus tu avances les pieds, plus c’est dur."
+      }
+     }
+    ]
+   },
+   {
+    "name": "Bloc 2",
+    "kind": "Superset chaîne arrière",
+    "rest": 90,
+    "ex": [
+     {
+      "id": "a3",
+      "name": "Soulevé de terre roumain haltères",
+      "sets": 4,
+      "reps": "12",
+      "tempo": "Descente en 3 s",
+      "unit": "",
+      "how": {
+       "pos": "Debout, pieds écartés de la largeur des hanches, un haltère dans chaque main devant les cuisses. Fléchis légèrement les genoux : ils gardent cette position pendant tout l’exercice.",
+       "move": "Pousse les fesses vers l’arrière, comme pour fermer une porte avec elles. Ton buste se penche en avant, dos plat, et les haltères glissent le long des cuisses. Descends en 3 secondes jusqu’à sentir l’arrière des cuisses s’étirer, puis remonte en ramenant les hanches vers l’avant.",
+       "breath": "Inspire en descendant, expire en remontant. Jamais d’apnée.",
+       "avoid": "Arrondir le dos pour descendre plus bas : arrête-toi dès que ton dos ne peut plus rester plat."
+      }
+     },
+     {
+      "id": "a4t",
+      "name": "Leg curl au TRX",
+      "sets": 3,
+      "reps": "10 à 12",
+      "tempo": "Retour en 3 s",
+      "unit": "réglage",
+      "how": {
+       "pos": "Allongée sur le dos sous le TRX, talons dans les étriers réglés à 20-30 cm du sol, bras au sol le long du corps. Monte les hanches pour former une ligne droite des épaules aux talons.",
+       "move": "En gardant les hanches hautes, plie les genoux pour ramener les talons vers les fesses. Repousse lentement les talons en 3 secondes jusqu’à jambes tendues.",
+       "breath": "Expire en ramenant les talons.",
+       "avoid": "Laisser les hanches redescendre pendant le mouvement. Version plus facile : fais-le les hanches posées au sol."
+      }
+     }
+    ]
+   },
+   {
+    "name": "Bloc 3",
+    "kind": "Superset poussée et épaules",
+    "rest": 60,
+    "ex": [
+     {
+      "id": "c2",
+      "name": "Pompes mains sur le banc",
+      "sets": 3,
+      "reps": "8 à 12",
+      "tempo": "Descente en 2 s",
+      "unit": "support",
+      "how": {
+       "pos": "Mains sur le bord du banc, un peu plus écartées que les épaules. Recule les pieds jusqu’à ce que ton corps forme une ligne droite de la tête aux talons.",
+       "move": "Plie les coudes pour amener la poitrine vers le bord du banc en 2 secondes, coudes à environ 45° du corps. Pousse pour revenir bras tendus.",
+       "breath": "Inspire en descendant, expire en poussant.",
+       "avoid": "Laisser le ventre ou les fesses s’affaisser. Astuce : plus le support est haut, plus c’est facile."
+      }
+     },
+     {
+      "id": "c4",
+      "name": "Élévations latérales haltères",
+      "sets": 3,
+      "reps": "12 à 15",
+      "tempo": "Descente en 2 s",
+      "unit": "",
+      "how": {
+       "pos": "Debout, haltères légers le long du corps, coudes légèrement fléchis, buste droit.",
+       "move": "Monte les bras sur les côtés jusqu’à hauteur des épaules, pas plus haut. Redescends en 2 secondes.",
+       "breath": "Expire en montant.",
+       "avoid": "Hausser les épaules, ou donner de l’élan avec le corps."
+      }
+     }
+    ]
+   },
+   {
+    "name": "Bloc 4",
+    "kind": "Gainage anti-rotation",
+    "rest": 45,
+    "ex": [
+     {
+      "id": "a5",
+      "name": "Pallof press à l’élastique",
+      "sets": 3,
+      "reps": "10 par côté",
+      "tempo": "Tiens 2 s bras tendus",
+      "unit": "élast.",
+      "how": {
+       "pos": "Accroche l’élastique à hauteur de poitrine, à une poignée de porte ou un poteau. Place-toi de profil, à un pas de l’accroche, pour que l’élastique soit tendu. Tiens-le à deux mains contre le sternum, pieds écartés de la largeur des hanches, genoux souples.",
+       "move": "Tends les bras droit devant toi. L’élastique tire sur le côté : ton buste ne doit pas tourner. Tiens 2 secondes bras tendus, puis ramène les mains contre le sternum.",
+       "breath": "Expire en tendant les bras.",
+       "avoid": "Laisser le buste ou les hanches pivoter vers l’accroche."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "B": {
+  "title": "Séance B",
+  "theme": "Tirage, épaules et fessiers",
+  "time": "45 min",
+  "blocks": [
+   {
+    "name": "Bloc 1",
+    "kind": "Superset : enchaîne les deux exercices, puis récupère",
+    "rest": 90,
+    "ex": [
+     {
+      "id": "b1t",
+      "name": "Tractions assistées à l’élastique",
+      "sets": 4,
+      "reps": "5 à 8",
+      "tempo": "Descente en 3 s",
+      "unit": "élast.",
+      "how": {
+       "pos": "Accroche le grand élastique à la barre et place un pied (ou un genou) dans la boucle. Mains en pronation, paumes vers l’avant, un peu plus écartées que les épaules, bras tendus.",
+       "move": "Descends d’abord les épaules loin des oreilles, puis tire les coudes vers les côtes pour monter jusqu’à ce que le menton passe la barre. Redescends en 3 secondes jusqu’à bras tendus.",
+       "breath": "Expire en montant.",
+       "avoid": "Te balancer pour monter. Si tu ne passes pas encore la barre : monte avec un tabouret et fais seulement la descente, le plus lentement possible."
+      }
+     },
+     {
+      "id": "b2",
+      "name": "Développé épaules haltères, assise",
+      "sets": 3,
+      "reps": "10 à 12",
+      "tempo": "Descente en 2 s",
+      "unit": "",
+      "how": {
+       "pos": "Dossier relevé à la verticale. Assise, le dos bien appuyé, pieds à plat. Haltères à hauteur des épaules, paumes vers l’avant, coudes sous les poignets.",
+       "move": "Pousse les haltères au-dessus de la tête jusqu’à bras presque tendus, puis redescends en 2 secondes jusqu’à hauteur des oreilles.",
+       "breath": "Expire en poussant.",
+       "avoid": "Cambrer le bas du dos : garde les côtes basses et le dos collé au dossier."
+      }
+     }
+    ]
+   },
+   {
+    "name": "Bloc 2",
+    "kind": "Superset fessiers",
+    "rest": 75,
+    "ex": [
+     {
+      "id": "b3",
+      "name": "Hip thrust barre, dos sur le banc",
+      "sets": 4,
+      "reps": "12",
+      "tempo": "Pause 1 s en haut",
+      "unit": "",
+      "how": {
+       "pos": "Assise au sol, le bas des omoplates contre le bord long du banc. Barre posée sur le pli des hanches, une serviette roulée dessous. Pieds à plat, écartés de la largeur des hanches, genoux pliés.",
+       "move": "Pousse dans les talons pour monter le bassin jusqu’à ce que ton corps forme une ligne droite des épaules aux genoux. Serre les fessiers 1 seconde en haut, puis redescends en contrôlant.",
+       "breath": "Expire en montant. Tu dois pouvoir respirer pendant toute la série : sinon, allège la charge.",
+       "avoid": "Cambrer en haut du mouvement : garde le menton rentré et le regard vers les genoux."
+      }
+     },
+     {
+      "id": "b4",
+      "name": "Marche latérale au mini-élastique",
+      "sets": 3,
+      "reps": "12 pas par côté",
+      "tempo": "Contrôlé",
+      "unit": "élast.",
+      "how": {
+       "pos": "Mini-élastique juste au-dessus des genoux. Pieds écartés de la largeur des hanches, genoux légèrement fléchis, buste droit.",
+       "move": "Fais un pas sur le côté, puis ramène l’autre pied sans que les pieds se touchent. 12 pas vers un côté, puis 12 vers l’autre.",
+       "breath": "Respire normalement, sans bloquer.",
+       "avoid": "Laisser les genoux rentrer vers l’intérieur, ou te redresser complètement."
+      }
+     }
+    ]
+   },
+   {
+    "name": "Bloc 3",
+    "kind": "Superset haut du dos",
+    "rest": 60,
+    "ex": [
+     {
+      "id": "b1",
+      "name": "Rowing haltères, poitrine appuyée sur le banc",
+      "sets": 3,
+      "reps": "12",
+      "tempo": "Pause 1 s en haut",
+      "unit": "",
+      "how": {
+       "pos": "Règle le dossier du banc entre 30 et 45°. Allonge-toi à plat ventre dessus, poitrine en appui en haut du dossier, pieds au sol. Les haltères pendent, bras tendus.",
+       "move": "Tire les deux coudes vers l’arrière et vers le haut en serrant les omoplates l’une contre l’autre. Tiens 1 seconde, puis redescends jusqu’à bras tendus.",
+       "breath": "Expire en tirant.",
+       "avoid": "Décoller la poitrine du banc, ou donner de l’élan avec les jambes."
+      }
+     },
+     {
+      "id": "c4t",
+      "name": "Y au TRX",
+      "sets": 3,
+      "reps": "12",
+      "tempo": "Descente en 2 s",
+      "unit": "réglage",
+      "how": {
+       "pos": "Face au point d’ancrage, poignées en main, bras tendus devant toi. Penche-toi légèrement en arrière, corps droit et gainé.",
+       "move": "Bras tendus, monte les mains en Y au-dessus de la tête, pouces vers le haut, en serrant les omoplates : ton corps se redresse. Redescends lentement.",
+       "breath": "Expire en ouvrant les bras.",
+       "avoid": "Cambrer le bas du dos ou hausser les épaules. Plus tu es inclinée en arrière, plus c’est dur."
+      }
+     }
+    ]
+   },
+   {
+    "name": "Bloc 4",
+    "kind": "Superset bras",
+    "rest": 45,
+    "ex": [
+     {
+      "id": "b5",
+      "name": "Curl barre EZ",
+      "sets": 3,
+      "reps": "12",
+      "tempo": "Descente en 2 s",
+      "unit": "",
+      "how": {
+       "pos": "Debout, pieds écartés de la largeur des hanches. Barre tenue paumes vers le haut, bras tendus devant les cuisses, coudes collés au corps.",
+       "move": "Plie les coudes pour monter la barre vers les épaules, sans bouger les coudes. Redescends en 2 secondes jusqu’à bras tendus.",
+       "breath": "Expire en montant.",
+       "avoid": "Donner de l’élan avec le dos, ou avancer les coudes."
+      }
+     },
+     {
+      "id": "b6t",
+      "name": "Extension triceps au TRX",
+      "sets": 3,
+      "reps": "12",
+      "tempo": "Descente en 2 s",
+      "unit": "réglage",
+      "how": {
+       "pos": "Dos au point d’ancrage, poignées en main, bras tendus devant toi à hauteur des épaules. Avance les pieds pour que ton corps penche vers l’avant, droit et gainé.",
+       "move": "Sans bouger le haut des bras, plie les coudes pour amener les mains vers le front : ton corps descend vers l’avant. Tends les coudes pour revenir.",
+       "breath": "Expire en tendant les bras.",
+       "avoid": "Laisser les coudes s’écarter ou les hanches se casser. Plus tu es inclinée vers l’avant, plus c’est dur."
+      }
+     }
+    ]
+   },
+   {
+    "name": "Bloc 5",
+    "kind": "Gainage",
+    "rest": 30,
+    "ex": [
+     {
+      "id": "b7",
+      "name": "Dead bug",
+      "sets": 2,
+      "reps": "8 par côté",
+      "tempo": "Lent",
+      "unit": "note",
+      "how": {
+       "pos": "Allongée sur le dos, bras tendus vers le plafond, genoux pliés à 90° au-dessus des hanches. Plaque le bas du dos au sol.",
+       "move": "Allonge lentement un bras derrière la tête et la jambe opposée vers le sol, sans les poser. Reviens au centre, puis change de côté.",
+       "breath": "Expire en allongeant le bras et la jambe.",
+       "avoid": "Laisser le bas du dos se décoller du sol : si ça arrive, réduis l’amplitude."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "C": {
+  "title": "Séance C",
+  "theme": "Corps entier",
+  "time": "40 min",
+  "blocks": [
+   {
+    "name": "Bloc 1",
+    "kind": "Superset : enchaîne les deux exercices, puis récupère",
+    "rest": 75,
+    "ex": [
+     {
+      "id": "c1",
+      "name": "Squat gobelet jusqu’au banc",
+      "sets": 3,
+      "reps": "12",
+      "tempo": "Descente en 3 s",
+      "unit": "",
+      "how": {
+       "pos": "Debout dos au banc, à environ un pas. Pieds un peu plus écartés que les hanches, pointes légèrement ouvertes. Haltère léger tenu verticalement contre la poitrine.",
+       "move": "Descends en 3 secondes en poussant les fesses vers l’arrière et en pliant les genoux, jusqu’à effleurer le banc. Remonte en poussant dans le sol.",
+       "breath": "Inspire en descendant, expire en te relevant.",
+       "avoid": "Te laisser tomber sur le banc, ou laisser les genoux rentrer vers l’intérieur."
+      }
+     },
+     {
+      "id": "c2t",
+      "name": "Pompes au TRX",
+      "sets": 3,
+      "reps": "8 à 12",
+      "tempo": "Descente en 2 s",
+      "unit": "réglage",
+      "how": {
+       "pos": "Dos au point d’ancrage, poignées en main à hauteur de poitrine, bras tendus devant toi. Recule les pieds pour que ton corps penche vers l’avant, droit de la tête aux talons.",
+       "move": "Plie les coudes pour descendre la poitrine entre les poignées en 2 secondes, coudes à environ 45° du corps. Pousse pour revenir bras tendus.",
+       "breath": "Inspire en descendant, expire en poussant.",
+       "avoid": "Laisser le ventre s’affaisser. Plus tu es inclinée, plus c’est dur : commence presque debout."
+      }
+     }
+    ]
+   },
+   {
+    "name": "Bloc 2",
+    "kind": "Superset jambes et dos",
+    "rest": 75,
+    "ex": [
+     {
+      "id": "c7",
+      "name": "Fente arrière, haltères légers",
+      "sets": 3,
+      "reps": "10 par jambe",
+      "tempo": "Contrôlé",
+      "unit": "",
+      "how": {
+       "pos": "Debout, pieds écartés de la largeur des hanches, un haltère léger dans chaque main le long du corps.",
+       "move": "Fais un grand pas en arrière et descends en pliant les deux genoux, jusqu’à ce que le genou arrière frôle le sol. Le genou avant reste au-dessus de la cheville. Pousse dans le talon avant pour revenir debout, puis change de jambe.",
+       "breath": "Inspire en descendant, expire en remontant.",
+       "avoid": "Laisser le genou avant rentrer vers l’intérieur, ou pencher le buste en avant."
+      }
+     },
+     {
+      "id": "a2",
+      "name": "Rowing haltère un bras, appui sur le banc",
+      "sets": 3,
+      "reps": "10 à 12 par bras",
+      "tempo": "Pause 1 s en haut",
+      "unit": "",
+      "how": {
+       "pos": "Pose un genou et la main du même côté sur le banc. L’autre pied reste au sol, un peu écarté. Ton dos est plat, parallèle au sol, et l’haltère pend bras tendu sous l’épaule.",
+       "move": "Tire l’haltère en amenant le coude vers la hanche, le long du corps. Tiens 1 seconde en haut en serrant l’omoplate, puis redescends lentement jusqu’à bras tendu.",
+       "breath": "Expire en tirant, inspire en redescendant.",
+       "avoid": "Tourner le buste pour aider le mouvement, ou arrondir le dos."
+      }
+     }
+    ]
+   },
+   {
+    "name": "Bloc 3",
+    "kind": "Superset chaîne postérieure",
+    "rest": 60,
+    "ex": [
+     {
+      "id": "a4",
+      "name": "Leg curl allongé",
+      "sets": 3,
+      "reps": "12 à 15",
+      "tempo": "Retour en 3 s",
+      "unit": "",
+      "how": {
+       "pos": "Allongée sur le ventre sur le banc, genoux juste au bord, coussin calé au-dessus des chevilles. Hanches bien plaquées sur le banc, mains qui tiennent le banc.",
+       "move": "Plie les genoux pour amener les talons vers les fesses en 1 seconde, puis redescends lentement en 3 secondes jusqu’à jambes presque tendues.",
+       "breath": "Expire en pliant les jambes, inspire en redescendant.",
+       "avoid": "Décoller les hanches du banc pour finir le mouvement : c’est le signe que la charge est trop lourde."
+      }
+     },
+     {
+      "id": "c5",
+      "name": "Pont fessier sur une jambe",
+      "sets": 3,
+      "reps": "10 par côté",
+      "tempo": "Pause 1 s en haut",
+      "unit": "note",
+      "how": {
+       "pos": "Allongée sur le dos, un pied posé au sol près des fesses, l’autre jambe tendue dans le prolongement de la cuisse. Bras le long du corps.",
+       "move": "Pousse dans le talon posé pour monter le bassin jusqu’à l’alignement épaules-hanches-genou. Tiens 1 seconde, puis redescends. Fais toutes les répétitions d’un côté, puis change.",
+       "breath": "Expire en montant le bassin.",
+       "avoid": "Laisser le bassin pencher d’un côté."
+      }
+     }
+    ]
+   },
+   {
+    "name": "Bloc 4",
+    "kind": "Gainage",
+    "rest": 45,
+    "ex": [
+     {
+      "id": "c6",
+      "name": "Gainage latéral sur les genoux",
+      "sets": 2,
+      "reps": "20 à 30 s par côté",
+      "tempo": "Respiration continue",
+      "unit": "s",
+      "how": {
+       "pos": "Allongée sur le côté, coude posé sous l’épaule, genoux pliés à 90°, jambes l’une sur l’autre.",
+       "move": "Monte les hanches jusqu’à ce que la tête, les épaules, les hanches et les genoux forment une ligne droite. Tiens 20 à 30 secondes, puis change de côté.",
+       "breath": "Continue de respirer normalement pendant tout le maintien.",
+       "avoid": "Laisser les hanches redescendre ou partir vers l’arrière."
+      }
+     },
+     {
+      "id": "c8",
+      "name": "Bird dog",
+      "sets": 2,
+      "reps": "8 par côté",
+      "tempo": "Tiens 2 s",
+      "unit": "note",
+      "how": {
+       "pos": "À quatre pattes, mains sous les épaules, genoux sous les hanches, dos plat comme une table.",
+       "move": "Allonge en même temps un bras devant toi et la jambe opposée derrière toi, jusqu’à les aligner avec le dos. Tiens 2 secondes, reviens, puis change de côté.",
+       "breath": "Expire en allongeant le bras et la jambe.",
+       "avoid": "Laisser le bassin tourner ou le dos se creuser : imagine un verre d’eau posé sur ton dos."
+      }
+     }
+    ]
+   }
+  ]
+ }
+};
+
+function phase(w){
+  if(w<=2) return { name:"Reprise", d:-1, r:-2, effort:"Choisis une charge où il te reste 3 répétitions en réserve" };
+  if(w<=4) return { name:"Construction", d:0, r:0, effort:"Il doit te rester 2 répétitions en réserve en fin de série" };
+  return { name:"Progression", d:0, r:2, effort:"Il te reste 1 à 2 répétitions : ajoute 1 à 2 kg dès que la série passe facilement" };
+}
+const nSets = E => Math.max(2, E.sets + phase(state.week).d);
+const nRounds = F => F.rounds + phase(state.week).r;
+
+/* ---------- État et sauvegarde ---------- */
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const slug = s => (s||"").trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"") || "invite";
+const LAST = "brh_maison_last";
+let state = { name:"Delphine", week:1, tab:"guide", log:{} };
+
+function key(){ return "brh_maison_" + slug(state.name); }
+function save(){
+  try{
+    localStorage.setItem(LAST, JSON.stringify({ name:state.name, tab:state.tab }));
+    localStorage.setItem(key(), JSON.stringify({ week:state.week, log:state.log }));
+  }catch(e){}
+}
+function loadAthlete(carry){
+  let d = {};
+  try{ d = JSON.parse(localStorage.getItem(key()) || "{}"); }catch(e){}
+  if(carry && !d.log){ save(); return; }
+  state.log = d.log || {};
+  state.week = d.week || 1;
+  save();
+}
+function migrate(){
+  try{
+    if(localStorage.getItem(key())) return;
+    const last = JSON.parse(localStorage.getItem(LAST) || "{}");
+    const old = ["brh_maison_" + slug(last.name || ""), "brh_maison_invite"];
+    for(const k of old){ const v = localStorage.getItem(k); if(v){ localStorage.setItem(key(), v); return; } }
+  }catch(e){}
+}
+function init(){
+  try{
+    const last = JSON.parse(localStorage.getItem(LAST) || "{}");
+    state.tab = last.tab || "guide";
+  }catch(e){}
+  migrate();
+  loadAthlete(false);
+  render();
+}
+function getLog(w,k){
+  state.log[w] = state.log[w] || {};
+  state.log[w][k] = state.log[w][k] || { ex:{}, fin:false, rpe:null, pf:null, note:"" };
+  return state.log[w][k];
+}
+function exLog(L,id){ L.ex[id] = L.ex[id] || { done:[], kg:"" }; return L.ex[id]; }
+
+/* ---------- Rendu ---------- */
+function render(){
+  document.querySelectorAll('[data-action="week"]').forEach(b => b.classList.toggle("on", +b.dataset.w === state.week));
+  const ph = phase(state.week);
+  $("#phase").innerHTML = `Semaine ${state.week} sur 6 : <b>${ph.name.toLowerCase()}</b>. ${ph.effort}.`;
+  document.querySelectorAll('[data-action="tab"]').forEach(b => b.setAttribute("aria-selected", b.dataset.tab === state.tab));
+  $("#main").innerHTML = state.tab === "guide" ? guideHTML() : sessionHTML(state.tab);
+}
+
+function guideHTML(){
+  return `
+  <section class="answer">
+    <h2>30 minutes tous les deux jours ou deux fois une heure ?</h2>
+    <p class="verdict">Trois séances de 40 à 45 minutes par semaine, un jour sur deux.</p>
+    <ul class="plain">
+      <li>Le muscle se maintient mieux quand on le sollicite souvent : trois rendez-vous courts valent mieux que deux longs.</li>
+      <li>Une séance de 40 minutes se cale facilement dans la journée, donc tu la feras vraiment.</li>
+      <li>Tu restes fraîche jusqu’au bout : meilleure technique et moins de pression accumulée sur le périnée en fin de séance.</li>
+      <li>Chaque séance est suivie d’un jour de récupération.</li>
+    </ul>
+  </section>
+
+  <h2>Ta semaine type</h2>
+  <div class="days">
+    <div class="day f"><div class="d">Lun</div><div class="w">A</div><div class="t">40 min</div></div>
+    <div class="day c"><div class="d">Mar</div><div class="w">Marche</div><div class="t">ou vélo, facultatif</div></div>
+    <div class="day f"><div class="d">Mer</div><div class="w">B</div><div class="t">45 min</div></div>
+    <div class="day"><div class="d">Jeu</div><div class="w">Repos</div><div class="t">ou asso</div></div>
+    <div class="day f"><div class="d">Ven</div><div class="w">C</div><div class="t">40 min</div></div>
+    <div class="day c"><div class="d">Sam</div><div class="w">Marche</div><div class="t">ou vélo, facultatif</div></div>
+    <div class="day"><div class="d">Dim</div><div class="w">Repos</div></div>
+  </div>
+  <p class="note">Les jours sont indicatifs, garde simplement un jour entre deux séances. Les marches ou sorties vélo durent 30 à 45 minutes à une allure où tu peux discuter. Quand tes activités associatives prennent de la place dans la semaine, elles remplacent ce cardio : garde alors A et B, et fais C quand ta semaine le permet.</p>
+
+  <h2>Et le volume des cuisses ?</h2>
+  <p>C’est une inquiétude très fréquente, alors parlons-en franchement : prendre du muscle n’a rien de magique. C’est même un processus lent, qu’on obtient en le cherchant activement.</p>
+  <ul class="plain">
+    <li><b>Le muscle se construit lentement.</b> En six semaines, une femme qui reprend gagne au mieux quelques centaines de grammes à un kilo de muscle, réparti sur tout le corps. Des cuisses nettement plus volumineuses demandent des années d’entraînement lourd, beaucoup de volume et une alimentation pensée pour ça.</li>
+    <li><b>Le « gonflement » après une séance est temporaire.</b> C’est l’afflux de sang et d’eau dans les muscles qui viennent de travailler : il disparaît en quelques heures.</li>
+    <li><b>La silhouette des jambes dépend surtout de la masse grasse et de la génétique.</b> Le muscle est plus dense que la graisse : à poids égal, il prend moins de place et rend les jambes plus fermes.</li>
+  </ul>
+  <h3 style="margin-top:24px">Pourquoi travailler tes jambes est important</h3>
+  <ul class="plain" style="margin-top:12px">
+    <li>Ce sont les plus gros muscles du corps : les entretenir soutient ton métabolisme et aide à bien gérer le sucre dans le sang.</li>
+    <li>Le travail en charge est l’un des meilleurs moyens de préserver la solidité des os avec les années.</li>
+    <li>Des jambes fortes protègent tes genoux et ton dos, et entretiennent l’équilibre au quotidien.</li>
+    <li>Dans ce programme, elles travaillent en séries de 12 à 15 répétitions avec des charges modérées : c’est un travail de tonicité et de santé, pas de prise de masse.</li>
+  </ul>
+  <p class="note">Si au fil des semaines tu remarques un changement qui ne te plaît pas, allège simplement les charges sur les exercices de jambes : rien n’est figé.</p>
+
+  <h2>Ton matériel</h2>
+  <ul class="plain">
+    <li><b>Banc inclinable, haltères, barre EZ et barre</b> pour les exercices en charge.</li>
+    <li><b>Élastiques et mini-élastique</b> pour le gainage, les fessiers et l’aide aux tractions.</li>
+    <li><b>TRX</b> : installe l’ancrage de porte côté charnières, sur une porte fermée à clé qui s’ouvre de l’autre côté. En tirant, tu la plaques contre son cadre. Avant chaque séance, tire fort sur les sangles pour vérifier la fixation.</li>
+    <li><b>Régler la difficulté au TRX</b> : plus ton corps est incliné, plus l’exercice est dur. Avancer ou reculer les pieds d’une vingtaine de centimètres suffit. Note ton réglage dans la case prévue pour le retrouver la fois suivante.</li>
+    <li><b>Barre de traction</b> : vérifie son serrage avant chaque utilisation et garde un tabouret à portée pour monter et redescendre en douceur lors des tractions.</li>
+  </ul>
+
+  <h2>Protéger ton périnée</h2>
+  <ul class="plain">
+    <li>Expire toujours sur l’effort. Juste avant de pousser ou de tirer, remonte légèrement le périnée, comme pour retenir une envie, puis souffle.</li>
+    <li>Jamais d’apnée bouche fermée, même sur la dernière répétition.</li>
+    <li>Aucun saut : pas de burpees, de jumping jacks ni de corde à sauter.</li>
+    <li>Pas de crunchs ni de relevés de buste. Le gainage passe par le dead bug, le bird dog, le Pallof press et le gainage latéral, qui protègent la sangle abdominale.</li>
+    <li>Charges modérées sur le hip thrust et le soulevé de terre roumain : tu dois pouvoir respirer pendant toute la série.</li>
+  </ul>
+  <div class="alert">
+    <h3>Si tu sens une gêne</h3>
+    <p>Une sensation de pesanteur, une fuite ou une gêne pendant ou après la séance : allège la charge, retire l’exercice concerné. Si ça persiste, un bilan chez un kiné ou une sage-femme spécialisés en rééducation périnéale est le bon réflexe.</p>
+  </div>
+
+  <h2>Tes six semaines</h2>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Semaines</th><th>Séries</th><th>Effort</th></tr></thead>
+    <tbody>
+      <tr><td>1 et 2</td><td>2 à 3 selon l’exercice</td><td>3 répétitions en réserve, tu apprends les gestes</td></tr>
+      <tr><td>3 et 4</td><td>3 à 4 selon l’exercice</td><td>2 répétitions en réserve</td></tr>
+      <tr><td>5 et 6</td><td>3 à 4 selon l’exercice</td><td>1 à 2 en réserve, +1 à 2 kg quand c’est facile</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">Le nombre de séries s’ajuste tout seul quand tu changes de semaine en haut de la page.</p>
+
+  <h2>Utiliser cette page</h2>
+  <ol class="howto">
+    <li>Ta progression est enregistrée automatiquement sur ce téléphone : pense à toujours l’ouvrir depuis le même navigateur.</li>
+    <li>Choisis la semaine, puis la séance du jour.</li>
+    <li>Fais l’échauffement, puis coche chaque série et note la charge utilisée.</li>
+    <li>Lance le chrono de récupération après chaque superset. Des bips annoncent chaque changement et l’écran reste allumé.</li>
+  </ol>`;
+}
+
+function sessionHTML(k){
+  const S = SESSIONS[k], L = getLog(state.week,k);
+  let h = `<header class="sess-head">
+    <h2>${S.title}</h2>
+    <div class="theme">${S.theme}</div>
+    <p class="meta">Environ ${S.time}, échauffement compris.</p>
+  </header>
+  <details><summary>Échauffement, 5 min</summary><ol>${WARMUP.map(([a,b]) => `<li>${a}<span>${b}</span></li>`).join("")}</ol></details>`;
+
+  S.blocks.forEach(B => {
+    h += `<section class="block"><div class="block-head"><div><h3>${B.name}</h3><p>${B.kind}</p></div>
+      <button class="rest-btn" data-action="rest" data-s="${B.rest}">Récup ${B.rest} s</button></div>`;
+    B.ex.forEach(E => {
+      const n = nSets(E), el = L.ex[E.id] || { done:[], kg:"" };
+      h += `<article class="ex">
+        <div class="ex-top">
+          <div><h4>${E.name}</h4><p class="dose"><b>${n} × ${E.reps}</b><span>${E.tempo}</span></p></div></div>
+        <div class="illu">${ILLU[E.id] || ""}</div>
+        <dl class="how">
+          <dt>Position de départ</dt><dd>${E.how.pos}</dd>
+          <dt>Le mouvement</dt><dd>${E.how.move}</dd>
+          <dt>Respiration</dt><dd>${E.how.breath}</dd>
+          <dt class="av">À éviter</dt><dd>${E.how.avoid}</dd>
+        </dl>
+        <div class="track">
+          <div class="sets">${Array.from({length:n}, (_,i) => `<button class="set${el.done[i] ? " on" : ""}" data-action="set" data-ex="${E.id}" data-i="${i}" aria-pressed="${!!el.done[i]}" aria-label="Série ${i+1}">${i+1}</button>`).join("")}</div>
+          <label class="kg"><input data-action="kg" data-ex="${E.id}" inputmode="${E.unit ? "text" : "decimal"}" value="${esc(el.kg||"")}" placeholder="—" aria-label="${E.unit || "Charge en kg"}"> ${E.unit || "kg"}</label>
+        </div></article>`;
+    });
+    h += `</section>`;
+  });
+
+  h += `
+  <details><summary>Retour au calme, 3 min</summary><ol>${COOLDOWN.map(([a,b]) => `<li>${a}<span>${b}</span></li>`).join("")}</ol></details>
+
+  <div class="actions" style="margin-top:28px"><button class="ghost" data-action="reset">Effacer cette séance</button></div>`;
+  return h;
+}
+
+/* ---------- Son ---------- */
+let ac = null;
+function unlockAudio(){
+  try{
+    ac = ac || new (window.AudioContext || window.webkitAudioContext)();
+    if(ac.state === "suspended") ac.resume();
+  }catch(e){}
+}
+function beep(freq, dur){
+  if(!ac) return;
+  try{
+    const o = ac.createOscillator(), g = ac.createGain(), t = ac.currentTime;
+    o.type = "sine"; o.frequency.value = freq;
+    g.gain.setValueAtTime(0.3, t);
+    g.gain.exponentialRampToValueAtTime(0.001, t + dur);
+    o.connect(g); g.connect(ac.destination);
+    o.start(t); o.stop(t + dur + 0.02);
+  }catch(e){}
+}
+
+/* ---------- Écran allumé ---------- */
+let wl = null;
+async function requestWake(){
+  try{
+    if("wakeLock" in navigator && !wl && document.visibilityState === "visible"){
+      wl = await navigator.wakeLock.request("screen");
+      wl.addEventListener("release", () => { wl = null; });
+    }
+  }catch(e){}
+}
+function releaseWake(){ try{ wl && wl.release(); }catch(e){} wl = null; }
+document.addEventListener("visibilitychange", () => {
+  if(document.visibilityState === "visible" && (state.tab !== "guide" || tick)) requestWake();
+});
+
+/* ---------- Chrono ---------- */
+let tick = null, seq = [], idx = 0, endAt = 0, shown = null, onEnd = null;
+const fmt = s => Math.floor(s/60) + ":" + String(s%60).padStart(2,"0");
+
+function startSeq(phases, done){
+  stopSeq();
+  unlockAudio(); requestWake();
+  seq = phases; idx = 0; onEnd = done || null;
+  $("#bar").hidden = false;
+  startPhase();
+  tick = setInterval(loop, 200);
+  loop();
+}
+function startPhase(){
+  endAt = Date.now() + seq[idx].secs * 1000; shown = null;
+  const p = seq[idx];
+  $("#bar").className = "bar " + p.kind;
+  $("#bar-label").textContent = p.label;
+  $("#bar-sub").textContent = p.sub || "";
+}
+function loop(){
+  const left = Math.max(0, Math.ceil((endAt - Date.now()) / 1000));
+  if(left !== shown){
+    shown = left;
+    $("#bar-time").textContent = fmt(left);
+    if(left > 0 && left <= 3) beep(660, 0.12);
+  }
+  if(left <= 0){
+    idx++;
+    if(idx >= seq.length){
+      beep(990, 0.7);
+      const cb = onEnd; stopSeq(); if(cb) cb();
+      return;
+    }
+    beep(seq[idx].kind === "work" ? 990 : 520, 0.35);
+    startPhase();
+  }
+}
+function stopSeq(){
+  clearInterval(tick); tick = null;
+  $("#bar").hidden = true;
+}
+$("#bar-stop").addEventListener("click", stopSeq);
+
+
+/* ---------- Événements ---------- */
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-action]");
+  if(!b) return;
+  const a = b.dataset.action, k = state.tab;
+
+  if(a === "tab"){
+    state.tab = b.dataset.tab; save(); render();
+    window.scrollTo({ top: $(".tabs").offsetTop + 1 });
+    if(state.tab === "guide" && !tick) releaseWake(); else requestWake();
+    return;
+  }
+  if(a === "week"){ state.week = +b.dataset.w; save(); render(); return; }
+  if(k === "guide") return;
+  const L = getLog(state.week,k);
+
+  switch(a){
+    case "set": {
+      const ex = exLog(L, b.dataset.ex), i = +b.dataset.i;
+      ex.done[i] = !ex.done[i]; save();
+      b.classList.toggle("on", ex.done[i]); b.setAttribute("aria-pressed", ex.done[i]);
+      break;
+    }
+    case "rest":
+      startSeq([{ label:"Récupération", sub:"Reprends au bip", secs:+b.dataset.s, kind:"rest" }]);
+      break;
+    case "reset":
+      if(confirm("Effacer les données de cette séance pour cette semaine ?")){
+        delete state.log[state.week][k]; save(); render();
+      }
+      break;
+  }
+});
+
+document.addEventListener("input", e => {
+  const t = e.target, a = t.dataset.action;
+  if(!a || state.tab === "guide") return;
+  const L = getLog(state.week, state.tab);
+  if(a === "kg"){ exLog(L, t.dataset.ex).kg = t.value.trim(); save(); }
+});
+
+
+init();
+</script>
+</body>
+</html>
